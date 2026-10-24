@@ -1,0 +1,827 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biblioteca de Psicología Completa | 20 módulos · 577 páginas</title>
+<meta name="description" content="20 módulos y 577 páginas visuales con todo lo esencial de Psicología, organizado para estudiar, repasar y consultar en minutos. Acceso inmediato + 5 bonos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ================= TOKENS (troque aqui para adaptar a qualquer nicho) ================= */
+  :root{
+    --bg:#FFFFFF;
+    --bg-alt:#F7F9F8;
+    --paper:#FFFFFF;
+    --ink:#1C2A24;
+    --ink-soft:#4C5A53;
+    --muted:#7D8781;
+    --line:#E9ECEA;
+    --brand:#1F4D3A;
+    --brand-deep:#143528;
+    --brand-soft:#E4EEE7;
+    --accent:#C8693F;
+    --accent-deep:#A9532D;
+    --gold:#C9A04A;
+    --cta:#22A35A;
+    --cta-deep:#1A8549;
+    --danger:#C0392B;
+    --radius:18px;
+    --shadow:0 1px 2px rgba(28,42,36,.05),0 10px 30px -12px rgba(28,42,36,.18);
+    --shadow-lg:0 30px 60px -25px rgba(20,53,40,.35);
+    --serif:"Fraunces",Georgia,serif;
+    --sans:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{max-width:100%;height:auto;display:block}
+  a{color:inherit}
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
+  .narrow{max-width:780px}
+  section{padding:88px 0;position:relative}
+  .alt{background:var(--bg-alt)}
+  .dark{background:var(--bg-alt);color:var(--ink)}
+
+  /* ================= TIPOGRAFIA ================= */
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:14px}
+  .eyebrow::before{content:"";width:22px;height:2px;background:currentColor;border-radius:2px}
+  .center{text-align:center}
+  .center .eyebrow{justify-content:center}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;letter-spacing:-.015em;color:var(--brand-deep)}
+    h1{font-size:clamp(32px,5.4vw,58px)}
+  h2{font-size:clamp(28px,4vw,44px);margin-bottom:16px}
+  h3{font-size:21px}
+  h1 em,h2 em{font-style:italic;color:var(--accent)}
+  .lead{font-size:clamp(17px,2vw,20px);color:var(--ink-soft);max-width:680px}
+  .center .lead{margin:0 auto}
+  .sec-head{margin-bottom:48px}
+
+  /* ================= BOTÃO CTA ================= */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;background:linear-gradient(180deg,var(--cta),var(--cta-deep));color:#fff;text-decoration:none;font-weight:800;font-size:17px;letter-spacing:.04em;text-transform:uppercase;padding:20px 34px;border-radius:14px;box-shadow:0 12px 28px -10px rgba(26,133,73,.7),inset 0 -3px 0 rgba(0,0,0,.15);transition:transform .2s,box-shadow .2s;text-align:center;border:0;cursor:pointer}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 18px 34px -12px rgba(26,133,73,.8),inset 0 -3px 0 rgba(0,0,0,.15)}
+  .btn svg{width:20px;height:20px;flex:none}
+  .btn.pulse{animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,163,90,.55),0 12px 28px -10px rgba(26,133,73,.7)}70%{box-shadow:0 0 0 16px rgba(34,163,90,0),0 12px 28px -10px rgba(26,133,73,.7)}100%{box-shadow:0 0 0 0 rgba(34,163,90,0),0 12px 28px -10px rgba(26,133,73,.7)}}
+  .btn-note{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:center;margin-top:14px;font-size:13.5px;color:var(--muted)}
+  .btn-note span{display:inline-flex;align-items:center;gap:6px}
+  .btn-note svg{width:15px;height:15px;color:var(--cta-deep)}
+  .cta-block{text-align:center;margin-top:48px}
+
+  /* ================= 1. BARRA DE URGÊNCIA ================= */
+  .urgency{position:sticky;top:0;z-index:50;background:linear-gradient(90deg,#8E2A1C,var(--danger),#8E2A1C);color:#fff;font-size:14px}
+  .urgency .wrap{display:flex;align-items:center;justify-content:center;gap:10px 18px;flex-wrap:wrap;padding-top:9px;padding-bottom:9px}
+  .urgency strong{letter-spacing:.04em;text-transform:uppercase;font-weight:800}
+  .urgency .dot{width:8px;height:8px;border-radius:50%;background:#FFD66B;box-shadow:0 0 0 0 rgba(255,214,107,.8);animation:blink 1.4s infinite}
+  @keyframes blink{0%{box-shadow:0 0 0 0 rgba(255,214,107,.8)}100%{box-shadow:0 0 0 10px rgba(255,214,107,0)}}
+  .timer{display:inline-flex;gap:5px;font-variant-numeric:tabular-nums}
+  .timer b{background:rgba(0,0,0,.28);border-radius:6px;padding:2px 7px;font-weight:800;min-width:34px;text-align:center}
+  .urgency a{color:#FFD66B;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(255,214,107,.5)}
+
+  /* ================= 2. HERO ================= */
+  .hero{padding:56px 0 88px;background:linear-gradient(180deg,#F4F8F5 0%,#FFFFFF 70%);text-align:center}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--line);padding:7px 14px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);margin-bottom:22px;box-shadow:var(--shadow)}
+  .badge i{width:7px;height:7px;border-radius:50%;background:var(--accent);display:block}
+  .hero h1{max-width:900px;margin:0 auto}
+  .hero h1 .hl{background:linear-gradient(transparent 62%,rgba(200,105,63,.22) 62%);padding:0 4px}
+  .media{position:relative;max-width:820px;margin:36px auto 0;border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg);background:var(--paper);border:1px solid var(--line)}
+  .media img{width:100%;aspect-ratio:1/1;object-fit:cover}
+  /* para VSL: troque o <img> por <div class="vsl"><iframe ...></iframe></div> */
+  .media .vsl{position:relative;aspect-ratio:16/9}
+  .media .vsl iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .stats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:28px auto 0}
+  .stat{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 16px;font-size:14px;color:var(--ink-soft);box-shadow:var(--shadow)}
+  .stat b{font-family:var(--serif);font-size:20px;color:var(--brand-deep);margin-right:4px}
+  .sub{max-width:700px;margin:32px auto 0;font-size:clamp(18px,2.2vw,21px);color:var(--ink-soft)}
+  .sub strong{color:var(--ink)}
+  .gains{max-width:760px;margin:30px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:left}
+  .gain{display:flex;gap:12px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:15.5px;line-height:1.45}
+  .gain .ck{flex:none;width:24px;height:24px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;margin-top:1px}
+  .gain .ck svg{width:14px;height:14px}
+  .gain b{color:var(--brand-deep)}
+
+  /* ================= 3. DORES ================= */
+  .pains{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .pain{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .pain::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--danger);opacity:.85}
+  .pain .ic{width:46px;height:46px;border-radius:12px;background:#FBE9E5;color:var(--danger);display:grid;place-items:center;margin-bottom:16px}
+  .pain .ic svg{width:24px;height:24px}
+  .pain h3{font-size:20px;margin-bottom:8px;color:var(--ink)}
+  .pain p{font-size:15.5px;color:var(--ink-soft)}
+  .pain-close{margin:44px auto 0;max-width:760px;text-align:center;font-family:var(--serif);font-size:clamp(20px,2.6vw,26px);line-height:1.4;color:var(--brand-deep)}
+  .pain-close em{color:var(--accent)}
+
+  /* ================= 4. O QUE VAI RECEBER ================= */
+  .carousel{position:relative;margin:0 -20px}
+  .track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 20px 22px;scrollbar-width:none}
+  .track::-webkit-scrollbar{display:none}
+  .page{flex:0 0 min(460px,84vw);scroll-snap-align:start;background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);cursor:zoom-in;transition:transform .25s}
+  .page:hover{transform:translateY(-4px)}
+  .page img{width:100%;aspect-ratio:1086/1448;object-fit:cover;background:var(--bg-alt)}
+  .page figcaption{padding:14px 16px 16px;font-size:15px;line-height:1.35}
+  .page figcaption small{display:block;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:2px}
+  .page figcaption span{font-weight:600;color:var(--ink)}
+  .car-nav{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:6px}
+  .car-btn{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--brand);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);transition:background .2s}
+  .car-btn:hover{background:var(--brand-soft)}
+  .car-btn svg{width:20px;height:20px}
+  .car-count{font-size:13px;color:var(--muted);min-width:120px;text-align:center}
+  .modules-head{display:flex;align-items:end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:72px 0 24px}
+  .modules-head h3{font-size:clamp(24px,3vw,32px)}
+  .big-nums{display:flex;gap:12px}
+  .big-num{background:var(--brand-deep);color:#fff;border-radius:14px;padding:10px 18px;text-align:center}
+  .big-num b{display:block;font-family:var(--serif);font-size:28px;line-height:1}
+  .big-num small{font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
+  .modules{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+  .module{display:flex;gap:16px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px}
+  .module .n{flex:none;width:48px;height:48px;border-radius:12px;display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:18px;color:#fff;background:var(--c,var(--brand))}
+  .module h4{font-size:16px;line-height:1.3;color:var(--ink);margin-bottom:4px}
+  .module p{font-size:14px;color:var(--ink-soft);line-height:1.45}
+  .module .chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+  .module .chips span{font-size:11.5px;font-weight:600;color:var(--brand);background:var(--brand-soft);padding:3px 8px;border-radius:6px}
+  .module .n{position:relative}
+  .module.new .n::after{content:"NUEVO";position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);font-family:var(--sans);font-size:8.5px;font-weight:800;letter-spacing:.06em;background:var(--accent);color:#fff;padding:1px 4px;border-radius:4px}
+  .formats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+  .format{display:flex;gap:12px;align-items:center;padding:16px;border-radius:14px;border:1px solid var(--line);background:var(--bg-alt);font-size:14.5px;color:var(--ink-soft)}
+  .format svg{width:26px;height:26px;color:var(--accent);flex:none}
+  .format b{color:var(--ink);display:block;font-size:15px}
+
+  /* ================= 5. MECANISMO ÚNICO ================= */
+  .mech-name{display:block;font-family:var(--serif);font-style:italic;color:var(--accent);font-size:clamp(20px,2.4vw,26px);margin-bottom:6px}
+  .dark .lead{color:var(--ink-soft)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px;counter-reset:s}
+  .step{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;position:relative;box-shadow:var(--shadow)}
+  .step .num{font-family:var(--serif);font-size:54px;line-height:1;color:var(--gold);opacity:.9;margin-bottom:10px}
+  .step h3{font-size:22px;margin-bottom:10px}
+  .step p{font-size:15.5px;color:var(--ink-soft)}
+  .step .tag{display:inline-block;margin-top:14px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);background:var(--brand-soft);padding:4px 10px;border-radius:999px}
+  .why{margin-top:40px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px}
+  .why .q{width:58px;height:58px;border-radius:16px;background:var(--brand-deep);color:var(--gold);display:grid;place-items:center;font-family:var(--serif);font-size:30px;font-weight:700}
+  .why p{color:var(--ink-soft);font-size:16px}
+  .why b{color:var(--ink)}
+
+  /* ================= 6. PARA QUEM É ================= */
+  .for-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:22px}
+  .for-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow)}
+  .for-card h3{display:flex;align-items:center;gap:10px;margin-bottom:18px;font-size:22px}
+  .for-card ul{list-style:none;display:grid;gap:14px}
+  .for-card li{display:flex;gap:12px;font-size:16px;line-height:1.45}
+  .for-card li svg{flex:none;width:22px;height:22px;margin-top:1px}
+  .yes li svg{color:var(--cta-deep)}
+  .no{background:#FBF4F2;border-color:#F0DCD6}
+  .no li svg{color:var(--danger)}
+  .no h3{color:#7A2A1F}
+  .disclaimer{margin-top:22px;font-size:13.5px;color:var(--muted);text-align:center}
+
+  /* ================= 7. ONDE USAR ================= */
+  .uses{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .use{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:24px;transition:transform .25s,box-shadow .25s}
+  .use:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+  .use .ic{width:52px;height:52px;border-radius:14px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;margin-bottom:14px}
+  .use .ic svg{width:26px;height:26px}
+  .use h3{font-size:19px;margin-bottom:6px;color:var(--ink)}
+  .use p{font-size:15px;color:var(--ink-soft)}
+  .use .when{display:block;margin-top:12px;font-size:12.5px;font-weight:600;color:var(--accent-deep)}
+
+  /* ================= 8. BÔNUS ================= */
+  .bonuses{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .bonus{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;position:relative}
+  .bonus .lbl{position:absolute;top:12px;left:12px;background:var(--accent);color:#fff;font-size:11px;font-weight:800;letter-spacing:.1em;padding:4px 9px;border-radius:6px;z-index:1}
+  .bonus .cover img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+  .bonus .body{padding:16px 16px 18px;display:flex;flex-direction:column;flex:1}
+  .bonus h3{font-size:16px;line-height:1.3;color:var(--ink);margin-bottom:6px}
+  .bonus p{font-size:13.5px;color:var(--ink-soft);line-height:1.45;flex:1}
+  .price-anchor{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+  .price-anchor s{color:var(--muted);font-size:14px}
+  .free{background:var(--cta);color:#fff;font-weight:800;font-size:12.5px;letter-spacing:.08em;padding:4px 10px;border-radius:6px}
+  .bonus-total{margin:34px auto 0;max-width:640px;display:flex;align-items:center;justify-content:center;gap:12px 18px;flex-wrap:wrap;background:var(--paper);border:2px dashed var(--gold);border-radius:16px;padding:18px 22px;text-align:center;font-size:16px}
+  .bonus-total s{color:var(--muted);font-size:18px}
+  .bonus-total b{font-family:var(--serif);font-size:24px;color:var(--cta-deep)}
+
+  /* ================= 9. DEPOIMENTOS ================= */
+  .testi{flex:0 0 min(320px,78vw);scroll-snap-align:start;cursor:zoom-in}
+  .testi img{border-radius:18px;box-shadow:var(--shadow);width:100%;aspect-ratio:600/1066;object-fit:cover;object-position:top}
+  .stars{color:var(--gold);letter-spacing:2px;font-size:15px}
+  .rating{display:inline-flex;align-items:center;gap:10px;margin-top:16px;background:var(--paper);border:1px solid var(--line);padding:8px 16px;border-radius:999px;font-size:14px;color:var(--ink-soft)}
+
+  /* ================= 10. OFERTA ================= */
+  .offer-sec{background:linear-gradient(180deg,#FFFFFF 0%,#F1F6F3 50%,#FFFFFF 100%)}
+  .offer{max-width:640px;margin:0 auto;background:var(--paper);border-radius:28px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(20,53,40,.35);border:2px solid var(--gold)}
+  .offer-top{background:linear-gradient(90deg,var(--accent-deep),var(--accent));color:#fff;text-align:center;padding:12px;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+  .offer-in{padding:34px 34px 30px}
+  .offer h2{text-align:center;font-size:clamp(26px,3.4vw,34px);margin-bottom:6px}
+  .offer .tagline{text-align:center;color:var(--ink-soft);font-size:15.5px;margin-bottom:22px}
+  .offer img.mock{border-radius:16px;margin:0 auto 22px;border:1px solid var(--line)}
+  .offer-list{list-style:none;display:grid;gap:0}
+  .offer-list li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+  .offer-list li .l{display:flex;gap:10px;align-items:flex-start}
+  .offer-list li .l svg{flex:none;width:20px;height:20px;color:var(--cta-deep);margin-top:2px}
+  .offer-list li s{color:var(--muted);font-size:14px;white-space:nowrap}
+  .offer-list .grp{padding:18px 0 6px;border:0;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep)}
+  .offer-list .bon .l span::after{content:"GRATIS";margin-left:8px;font-size:10.5px;font-weight:800;letter-spacing:.08em;color:#fff;background:var(--cta);padding:2px 6px;border-radius:4px;vertical-align:2px}
+  .anchor{margin-top:22px;text-align:center;padding:22px;border-radius:18px;background:var(--bg-alt)}
+  .anchor .total{font-size:15px;color:var(--ink-soft)}
+  .anchor .total s{color:var(--danger);font-weight:700;font-size:18px}
+  .anchor .today{margin-top:8px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+  .anchor .price{font-family:var(--serif);font-weight:700;font-size:clamp(54px,9vw,74px);line-height:1;color:var(--brand-deep);margin:6px 0}
+  .anchor .price small{font-size:.38em;vertical-align:.95em;margin-right:4px}
+  .anchor .once{font-size:14px;color:var(--ink-soft)}
+  .anchor .save{display:inline-block;margin-top:10px;background:#FFF3D6;color:#7A5A12;font-weight:700;font-size:13px;padding:5px 12px;border-radius:999px}
+  .offer .btn{width:100%;margin-top:22px;font-size:18px;padding:22px}
+  .conv{text-align:center;font-size:12.5px;color:var(--muted);margin-top:10px}
+  .secure{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center}
+  .secure div{font-size:12px;color:var(--ink-soft);line-height:1.35}
+  .secure svg{width:24px;height:24px;color:var(--brand);margin:0 auto 6px}
+
+  /* ================= 11. GARANTIA ================= */
+  .guarantee{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:44px;box-shadow:var(--shadow)}
+  .seal{width:200px;height:200px;position:relative}
+  .seal svg{width:100%;height:100%}
+  .guarantee h2{font-size:clamp(26px,3.4vw,36px)}
+  .guarantee p{color:var(--ink-soft);margin-top:10px}
+  .guarantee .risk{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-weight:700;color:var(--brand);background:var(--brand-soft);padding:8px 14px;border-radius:10px;font-size:14.5px}
+
+  /* ================= 12. FAQ ================= */
+  .faq{display:grid;gap:12px}
+  .faq details{background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:box-shadow .2s}
+  .faq details[open]{box-shadow:var(--shadow)}
+  .faq summary{list-style:none;cursor:pointer;padding:20px 22px;font-weight:600;font-size:16.5px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .pm{flex:none;width:28px;height:28px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;transition:transform .25s}
+  .faq details[open] .pm{transform:rotate(45deg);background:var(--brand);color:#fff}
+  .faq .ans{padding:0 22px 20px;color:var(--ink-soft);font-size:15.5px}
+
+  /* ================= FINAL + 13. DIREITOS ================= */
+  .final{text-align:center;padding:80px 0}
+  .final .psi{width:64px;height:64px;margin:0 auto 18px;border-radius:18px;background:var(--brand-deep);color:var(--gold);display:grid;place-items:center;font-family:var(--serif);font-size:34px}
+  footer{background:var(--bg-alt);border-top:1px solid var(--line);color:var(--muted);font-size:13.5px;padding:36px 0 40px;text-align:center}
+  footer .links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:12px 0}
+  footer a{text-decoration:none;color:var(--ink-soft)}
+  footer a:hover{color:var(--brand)}
+  footer .legal{max-width:720px;margin:14px auto 0;font-size:12px;line-height:1.55;opacity:.8}
+
+
+  /* ================= LIGHTBOX ================= */
+  .lb{position:fixed;inset:0;z-index:100;background:rgba(10,20,15,.88);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+  .lb.open{display:flex}
+  .lb img{max-height:92vh;max-width:min(92vw,720px);border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .lb button{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:var(--ink);font-size:24px;cursor:pointer}
+
+  /* ================= ANIMAÇÃO DE ENTRADA ================= */
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.btn.pulse,.urgency .dot{animation:none}html{scroll-behavior:auto}}
+
+  /* ================= RESPONSIVO ================= */
+  @media (max-width:980px){
+    .bonuses{grid-template-columns:repeat(3,1fr)}
+    .pains,.uses{grid-template-columns:repeat(2,1fr)}
+    .steps{grid-template-columns:1fr}
+  }
+  @media (max-width:760px){
+    body{font-size:16px}
+    section{padding:64px 0}
+    .wrap{padding:0 16px}
+    .carousel{margin:0 -16px}
+    .track{padding:8px 16px 22px}
+    .gains{grid-template-columns:1fr}
+    .pains,.uses{grid-template-columns:1fr}
+    .for-grid{grid-template-columns:1fr}
+    .formats{grid-template-columns:1fr}
+    .bonuses{grid-template-columns:1fr 1fr}
+    .guarantee{grid-template-columns:1fr;text-align:center;padding:32px 22px;gap:20px}
+    .seal{margin:0 auto;width:160px;height:160px}
+    .offer-in{padding:26px 18px 22px}
+    .why{grid-template-columns:1fr;text-align:center}
+    .why .q{margin:0 auto}
+    .modules{grid-template-columns:1fr}
+    .page{flex-basis:88vw}
+    .btn{width:100%;padding:18px 20px;font-size:16px}
+    .urgency{font-size:12.5px}
+    .urgency .hide-sm{display:none}
+  }
+  @media (max-width:420px){
+    .bonuses{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- SVG ícones reutilizáveis -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-check-c" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" opacity=".15"/><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M7 12.5l3.2 3.2L17 9"/></symbol>
+  <symbol id="i-x-c" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" opacity=".15"/><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="M8.5 8.5l7 7M15.5 8.5l-7 7"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 018 0v3"/></g></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M13 2.5L4.5 13.5H12l-1 8 8.5-11H12l1-8z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.8l7.5 3v6c0 4.6-3.2 8.2-7.5 9.4-4.3-1.2-7.5-4.8-7.5-9.4v-6z"/><path d="M8.5 12l2.4 2.4 4.6-4.8"/></g></symbol>
+</svg>
+
+<!-- ============ 1. BARRA DE URGÊNCIA ============ -->
+<div class="urgency" role="region" aria-label="Oferta especial">
+  <div class="wrap">
+    <span class="dot" aria-hidden="true"></span>
+    <strong>¡Oferta especial solo hoy!</strong>
+    <span class="hide-sm">Precio promocional termina en</span>
+    <span class="timer" aria-live="off"><b id="th">00</b>:<b id="tm">00</b>:<b id="ts">00</b></span>
+    <a href="#oferta" class="hide-sm">Aprovechar ahora →</a>
+  </div>
+</div>
+
+<main>
+<!-- ============ 2. HERO ============ -->
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <span class="badge"><i></i> Biblioteca digital · Acceso inmediato</span>
+
+    <!-- Headline: produto + promessa + resultado final -->
+    <h1>La <em>Biblioteca de Psicología Completa</em>: 20 módulos y 577 páginas visuales para que <span class="hl">entiendas cómo piensa, siente y actúa el ser humano</span> — de forma clara, aunque nunca hayas estudiado Psicología</h1>
+
+    <!-- Espaço do mockup / VSL -->
+    <div class="media rv">
+      <img src="assets/hero-mockup-20.webp" alt="Biblioteca de Psicología Completa: 20 módulos, 577 páginas y 5 bonos en formato digital" width="900" height="900" fetchpriority="high">
+      <!-- Para usar VSL, troque a imagem acima por:
+      <div class="vsl"><iframe src="https://www.youtube.com/embed/SEU_VIDEO" allow="autoplay; encrypted-media" allowfullscreen></iframe></div> -->
+    </div>
+
+    <div class="stats">
+      <span class="stat"><b>20</b> módulos</span>
+      <span class="stat"><b>577</b> páginas</span>
+      <span class="stat"><b>5</b> bonos</span>
+      <span class="stat"><b>15</b> días de garantía</span>
+    </div>
+
+    <!-- Subheadline -->
+    <p class="sub">Descubre por qué pensamos, sentimos y actuamos como lo hacemos. <strong>Todo lo esencial de Psicología, explicado de forma clara y visual, en un solo lugar</strong> — para aprender a tu ritmo, estudies o no la carrera.</p>
+
+    <!-- Bullets de ganhos concretos -->
+    <div class="gains">
+      <div class="gain"><span class="ck"><svg><use href="#i-check"/></svg></span><span><b>Léelo en el celular, tablet o PC</b> — o imprímelo y estudia en papel.</span></div>
+      <div class="gain"><span class="ck"><svg><use href="#i-check"/></svg></span><span><b>Entiende tus emociones y las de los demás</b> con explicaciones simples y ejemplos cotidianos.</span></div>
+      <div class="gain"><span class="ck"><svg><use href="#i-check"/></svg></span><span><b>Conoce a los grandes autores</b> — Freud, Jung, Piaget, Maslow y más — sin libros de 600 páginas.</span></div>
+      <div class="gain"><span class="ck"><svg><use href="#i-check"/></svg></span><span><b>Encuentra cualquier tema en segundos</b>, organizado en 20 módulos claros.</span></div>
+      <div class="gain"><span class="ck"><svg><use href="#i-check"/></svg></span><span><b>Aprende con esquemas, tablas y diagramas</b> que hacen fácil lo complejo.</span></div>
+      <div class="gain"><span class="ck"><svg><use href="#i-check"/></svg></span><span><b>Pago único</b> — sin mensualidades ni cobros extra.</span></div>
+    </div>
+
+    <div class="cta-block" style="margin-top:36px">
+      <a href="#amostra" class="btn pulse">Quiero ver el material por dentro <svg><use href="#i-arrow"/></svg></a>
+      <div class="btn-note"><span><svg><use href="#i-bolt"/></svg> Acceso inmediato</span><span><svg><use href="#i-lock"/></svg> Pago seguro</span><span><svg><use href="#i-shield"/></svg> Garantía de 15 días</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. DORES ============ -->
+<section class="alt" id="dores">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow">¿Te suena familiar?</span>
+      <h2>Aprender Psicología no debería ser <em>tan complicado</em></h2>
+      <p class="lead">Si te identificas con al menos una de estas situaciones, el problema no eres tú: es la forma en que el contenido llega a tus manos.</p>
+    </div>
+    <div class="pains">
+      <article class="pain rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h6l2 2h8v9a2 2 0 01-2 2H6a2 2 0 01-2-2z"/><path d="M9 14h6"/></svg></div>
+        <h3>Información por todas partes</h3>
+        <p>Videos, posts, podcasts y artículos que dicen cosas distintas… y al final <b>no sabes en qué confiar</b> ni por dónde empezar.</p>
+      </article>
+      <article class="pain rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-.9.6-1.5 1.1-1.5 2.2M12 17h.01"/></svg></div>
+        <h3>Lees y no lo entiendes</h3>
+        <p>Textos densos, lenguaje técnico y libros de 600 páginas. Sientes que <b>la Psicología es solo para expertos</b> y que nunca vas a entenderla de verdad.</p>
+      </article>
+      <article class="pain rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/></svg></div>
+        <h3>No entiendes por qué reaccionas así</h3>
+        <p>Ansiedad, cambios de ánimo, conflictos en tus relaciones… <b>quieres entenderte mejor</b>, pero no tienes una base clara para hacerlo.</p>
+      </article>
+      <article class="pain rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9.5 16.5h-19z"/><path d="M12 10v4M12 17h.01"/></svg></div>
+        <h3>Empiezas y abandonas</h3>
+        <p>Libros enormes, cursos caros y contenidos sin orden. <b>Pierdes el interés</b> antes de aprender algo que realmente te sirva.</p>
+      </article>
+    </div>
+    <p class="pain-close rv">Por eso creamos una biblioteca donde todo está <em>explicado, ordenado y listo para consultar</em> — para que aprendas con claridad, no con caos.</p>
+  </div>
+</section>
+
+<!-- ============ 4. O QUE VOCÊ VAI RECEBER ============ -->
+<section id="amostra">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow">Lo que vas a recibir</span>
+      <h2>Mira por dentro <em>antes</em> de acceder</h2>
+      <p class="lead">35 páginas reales de los 20 módulos, en su tamaño original. Desliza cada fila y toca cualquier página para ampliarla.</p>
+    </div>
+
+    <div class="carousel rv">
+      <div class="track" id="trackA"></div>
+      <div class="car-nav">
+        <button class="car-btn" data-track="trackA" data-dir="-1" aria-label="Páginas anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <span class="car-count">Desliza para ver más</span>
+        <button class="car-btn" data-track="trackA" data-dir="1" aria-label="Próximas páginas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+
+    <div class="carousel rv" style="margin-top:36px">
+      <div class="track" id="trackB"></div>
+      <div class="car-nav">
+        <button class="car-btn" data-track="trackB" data-dir="-1" aria-label="Páginas anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <span class="car-count">35 de 577 páginas</span>
+        <button class="car-btn" data-track="trackB" data-dir="1" aria-label="Próximas páginas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+
+    <div class="modules-head rv">
+      <div>
+        <span class="eyebrow">Contenido completo</span>
+        <h3>Todo esto dentro de una sola biblioteca</h3>
+      </div>
+      <div class="big-nums"><div class="big-num"><b>20</b><small>módulos</small></div><div class="big-num"><b>577</b><small>páginas</small></div></div>
+    </div>
+    <div class="modules" id="modules"></div>
+
+    <div class="formats rv">
+      <div class="format"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><div><b>Lee en el celular</b>Estudia en el bus o en la fila.</div></div>
+      <div class="format"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg><div><b>En tablet o computadora</b>Ideal para estudiar a fondo.</div></div>
+      <div class="format"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg><div><b>O imprímelo</b>Subraya y anota a tu manera.</div></div>
+    </div>
+
+    <div class="cta-block rv">
+      <a href="#oferta" class="btn">Quiero la biblioteca completa <svg><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. MECANISMO ÚNICO ============ -->
+<section class="dark" id="metodo">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow">Cómo funciona</span>
+      <span class="mech-name">Método Mapa Visual 3C</span>
+      <h2>Por qué esta biblioteca te hace entender en minutos lo que antes te tomaba horas</h2>
+      <p class="lead">Cada una de las 577 páginas fue diseñada con la misma estructura de 3 pasos. No es un resumen más: es una forma de estudiar que respeta cómo tu cerebro aprende.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv">
+        <div class="num">01</div>
+        <h3>Concepto claro</h3>
+        <p>Cada página aborda <b>un solo tema</b>, con una definición directa y sin rodeos. Nada de párrafos interminables: vas directo a lo que importa.</p>
+        <span class="tag">1 página = 1 idea</span>
+      </div>
+      <div class="step rv">
+        <div class="num">02</div>
+        <h3>Conexión visual</h3>
+        <p>Esquemas, tablas, diagramas y ejemplos cotidianos <b>conectan la teoría con la realidad</b> y con otros autores y temas de la carrera.</p>
+        <span class="tag">Ves la idea, no solo la lees</span>
+      </div>
+      <div class="step rv">
+        <div class="num">03</div>
+        <h3>Consulta rápida</h3>
+        <p>Todo organizado en 20 módulos con la misma lógica, para que <b>encuentres cualquier tema en segundos</b> cuando lo necesites.</p>
+        <span class="tag">Encuentra · repasa · listo</span>
+      </div>
+    </div>
+    <div class="why rv">
+      <div class="q">Ψ</div>
+      <p><b>¿Por qué funciona?</b> Nuestro cerebro procesa mejor la información cuando combina palabra e imagen, y retiene más cuando cada bloque de contenido es corto y bien delimitado. Al estudiar con páginas visuales de un solo concepto, <b>reduces la sobrecarga</b>, entiendes las conexiones entre temas y repasas mucho más rápido.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. PARA QUEM É ============ -->
+<section id="para-quien">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow">Para quién es</span>
+      <h2>Esta biblioteca fue hecha <em>para ti</em> si…</h2>
+    </div>
+    <div class="for-grid">
+      <div class="for-card yes rv">
+        <h3>✅ Es para ti si…</h3>
+        <ul>
+          <li><svg><use href="#i-check-c"/></svg><span>Estudias Psicología y quieres un material complementario claro para repasar.</span></li>
+          <li><svg><use href="#i-check-c"/></svg><span>Estás comenzando la carrera y quieres entender los conceptos de forma organizada.</span></li>
+          <li><svg><use href="#i-check-c"/></svg><span>Ya estudiaste estos temas y quieres una biblioteca para consultas rápidas.</span></li>
+          <li><svg><use href="#i-check-c"/></svg><span>Te preparas para exámenes, prácticas o concursos y necesitas repasar rápido.</span></li>
+          <li><svg><use href="#i-check-c"/></svg><span>Te apasiona la Psicología y quieres dejar la información dispersa.</span></li>
+          <li><svg><use href="#i-check-c"/></svg><span>Prefieres materiales visuales, resumidos y organizados por temas.</span></li>
+        </ul>
+      </div>
+      <div class="for-card no rv">
+        <h3>❌ No es para ti si…</h3>
+        <ul>
+          <li><svg><use href="#i-x-c"/></svg><span>Buscas un título o certificación profesional.</span></li>
+          <li><svg><use href="#i-x-c"/></svg><span>Quieres reemplazar la universidad o los libros académicos.</span></li>
+          <li><svg><use href="#i-x-c"/></svg><span>Esperas una herramienta para hacer diagnósticos clínicos.</span></li>
+          <li><svg><use href="#i-x-c"/></svg><span>Prefieres seguir estudiando con apuntes desordenados.</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="disclaimer">Material educativo. No sustituye libros académicos, formación universitaria, evaluación clínica ni supervisión profesional.</p>
+  </div>
+</section>
+
+<!-- ============ 7. ONDE USAR ============ -->
+<section class="alt" id="donde-usar">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow">En la práctica</span>
+      <h2>Dónde vas a usar tu biblioteca <em>todos los días</em></h2>
+    </div>
+    <div class="uses">
+      <div class="use rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z"/></svg></div>
+        <h3>En tu día a día</h3>
+        <p>Entiende tus emociones, hábitos y reacciones en situaciones reales, con ejemplos cotidianos.</p>
+        <span class="when">⏱ 5 minutos por tema</span>
+      </div>
+      <div class="use rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 19c.6-3 2.8-5 5.5-5s4.9 2 5.5 5M14.5 14.6c.8-.4 1.6-.6 2.5-.6 2.2 0 3.9 1.6 4.4 4"/></svg></div>
+        <h3>En tus relaciones</h3>
+        <p>Comprende la empatía, la comunicación y los conflictos para relacionarte mejor con los demás.</p>
+        <span class="when">⏱ Aplicable desde hoy</span>
+      </div>
+      <div class="use rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4z"/><path d="M7 9v5c0 1.5 2.2 3 5 3s5-1.5 5-3V9"/></svg></div>
+        <h3>Para estudiar o repasar</h3>
+        <p>Si estudias la carrera o te preparas para un curso, recorre un módulo entero con lo esencial ya resumido.</p>
+        <span class="when">⏱ 1 tarde por módulo</span>
+      </div>
+      <div class="use rv">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></div>
+        <h3>Consulta rápida</h3>
+        <p>¿Qué es el sesgo de confirmación o la teoría del apego? Lo encuentras en segundos.</p>
+        <span class="when">⏱ Menos de 1 minuto</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. BÔNUS ============ -->
+<section id="bonos">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow">Bonos exclusivos</span>
+      <h2>Comprando hoy, te llevas <em>5 libros digitales</em> de regalo</h2>
+      <p class="lead">Materiales extra para ampliar tu conocimiento — incluidos sin costo adicional.</p>
+    </div>
+    <div class="bonuses">
+      <article class="bonus rv">
+        <span class="lbl">BONO 01</span>
+        <div class="cover"><img src="assets/bonus/diccionario.webp" alt="Portada: Diccionario Esencial de Psicología" loading="lazy"></div>
+        <div class="body"><h3>Diccionario Esencial de Psicología</h3><p>Los términos clave de la carrera, explicados en lenguaje simple.</p>
+          <div class="price-anchor"><s>US$ 12</s><span class="free">GRATIS</span></div></div>
+      </article>
+      <article class="bonus rv">
+        <span class="lbl">BONO 02</span>
+        <div class="cover"><img src="assets/bonus/autores.webp" alt="Portada: 15 Grandes Autores de la Psicología" loading="lazy"></div>
+        <div class="body"><h3>15 Grandes Autores de la Psicología</h3><p>Quiénes fueron y qué aportó cada uno, de Freud a Bandura.</p>
+          <div class="price-anchor"><s>US$ 10</s><span class="free">GRATIS</span></div></div>
+      </article>
+      <article class="bonus rv">
+        <span class="lbl">BONO 03</span>
+        <div class="cover"><img src="assets/bonus/historia.webp" alt="Portada: Historia de la Psicología — Guía Rápida" loading="lazy"></div>
+        <div class="body"><h3>Historia de la Psicología — Guía Rápida</h3><p>La línea del tiempo de las grandes escuelas y corrientes.</p>
+          <div class="price-anchor"><s>US$ 9</s><span class="free">GRATIS</span></div></div>
+      </article>
+      <article class="bonus rv">
+        <span class="lbl">BONO 04</span>
+        <div class="cover"><img src="assets/bonus/experimentos.webp" alt="Portada: 10 Experimentos que Marcaron la Psicología" loading="lazy"></div>
+        <div class="body"><h3>10 Experimentos que Marcaron la Psicología</h3><p>Los estudios clásicos que todo estudiante debe conocer.</p>
+          <div class="price-anchor"><s>US$ 10</s><span class="free">GRATIS</span></div></div>
+      </article>
+      <article class="bonus rv">
+        <span class="lbl">BONO 05</span>
+        <div class="cover"><img src="assets/bonus/lecturas.webp" alt="Portada: Guía de Lecturas para Estudiantes de Psicología" loading="lazy"></div>
+        <div class="body"><h3>Guía de Lecturas para Estudiantes</h3><p>Qué leer, en qué orden y por qué, para avanzar en la carrera.</p>
+          <div class="price-anchor"><s>US$ 9</s><span class="free">GRATIS</span></div></div>
+      </article>
+    </div>
+    <div class="bonus-total rv">Valor total de los bonos: <s>US$ 50</s> <span>→ hoy</span> <b>GRATIS</b></div>
+    <p class="disclaimer">Libros en formato digital. Las imágenes son representaciones ilustrativas; no se envían libros físicos.</p>
+  </div>
+</section>
+
+<!-- ============ 9. DEPOIMENTOS ============ -->
+<section class="alt" id="testimonios">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow">Testimonios</span>
+      <h2>Lo que dicen quienes <em>ya la tienen</em></h2>
+      <div class="rating"><span class="stars">★★★★★</span> Mensajes reales enviados por estudiantes</div>
+    </div>
+    <div class="carousel rv">
+      <div class="track" id="track2">
+        <figure class="testi" data-full="assets/depoimentos/depoimento-1.webp"><img src="assets/depoimentos/depoimento-1.webp" alt="Testimonio de estudiante sobre la Biblioteca de Psicología 1" loading="lazy"></figure>
+        <figure class="testi" data-full="assets/depoimentos/depoimento-2.webp"><img src="assets/depoimentos/depoimento-2.webp" alt="Testimonio de estudiante sobre la Biblioteca de Psicología 2" loading="lazy"></figure>
+        <figure class="testi" data-full="assets/depoimentos/depoimento-3.webp"><img src="assets/depoimentos/depoimento-3.webp" alt="Testimonio de estudiante sobre la Biblioteca de Psicología 3" loading="lazy"></figure>
+      </div>
+      <div class="car-nav">
+        <button class="car-btn" id="prev2" aria-label="Testimonios anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <span class="car-count">Desliza para ver más</span>
+        <button class="car-btn" id="next2" aria-label="Próximos testimonios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. OFERTA ============ -->
+<section class="offer-sec" id="oferta">
+  <div class="wrap">
+    <div class="offer rv">
+      <div class="offer-top">🔥 Oferta especial válida solo hoy</div>
+      <div class="offer-in">
+        <h2>Biblioteca de Psicología Completa</h2>
+        <p class="tagline">Todo lo que recibes al acceder hoy:</p>
+        <img class="mock" src="assets/hero-mockup-20.webp" alt="Biblioteca de Psicología Completa con bonos" loading="lazy">
+        <ul class="offer-list">
+          <li class="grp">📚 La biblioteca</li>
+          <li><span class="l"><svg><use href="#i-check-c"/></svg><span>20 módulos completos · 577 páginas visuales</span></span><s>US$ 29</s></li>
+          <li><span class="l"><svg><use href="#i-check-c"/></svg><span>De los fundamentos y la neuropsicología a la psicoterapia, la clínica, la educación, el trabajo, lo forense, la ética y mucho más</span></span><span></span></li>
+          <li><span class="l"><svg><use href="#i-check-c"/></svg><span>Acceso digital inmediato · para leer o imprimir</span></span><span></span></li>
+          <li class="grp">🎁 Bonos exclusivos</li>
+          <li class="bon"><span class="l"><svg><use href="#i-check-c"/></svg><span>Diccionario Esencial de Psicología</span></span><s>US$ 12</s></li>
+          <li class="bon"><span class="l"><svg><use href="#i-check-c"/></svg><span>15 Grandes Autores de la Psicología</span></span><s>US$ 10</s></li>
+          <li class="bon"><span class="l"><svg><use href="#i-check-c"/></svg><span>Historia de la Psicología — Guía Rápida</span></span><s>US$ 9</s></li>
+          <li class="bon"><span class="l"><svg><use href="#i-check-c"/></svg><span>10 Experimentos que Marcaron la Psicología</span></span><s>US$ 10</s></li>
+          <li class="bon"><span class="l"><svg><use href="#i-check-c"/></svg><span>Guía de Lecturas para Estudiantes</span></span><s>US$ 9</s></li>
+        </ul>
+        <div class="anchor">
+          <div class="total">Valor total: <s>US$ 79</s></div>
+          <div class="today">Hoy accedes a todo por solo</div>
+          <div class="price"><small>US$</small>14,90</div>
+          <div class="once">Pago único · Sin mensualidades · Acceso para siempre</div>
+          <span class="save">Ahorras US$ 64,10 (81% OFF)</span>
+        </div>
+        <a href="https://pay.hotmart.com/E108015035W" class="btn pulse">Quiero acceder ahora <svg><use href="#i-arrow"/></svg></a>
+        <p class="conv">El precio se convierte automáticamente a la moneda de tu país al pagar.</p>
+        <!-- mini rodapé de compra segura -->
+        <div class="secure">
+          <div><svg><use href="#i-lock"/></svg>Compra 100% segura</div>
+          <div><svg><use href="#i-bolt"/></svg>Acceso inmediato por e-mail</div>
+          <div><svg><use href="#i-shield"/></svg>Garantía de 15 días</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. GARANTIA ============ -->
+<section id="garantia">
+  <div class="wrap narrow">
+    <div class="guarantee rv">
+      <div class="seal" aria-hidden="true">
+        <svg viewBox="0 0 200 200">
+          <defs><path id="circ" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+          <circle cx="100" cy="100" r="96" fill="#C9A04A"/>
+          <circle cx="100" cy="100" r="88" fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="3 5" opacity=".7"/>
+          <circle cx="100" cy="100" r="60" fill="#1F4D3A"/>
+          <text font-family="Inter,sans-serif" font-size="12.5" font-weight="800" letter-spacing="3.2" fill="#fff"><textPath href="#circ">GARANTÍA INCONDICIONAL · RIESGO CERO ·</textPath></text>
+          <text x="100" y="104" text-anchor="middle" font-family="Fraunces,serif" font-size="46" font-weight="700" fill="#fff">15</text>
+          <text x="100" y="128" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="800" letter-spacing="2" fill="#E9D6A6">DÍAS</text>
+        </svg>
+      </div>
+      <div>
+        <span class="eyebrow">Compra protegida</span>
+        <h2>Pruébala 15 días. Si no te gusta, te devolvemos tu dinero.</h2>
+        <p>Accede a la biblioteca, explora los módulos y usa el material en tus estudios. Si dentro de los 15 días sientes que no es para ti, solicita el reembolso directamente en la plataforma de pago y te devolvemos el 100% de lo que pagaste.</p>
+        <span class="risk"><svg width="18" height="18"><use href="#i-shield"/></svg> El riesgo es todo nuestro</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 12. FAQ ============ -->
+<section class="alt" id="faq">
+  <div class="wrap narrow">
+    <div class="sec-head center rv">
+      <span class="eyebrow">Dudas frecuentes</span>
+      <h2>Preguntas y respuestas</h2>
+    </div>
+    <div class="faq">
+      <details open><summary>¿Qué recibo exactamente?<span class="pm">+</span></summary><div class="ans">Acceso digital a la Biblioteca de Psicología Completa con 20 módulos y 577 páginas organizadas por temas, más los 5 libros digitales de bonos.</div></details>
+      <details><summary>¿El producto es físico?<span class="pm">+</span></summary><div class="ans">No. Es un material 100% digital. No se envía nada por correo postal — pero puedes imprimir las páginas que quieras.</div></details>
+      <details><summary>¿Cómo recibiré el material?<span class="pm">+</span></summary><div class="ans">Inmediatamente después de confirmar el pago recibes en tu e-mail los datos de acceso a la biblioteca. Revisa también la carpeta de spam o promociones.</div></details>
+      <details><summary>¿Puedo estudiar desde el celular?<span class="pm">+</span></summary><div class="ans">Sí. Puedes acceder desde celular, tablet o computadora, cuando y donde quieras.</div></details>
+      <details><summary>¿Necesito ser estudiante de Psicología?<span class="pm">+</span></summary><div class="ans">No. El material está escrito en lenguaje claro y sirve tanto para estudiantes como para cualquier persona interesada en aprender Psicología de forma organizada.</div></details>
+      <details><summary>¿Este material me habilita para ejercer como psicólogo?<span class="pm">+</span></summary><div class="ans">No. Es un material educativo complementario. No sustituye la formación universitaria ni otorga ningún título o habilitación profesional.</div></details>
+      <details><summary>¿La sección de Psicopatología sirve para hacer diagnósticos?<span class="pm">+</span></summary><div class="ans">No. El módulo de Psicopatología es una introducción educativa a diferentes patrones clínicos. Los diagnósticos solo pueden ser realizados por profesionales habilitados.</div></details>
+      <details><summary>¿El pago es mensual?<span class="pm">+</span></summary><div class="ans">No. Pagas una sola vez y el acceso es tuyo. Sin mensualidades ni cobros ocultos.</div></details>
+      <details><summary>¿Cómo funciona la garantía?<span class="pm">+</span></summary><div class="ans">Tienes 15 días desde la compra para solicitar el reembolso a través de la plataforma de pago, de acuerdo con las condiciones indicadas en el checkout.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="final">
+  <div class="wrap narrow">
+    <div class="psi rv">Ψ</div>
+    <h2 class="rv">Ten hoy una biblioteca de Psicología organizada para <em>consultar siempre</em> que la necesites</h2>
+    <p class="lead rv" style="margin:0 auto">20 módulos · 577 páginas · 5 bonos · acceso inmediato por solo US$ 14,90</p>
+    <div class="cta-block rv" style="margin-top:30px">
+      <a href="#oferta" class="btn pulse">Quiero acceder a la biblioteca <svg><use href="#i-arrow"/></svg></a>
+      <div class="btn-note"><span><svg><use href="#i-lock"/></svg> Pago seguro</span><span><svg><use href="#i-shield"/></svg> 15 días de garantía</span></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ 13. DIREITOS AUTORAIS ============ -->
+<footer>
+  <div class="wrap">
+    <div>© <span id="yr">2026</span> Biblioteca de Psicología. Todos los derechos reservados.</div>
+    <div class="links"><a href="#">Política de Privacidad</a><a href="#">Términos de Uso</a><a href="#">Contacto</a></div>
+    <p class="legal">Este producto tiene fines educativos y no sustituye formación universitaria, evaluación, diagnóstico o tratamiento profesional. Los resultados pueden variar según la dedicación de cada persona. Este sitio no forma parte de Facebook, Google ni de ninguna de sus empresas.</p>
+  </div>
+</footer>
+
+
+<!-- Lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Vista ampliada"><button aria-label="Cerrar">×</button><img alt=""></div>
+
+<script>
+  /* ---------- páginas de amostra ---------- */
+  const M = {1:"Fundamentos y autores",2:"Neuropsicología",7:"Psicología social",8:"Psicopatología",9:"Evaluación y Psicometría",10:"Recursos psicoeducativos",11:"Investigación y metodología",12:"Enfoques psicoterapéuticos",13:"Clínica y salud",14:"Psicología educativa",15:"Organizacional y del trabajo",16:"Forense y jurídica",17:"Neuropsicología clínica",18:"Ética y deontología",19:"Comunitaria y transcultural",20:"Evolucionista y comparada"};
+  const pages = [
+    ["m01-p08","Sigmund Freud"],["m02-p07","La neurona"],["m12-p06","Psicoterapia psicodinámica"],["m08-p14","Trastorno de pánico"],["m13-p14","Estrés y organismo"],
+    ["m01-p26","Freud vs. Jung"],["m14-p09","Atención y carga cognitiva"],["m08-p28","TDAH"],["m15-p08","Motivación en el trabajo"],["m01-p27","Piaget vs. Vygotsky"],
+    ["m16-p08","Psicología del testimonio"],["m02-p16","Plasticidad cerebral"],["m17-p09","Memoria y amnesia"],["m07-p08","Persuasión"],["m18-p07","Consentimiento informado"],
+    ["m08-p20","Trastornos depresivos"],["m19-p08","Sentido de comunidad"],["m20-p10","Cooperación y altruismo"],["m12-p11","Terapia ACT"],["m01-p25","Línea del tiempo de la Psicología"],
+    ["m15-p18","Burnout"],["m09-p11","Modelo ABC de conducta"],["m10-p28","Ciclo del hábito"],["m11-p13","Correlación no implica causalidad"],["m07-p21","Empatía"],
+    ["m01-p18","Abraham Maslow"],["m02-p12","Dopamina"],["m08-p31","Trastornos de personalidad"],["m02-p17","Organización general del cerebro"],["m01-p09","Carl Gustav Jung"],
+    ["m08-p13","Ansiedad generalizada"],["m01-p12","B. F. Skinner"],["m13-p19","Sueño y funcionamiento psicológico"],["m14-p19","Dislexia"],["m20-p16","Cognición social"]
+  ];
+  const card = ([f,t]) => {
+    const src = `assets/amostras/${f}.webp`, n = +f.slice(1,3), cat = `Módulo ${String(n).padStart(2,'0')} · ${M[n]}`;
+    return `<figure class="page" data-full="${src}"><img src="${src}" alt="${M[n]}: ${t}" loading="lazy" width="1086" height="1448"><figcaption><small>${cat}</small><span>${t}</span></figcaption></figure>`;
+  };
+  // carrossel 1: posições pares · carrossel 2: ímpares (mistura os módulos nas duas fileiras)
+  document.getElementById('trackA').innerHTML = pages.filter((_,i)=>i%2===0).map(card).join('');
+  document.getElementById('trackB').innerHTML = pages.filter((_,i)=>i%2===1).map(card).join('');
+  document.querySelectorAll('.car-btn[data-track]').forEach(b => b.onclick = () => {
+    const t = document.getElementById(b.dataset.track);
+    t.scrollBy({left: b.dataset.dir * (t.querySelector('.page').offsetWidth + 16), behavior:'smooth'});
+  });
+
+  const track2 = document.getElementById('track2'), step2 = () => track2.querySelector('.testi').offsetWidth + 16;
+  document.getElementById('prev2').onclick = () => track2.scrollBy({left:-step2(),behavior:'smooth'});
+  document.getElementById('next2').onclick = () => track2.scrollBy({left: step2(),behavior:'smooth'});
+
+  /* ---------- módulos ---------- */
+  const mods = [
+    ["Fundamentos, autores y corrientes de la Psicología","Wundt, Freud, Jung, Pávlov, Skinner, Piaget, Vygotsky, Maslow, Rogers","#B08A3E"],
+    ["Neuropsicología y bases biológicas de la conducta","Neurona, Sinapsis, Dopamina, Serotonina, Lóbulos cerebrales, Amígdala, Hipocampo, Funciones ejecutivas","#4C7FA0"],
+    ["Cognición, memoria y aprendizaje","Atención, Percepción y Gestalt, Memoria de trabajo, Curva del olvido, Condicionamiento, Sesgos cognitivos","#C8693F"],
+    ["Psicología del desarrollo humano","Etapas de Piaget, Zona de Desarrollo Próximo, Erikson, Teoría del apego, Adolescencia, Envejecimiento","#5E8C5A"],
+    ["Personalidad y diferencias individuales","Temperamento, Big Five, Eysenck, Cattell, Allport, Teorías de la personalidad","#8467A6"],
+    ["Emoción, motivación y regulación emocional","Emociones básicas, Miedo, Ira, Estrés, Motivación, Necesidades humanas, Regulación emocional","#C2566B"],
+    ["Psicología social y relaciones humanas","Conformidad, Obediencia, Persuasión, Prejuicios, Empatía, Asertividad, Liderazgo","#3F7F86"],
+    ["Psicopatología: Guía visual","Modelo biopsicosocial, Ansiedad, Pánico, TOC, Depresión, Bipolaridad, Esquizofrenia, TDAH, Autismo","#9A5C9C"],
+    ["Evaluación psicológica y Psicometría","Entrevista, Modelo ABC, Psicometría, Fiabilidad, Validez, Percentiles","#4D6FA8"],
+    ["Recursos psicoeducativos y reflexión","Rueda de emociones, Pensamientos automáticos, Círculo de control, Ciclo del hábito, Valores y metas","#6E9A4E"],
+    ["Investigación, evidencia y metodología","Hipótesis, Variables, Correlación y causalidad, Experimentos, Métodos cualitativos, Estadística básica","#2F6B8A"],
+    ["Enfoques psicoterapéuticos","Psicoanálisis, Terapia cognitivo-conductual, Humanismo, Gestalt, Terapia sistémica, Terapias de tercera generación","#A0633A"],
+    ["Psicología clínica y de la salud","Rol del psicólogo clínico, Estrés y salud, Dolor crónico, Adherencia al tratamiento, Hábitos saludables, Prevención","#3E8E7E"],
+    ["Psicología educativa","Aprendizaje en el aula, Motivación escolar, Dificultades de aprendizaje, Orientación educativa, Inclusión","#D08A2E"],
+    ["Psicología organizacional y del trabajo","Selección de personal, Clima laboral, Liderazgo, Motivación laboral, Burnout, Trabajo en equipo","#5A6E9C"],
+    ["Psicología forense y jurídica","Peritaje psicológico, Testimonio, Credibilidad, Victimología, Evaluación forense","#7A4E4E"],
+    ["Neuropsicología clínica y fundamentos de psicofarmacología","Evaluación neuropsicológica, Daño cerebral, Demencias, Rehabilitación cognitiva, Psicofármacos","#3D6E9E"],
+    ["Ética y deontología profesional","Código deontológico, Confidencialidad, Consentimiento informado, Límites profesionales, Dilemas éticos","#6B7A3A"],
+    ["Psicología comunitaria y transcultural","Intervención comunitaria, Empoderamiento, Redes de apoyo, Cultura y conducta, Diversidad","#B0566E"],
+    ["Psicología evolucionista y comparada","Darwin, Selección natural, Etología, Conducta animal, Cooperación y altruismo","#4E8A5E"]
+  ];
+  document.getElementById('modules').innerHTML = mods.map(([t,topics,c],i)=>
+    `<div class="module rv${i>=11?' new':''}"><span class="n" style="--c:${c}">${String(i+1).padStart(2,'0')}</span><div><h4>${t}</h4><div class="chips">${topics.split(', ').map(x=>`<span>${x}</span>`).join('')}</div></div></div>`
+  ).join('');
+
+  /* ---------- contador até meia-noite ---------- */
+  const pad = n => String(n).padStart(2,'0');
+  function tick(){
+    const now = new Date(), end = new Date(now); end.setHours(23,59,59,999);
+    let s = Math.max(0, Math.floor((end-now)/1000));
+    document.getElementById('th').textContent = pad(Math.floor(s/3600));
+    document.getElementById('tm').textContent = pad(Math.floor(s%3600/60));
+    document.getElementById('ts').textContent = pad(s%60);
+  }
+  tick(); setInterval(tick,1000);
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* ---------- lightbox ---------- */
+  const lb = document.getElementById('lb'), lbImg = lb.querySelector('img');
+  document.addEventListener('click', e=>{
+    const f = e.target.closest('[data-full]');
+    if (f){ lbImg.src = f.dataset.full; lbImg.alt = f.querySelector('img').alt; lb.classList.add('open'); }
+  });
+  lb.addEventListener('click', ()=> lb.classList.remove('open'));
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape') lb.classList.remove('open'); });
+
+  /* ---------- animação de entrada ---------- */
+  const io = new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} }),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+</script>
+</body>
+</html>
