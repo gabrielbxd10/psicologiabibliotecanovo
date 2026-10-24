@@ -75,9 +75,6 @@
   .urgency strong{letter-spacing:.04em;text-transform:uppercase;font-weight:800}
   .urgency .dot{width:8px;height:8px;border-radius:50%;background:#FFD66B;box-shadow:0 0 0 0 rgba(255,214,107,.8);animation:blink 1.4s infinite}
   @keyframes blink{0%{box-shadow:0 0 0 0 rgba(255,214,107,.8)}100%{box-shadow:0 0 0 10px rgba(255,214,107,0)}}
-  .timer{display:inline-flex;gap:5px;font-variant-numeric:tabular-nums}
-  .timer b{background:rgba(0,0,0,.28);border-radius:6px;padding:2px 7px;font-weight:800;min-width:34px;text-align:center}
-  .urgency a{color:#FFD66B;font-weight:700;text-decoration:none;border-bottom:1px solid rgba(255,214,107,.5)}
 
   /* ================= 2. HERO ================= */
   .hero{padding:56px 0 88px;background:linear-gradient(180deg,#F4F8F5 0%,#FFFFFF 70%);text-align:center}
@@ -299,7 +296,6 @@
     .page{flex-basis:88vw}
     .btn{width:100%;padding:18px 20px;font-size:16px}
     .urgency{font-size:12.5px}
-    .urgency .hide-sm{display:none}
   }
   @media (max-width:420px){
     .bonuses{grid-template-columns:1fr}
@@ -324,9 +320,6 @@
   <div class="wrap">
     <span class="dot" aria-hidden="true"></span>
     <strong>¡Oferta especial solo hoy!</strong>
-    <span class="hide-sm">Precio promocional termina en</span>
-    <span class="timer" aria-live="off"><b id="th">00</b>:<b id="tm">00</b>:<b id="ts">00</b></span>
-    <a href="#oferta" class="hide-sm">Aprovechar ahora →</a>
   </div>
 </div>
 
@@ -797,16 +790,6 @@
     `<div class="module rv${i>=11?' new':''}"><span class="n" style="--c:${c}">${String(i+1).padStart(2,'0')}</span><div><h4>${t}</h4><div class="chips">${topics.split(', ').map(x=>`<span>${x}</span>`).join('')}</div></div></div>`
   ).join('');
 
-  /* ---------- contador até meia-noite ---------- */
-  const pad = n => String(n).padStart(2,'0');
-  function tick(){
-    const now = new Date(), end = new Date(now); end.setHours(23,59,59,999);
-    let s = Math.max(0, Math.floor((end-now)/1000));
-    document.getElementById('th').textContent = pad(Math.floor(s/3600));
-    document.getElementById('tm').textContent = pad(Math.floor(s%3600/60));
-    document.getElementById('ts').textContent = pad(s%60);
-  }
-  tick(); setInterval(tick,1000);
   document.getElementById('yr').textContent = new Date().getFullYear();
 
   /* ---------- lightbox ---------- */
