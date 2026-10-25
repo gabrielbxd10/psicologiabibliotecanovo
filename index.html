@@ -301,6 +301,7 @@
     .bonuses{grid-template-columns:1fr}
   }
 </style>
+<script src="tracking.js"></script>
 </head>
 <body>
 
@@ -649,7 +650,7 @@
           <div class="once">Pago único · Sin mensualidades · Acceso para siempre</div>
           <span class="save">Ahorras US$ 64,10 (81% OFF)</span>
         </div>
-        <a href="https://pay.hotmart.com/E108015035W" class="btn pulse">Quiero acceder ahora <svg><use href="#i-arrow"/></svg></a>
+        <a href="https://pay.hotmart.com/E108015035W" class="btn pulse" data-buy>Quiero acceder ahora <svg><use href="#i-arrow"/></svg></a>
         <p class="conv">El precio se convierte automáticamente a la moneda de tu país al pagar.</p>
         <!-- mini rodapé de compra segura -->
         <div class="secure">
@@ -804,6 +805,20 @@
   /* ---------- animação de entrada ---------- */
   const io = new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} }),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+  /* ---------- botão de compra: InitiateCheckout + checkout com UTMs/xcod/sck (tracking.js) ---------- */
+  let indoAoCheckout = false;
+  document.querySelectorAll('[data-buy]').forEach(a => a.addEventListener('click', e => {
+    e.preventDefault();
+    if (indoAoCheckout) return;
+    indoAoCheckout = true;
+    const base = a.getAttribute('href');
+    let destino = base;
+    try { window.BibliotecaTracking && window.BibliotecaTracking.initiateCheckout(); } catch (err) {}
+    try { if (window.BibliotecaTracking) destino = window.BibliotecaTracking.checkoutUrl(base); } catch (err) {}
+    setTimeout(() => { location.href = destino; }, 150);   // dá tempo do evento sair antes de trocar de página
+    setTimeout(() => { indoAoCheckout = false; }, 3000);
+  }));
 
 </script>
 </body>
