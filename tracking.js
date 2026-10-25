@@ -1,13 +1,15 @@
-/* Rastreamento da página de vendas (mesmos IDs da versão anterior do site).
- * - Guarda as UTMs/IDs de clique do anúncio por 7 dias e leva tudo para o checkout da Hotmart (com xcod/sck).
- * - UTMify: script de UTMs + pixel da conta.
- * - Meta Pixel: PageView, ViewContent, InitiateCheckout e eventos de engajamento (rolagem, tempo, seções, cliques).
- * Para desligar num teste local: abra a página com window.__NO_TRACK = true ou pelo arquivo (file://). */
+/* Rastreamento da página de vendas.
+ * - O pixel da UTMify (6ac5b7d973e2bd007d1d6544) é quem carrega o Meta Pixel da conta (973045345819425) e envia
+ *   PageView / InitiateCheckout (navegador + servidor, com deduplicação). Por isso esta página NÃO inicializa o
+ *   Meta Pixel por conta própria: duas inicializações do mesmo ID geram "Duplicate Pixel ID" e quebram a contagem.
+ * - O IC é detectado pela própria UTMify no clique de um link da Hotmart; o botão de compra só atualiza o link com
+ *   as UTMs/xcod/sck e deixa a navegação acontecer normalmente.
+ * - Guarda as UTMs/IDs de clique do anúncio por 7 dias, para atribuir a venda mesmo se a pessoa voltar depois.
+ * - Eventos de engajamento (rolagem, tempo, seções, cliques) vão pelo fbq que a UTMify carregou.
+ * Para desligar num teste local: window.__NO_TRACK = true antes deste script, ou abrir pelo arquivo (file://). */
 (function () {
 	'use strict';
-	var PIXEL_META = '973045345819425';
 	var PIXEL_UTMIFY = '6ac5b7d973e2bd007d1d6544';
-	var PRODUTO = {id: 'E108015035W', nome: 'Biblioteca de Psicología Completa', preco: 14.9, moeda: 'USD'};
 	var SEM_RASTREIO = !!window.__NO_TRACK || location.protocol === 'file:';
 
 	var PARAMS = ['utm_source', 'utm_campaign', 'utm_medium', 'utm_content', 'utm_term', 'utm_id', 'src', 'sck', 'xcod', 'fbclid', 'gclid', 'gbraid', 'wbraid', 'ttclid', 'tbclid', 'click_id', 'CampaignID', 'adSETID', 'CreativeID', 'pixel_id', 'cid'];
@@ -28,8 +30,6 @@
 		try { localStorage.setItem(CHAVE, JSON.stringify({expires: agora + SETE_DIAS, params: guardados})); } catch (e) {}
 	}
 
-	var id = function (prefixo) { return prefixo + '_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8); };
-
 	window.BibliotecaTracking = {
 		// URL do checkout com UTMs + xcod/sck (formato da Hotmart/UTMify: partes unidas por "hQwK21wXxR")
 		checkoutUrl: function (base) {
@@ -49,13 +49,6 @@
 				}
 			}
 			return destino.toString();
-		},
-		initiateCheckout: function () {
-			if (typeof window.fbq !== 'function') return;
-			window.fbq('track', 'InitiateCheckout', {
-				value: PRODUTO.preco, currency: PRODUTO.moeda, content_ids: [PRODUTO.id], content_type: 'product', num_items: 1,
-				content_name: PRODUTO.nome, contents: [{id: PRODUTO.id, quantity: 1, item_price: PRODUTO.preco}]
-			}, {eventID: id('ic')});
 		}
 	};
 
@@ -68,25 +61,16 @@
 		(document.head || document.documentElement).appendChild(s);
 	};
 
-	// ---------- UTMify ----------
+	// ---------- UTMify: UTMs nos links + pixel (que traz o Meta Pixel da conta) ----------
 	addScript('https://cdn.utmify.com.br/scripts/utms/latest.js', [['data-utmify-prevent-subids', '']]);
 	window.pixelId = PIXEL_UTMIFY;
 	addScript('https://cdn.utmify.com.br/scripts/pixel/pixel.js');
 
-	// ---------- Meta Pixel ----------
-	!function (f, b, e, v, n, t, s) {
-		if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
-		if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
-		t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
-	}(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-	var conteudo = {content_ids: [PRODUTO.id], content_type: 'product', content_name: PRODUTO.nome, value: PRODUTO.preco, currency: PRODUTO.moeda};
-	window.fbq('init', PIXEL_META);
-	window.fbq('track', 'PageView', {}, {eventID: id('pv')});
-	window.fbq('track', 'ViewContent', conteudo, {eventID: id('vc')});
-
 	// ---------- eventos de engajamento (custom), cada um no máximo 1x quando "unico" ----------
+	// Só usam o fbq quando a UTMify já o carregou; antes disso o evento é ignorado (nunca inicializamos o pixel aqui).
 	var enviados = {};
 	var evento = function (nome, dados, unico) {
+		if (typeof window.fbq !== 'function') return;
 		if (unico) { if (enviados[nome]) return; enviados[nome] = 1; }
 		try { window.fbq('trackCustom', nome, dados || {}); } catch (e) {}
 	};
@@ -109,11 +93,11 @@
 			if ([15, 30, 60, 120, 180].indexOf(seg) > -1) evento('Tiempo' + seg + 's', {seconds: seg}, true);
 		}, 1000);
 
-		// seções vistas (seções desta página)
+		// seções vistas
 		var secoes = {'#dores': 'VerDolores', '#amostra': 'VerMuestras', '#modules': 'VerModulos', '#metodo': 'VerMetodo', '#bonos': 'VerBonos', '#testimonios': 'VerTestimonios', '#oferta': 'VerOferta', '#garantia': 'VerGarantia', '#faq': 'VerFAQ', '.final': 'VerCierre'};
 		if ('IntersectionObserver' in window) {
 			var obs = new IntersectionObserver(function (es) {
-				es.forEach(function (e) { if (e.isIntersecting) { evento(e.target.__ev, conteudo, true); obs.unobserve(e.target); } });
+				es.forEach(function (e) { if (e.isIntersecting) { evento(e.target.__ev, {}, true); obs.unobserve(e.target); } });
 			}, {threshold: 0, rootMargin: '-35% 0px -35% 0px'});
 			Object.keys(secoes).forEach(function (sel) { var el = document.querySelector(sel); if (el) { el.__ev = secoes[sel]; obs.observe(el); } });
 		}

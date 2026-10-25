@@ -806,19 +806,18 @@
   const io = new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} }),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
-  /* ---------- botão de compra: InitiateCheckout + checkout com UTMs/xcod/sck (tracking.js) ---------- */
-  let indoAoCheckout = false;
-  document.querySelectorAll('[data-buy]').forEach(a => a.addEventListener('click', e => {
-    e.preventDefault();
-    if (indoAoCheckout) return;
-    indoAoCheckout = true;
+  /* ---------- botão de compra: link da Hotmart com UTMs/xcod/sck (tracking.js) ----------
+     O link navega normalmente (sem preventDefault): o pixel da UTMify vê o clique num link da Hotmart e registra o
+     InitiateCheckout sozinho. Atualizamos o href já no início do toque/clique, antes de qualquer listener ler o link. */
+  document.querySelectorAll('[data-buy]').forEach(a => {
     const base = a.getAttribute('href');
-    let destino = base;
-    try { window.BibliotecaTracking && window.BibliotecaTracking.initiateCheckout(); } catch (err) {}
-    try { if (window.BibliotecaTracking) destino = window.BibliotecaTracking.checkoutUrl(base); } catch (err) {}
-    setTimeout(() => { location.href = destino; }, 150);   // dá tempo do evento sair antes de trocar de página
-    setTimeout(() => { indoAoCheckout = false; }, 3000);
-  }));
+    const atualizar = () => {
+      try { if (window.BibliotecaTracking) a.href = window.BibliotecaTracking.checkoutUrl(base); } catch (err) {}
+    };
+    atualizar();
+    ['pointerdown', 'touchstart', 'focus'].forEach(ev => a.addEventListener(ev, atualizar, {passive: true}));
+    a.addEventListener('click', atualizar, true);
+  });
 
 </script>
 </body>
