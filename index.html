@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Biblioteca de Psicología Completa | 20 módulos · 577 páginas</title>
-<meta name="description" content="20 módulos y 577 páginas visuales con todo lo esencial de Psicología, organizado para estudiar, repasar y consultar en minutos. Acceso inmediato + 5 bonos.">
+<meta name="description" content="20 módulos y 577 páginas visuales con todo lo esencial de Psicología, organizado para estudiar, repasar y consultar en minutos. Acceso inmediato.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -86,8 +86,10 @@
   .media{position:relative;max-width:820px;margin:36px auto 0;border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg);background:var(--paper);border:1px solid var(--line)}
   .media img{width:100%;aspect-ratio:1/1;object-fit:cover}
   /* para VSL: troque o <img> por <div class="vsl"><iframe ...></iframe></div> */
-  .media.minivsl{max-width:460px;aspect-ratio:3/4}
-  .media.minivsl video{display:block;width:100%;height:100%;object-fit:cover;background:var(--paper)}
+  .media.minivsl{max-width:380px;aspect-ratio:9/16}
+  .media.minivsl video{display:block;width:100%;height:100%;object-fit:contain;background:#F6F1E7}
+  /* tela cheia: o vídeo inteiro, sem corte nem zoom */
+  #minivsl:fullscreen,#minivsl:-webkit-full-screen{object-fit:contain!important;width:100%!important;height:100%!important;background:#000}
   .media .som{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:14px 26px;border:0;border-radius:999px;background:rgba(18,32,26,.85);color:#fff;font-family:inherit;font-weight:800;font-size:19px;line-height:1;white-space:nowrap;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.3);animation:pulse 1.8s ease-in-out infinite}
   .media .som[hidden]{display:none}
   .media .vsl{position:relative;aspect-ratio:16/9}
@@ -187,19 +189,9 @@
   .use .when{display:block;margin-top:12px;font-size:12.5px;font-weight:600;color:var(--accent-deep)}
 
   /* ================= 8. BÔNUS ================= */
-  .bonuses{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
-  .bonus{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;position:relative}
-  .bonus .lbl{position:absolute;top:12px;left:12px;background:var(--accent);color:#fff;font-size:11px;font-weight:800;letter-spacing:.1em;padding:4px 9px;border-radius:6px;z-index:1}
-  .bonus .cover img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
-  .bonus .body{padding:16px 16px 18px;display:flex;flex-direction:column;flex:1}
-  .bonus h3{font-size:16px;line-height:1.3;color:var(--ink);margin-bottom:6px}
-  .bonus p{font-size:13.5px;color:var(--ink-soft);line-height:1.45;flex:1}
   .price-anchor{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
   .price-anchor s{color:var(--muted);font-size:14px}
   .free{background:var(--cta);color:#fff;font-weight:800;font-size:12.5px;letter-spacing:.08em;padding:4px 10px;border-radius:6px}
-  .bonus-total{margin:34px auto 0;max-width:640px;display:flex;align-items:center;justify-content:center;gap:12px 18px;flex-wrap:wrap;background:var(--paper);border:2px dashed var(--gold);border-radius:16px;padding:18px 22px;text-align:center;font-size:16px}
-  .bonus-total s{color:var(--muted);font-size:18px}
-  .bonus-total b{font-family:var(--serif);font-size:24px;color:var(--cta-deep)}
 
   /* ================= 9. DEPOIMENTOS ================= */
   .testi{flex:0 0 min(320px,78vw);scroll-snap-align:start;cursor:zoom-in}
@@ -221,7 +213,6 @@
   .offer-list li .l svg{flex:none;width:20px;height:20px;color:var(--cta-deep);margin-top:2px}
   .offer-list li s{color:var(--muted);font-size:14px;white-space:nowrap}
   .offer-list .grp{padding:18px 0 6px;border:0;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep)}
-  .offer-list .bon .l span::after{content:"GRATIS";margin-left:8px;font-size:10.5px;font-weight:800;letter-spacing:.08em;color:#fff;background:var(--cta);padding:2px 6px;border-radius:4px;vertical-align:2px}
   .anchor{margin-top:22px;text-align:center;padding:22px;border-radius:18px;background:var(--bg-alt)}
   .anchor .total{font-size:15px;color:var(--ink-soft)}
   .anchor .total s{color:var(--danger);font-weight:700;font-size:18px}
@@ -277,7 +268,6 @@
 
   /* ================= RESPONSIVO ================= */
   @media (max-width:980px){
-    .bonuses{grid-template-columns:repeat(3,1fr)}
     .pains,.uses{grid-template-columns:repeat(2,1fr)}
     .steps{grid-template-columns:1fr}
   }
@@ -291,7 +281,6 @@
     .pains,.uses{grid-template-columns:1fr}
     .for-grid{grid-template-columns:1fr}
     .formats{grid-template-columns:1fr}
-    .bonuses{grid-template-columns:1fr 1fr}
     .guarantee{grid-template-columns:1fr;text-align:center;padding:32px 22px;gap:20px}
     .seal{margin:0 auto;width:160px;height:160px}
     .offer-in{padding:26px 18px 22px}
@@ -303,8 +292,9 @@
     .urgency{font-size:12.5px}
   }
   @media (max-width:420px){
-    .bonuses{grid-template-columns:1fr}
   }
+  .car-tit{font-size:20px;margin:40px 0 14px;text-align:left}
+  #amostras .car-tit:first-child{margin-top:8px}
 </style>
 <script src="tracking.js"></script>
 <script>
@@ -365,14 +355,13 @@
     <!-- Espaço do mockup / VSL -->
     <!-- Mini VSL (3:4): começa muda, em loop e com legenda; ao tocar, volta ao início com som -->
     <div class="media minivsl">
-      <video id="minivsl" src="assets/minivsl.mp4" poster="assets/minivsl-capa.webp" width="720" height="960" autoplay muted loop playsinline preload="metadata" aria-label="Mini video: lo que recibes en la Biblioteca de Psicología Completa"></video>
+      <video id="minivsl" src="assets/minivsl.mp4" poster="assets/minivsl-capa.webp" width="720" height="1280" autoplay muted loop playsinline preload="metadata" aria-label="Mini video: lo que recibes en la Biblioteca de Psicología Completa"></video>
       <button type="button" class="som" id="minivsl-som">🔊 Toca para escuchar</button>
     </div>
 
     <div class="stats">
       <span class="stat"><b>20</b> módulos</span>
       <span class="stat"><b>577</b> páginas</span>
-      <span class="stat"><b>5</b> bonos</span>
       <span class="stat"><b>15</b> días de garantía</span>
     </div>
 
@@ -436,26 +425,10 @@
     <div class="sec-head center rv">
       <span class="eyebrow">Lo que vas a recibir</span>
       <h2>Mira por dentro <em>antes</em> de acceder</h2>
-      <p class="lead">35 páginas reales de los 20 módulos, en su tamaño original. Desliza cada fila y toca cualquier página para ampliarla.</p>
+      <p class="lead">40 páginas reales de los 20 módulos, en su tamaño original, organizadas en 4 temas. Desliza cada fila y toca cualquier página para ampliarla.</p>
     </div>
 
-    <div class="carousel rv">
-      <div class="track" id="trackA"></div>
-      <div class="car-nav">
-        <button class="car-btn" data-track="trackA" data-dir="-1" aria-label="Páginas anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
-        <span class="car-count">Desliza para ver más</span>
-        <button class="car-btn" data-track="trackA" data-dir="1" aria-label="Próximas páginas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-      </div>
-    </div>
-
-    <div class="carousel rv" style="margin-top:36px">
-      <div class="track" id="trackB"></div>
-      <div class="car-nav">
-        <button class="car-btn" data-track="trackB" data-dir="-1" aria-label="Páginas anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
-        <span class="car-count">35 de 577 páginas</span>
-        <button class="car-btn" data-track="trackB" data-dir="1" aria-label="Próximas páginas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-      </div>
-    </div>
+    <div id="amostras"></div>
 
     <div class="modules-head rv">
       <div>
@@ -583,51 +556,6 @@
   </div>
 </section>
 
-<!-- ============ 8. BÔNUS ============ -->
-<section id="bonos">
-  <div class="wrap">
-    <div class="sec-head center rv">
-      <span class="eyebrow">Bonos exclusivos</span>
-      <h2>Comprando hoy, te llevas <em>5 libros digitales</em> de regalo</h2>
-      <p class="lead">Materiales extra para ampliar tu conocimiento — incluidos sin costo adicional.</p>
-    </div>
-    <div class="bonuses">
-      <article class="bonus rv">
-        <span class="lbl">BONO 01</span>
-        <div class="cover"><img src="assets/bonus/diccionario.webp" alt="Portada: Diccionario Esencial de Psicología" loading="lazy"></div>
-        <div class="body"><h3>Diccionario Esencial de Psicología</h3><p>Los términos clave de la carrera, explicados en lenguaje simple.</p>
-          <div class="price-anchor"><s data-usd="12">US$ 12</s><span class="free">GRATIS</span></div></div>
-      </article>
-      <article class="bonus rv">
-        <span class="lbl">BONO 02</span>
-        <div class="cover"><img src="assets/bonus/autores.webp" alt="Portada: 15 Grandes Autores de la Psicología" loading="lazy"></div>
-        <div class="body"><h3>15 Grandes Autores de la Psicología</h3><p>Quiénes fueron y qué aportó cada uno, de Freud a Bandura.</p>
-          <div class="price-anchor"><s data-usd="10">US$ 10</s><span class="free">GRATIS</span></div></div>
-      </article>
-      <article class="bonus rv">
-        <span class="lbl">BONO 03</span>
-        <div class="cover"><img src="assets/bonus/historia.webp" alt="Portada: Historia de la Psicología — Guía Rápida" loading="lazy"></div>
-        <div class="body"><h3>Historia de la Psicología — Guía Rápida</h3><p>La línea del tiempo de las grandes escuelas y corrientes.</p>
-          <div class="price-anchor"><s data-usd="9">US$ 9</s><span class="free">GRATIS</span></div></div>
-      </article>
-      <article class="bonus rv">
-        <span class="lbl">BONO 04</span>
-        <div class="cover"><img src="assets/bonus/experimentos.webp" alt="Portada: 10 Experimentos que Marcaron la Psicología" loading="lazy"></div>
-        <div class="body"><h3>10 Experimentos que Marcaron la Psicología</h3><p>Los estudios clásicos que todo estudiante debe conocer.</p>
-          <div class="price-anchor"><s data-usd="10">US$ 10</s><span class="free">GRATIS</span></div></div>
-      </article>
-      <article class="bonus rv">
-        <span class="lbl">BONO 05</span>
-        <div class="cover"><img src="assets/bonus/lecturas.webp" alt="Portada: Guía de Lecturas para Estudiantes de Psicología" loading="lazy"></div>
-        <div class="body"><h3>Guía de Lecturas para Estudiantes</h3><p>Qué leer, en qué orden y por qué, para avanzar en la carrera.</p>
-          <div class="price-anchor"><s data-usd="9">US$ 9</s><span class="free">GRATIS</span></div></div>
-      </article>
-    </div>
-    <div class="bonus-total rv">Valor total de los bonos: <s data-usd="50">US$ 50</s> <span>→ hoy</span> <b>GRATIS</b></div>
-    <p class="disclaimer">Libros en formato digital. Las imágenes son representaciones ilustrativas; no se envían libros físicos.</p>
-  </div>
-</section>
-
 <!-- ============ 9. DEPOIMENTOS ============ -->
 <section class="alt" id="testimonios">
   <div class="wrap">
@@ -659,25 +587,19 @@
       <div class="offer-in">
         <h2>Biblioteca de Psicología Completa</h2>
         <p class="tagline">Todo lo que recibes al acceder hoy:</p>
-        <img class="mock" src="assets/hero-mockup-20.webp" alt="Biblioteca de Psicología Completa con bonos" loading="lazy">
+        <img class="mock" src="assets/biblioteca-20-modulos.webp" alt="Los 20 módulos de la Biblioteca de Psicología Completa" loading="lazy">
         <ul class="offer-list">
           <li class="grp">📚 La biblioteca</li>
           <li><span class="l"><svg><use href="#i-check-c"/></svg><span>20 módulos completos · 577 páginas visuales</span></span><s data-usd="29">US$ 29</s></li>
           <li><span class="l"><svg><use href="#i-check-c"/></svg><span>De los fundamentos y la neuropsicología a la psicoterapia, la clínica, la educación, el trabajo, lo forense, la ética y mucho más</span></span><span></span></li>
           <li><span class="l"><svg><use href="#i-check-c"/></svg><span>Acceso digital inmediato · para leer o imprimir</span></span><span></span></li>
-          <li class="grp">🎁 Bonos exclusivos</li>
-          <li class="bon"><span class="l"><svg><use href="#i-check-c"/></svg><span>Diccionario Esencial de Psicología</span></span><s data-usd="12">US$ 12</s></li>
-          <li class="bon"><span class="l"><svg><use href="#i-check-c"/></svg><span>15 Grandes Autores de la Psicología</span></span><s data-usd="10">US$ 10</s></li>
-          <li class="bon"><span class="l"><svg><use href="#i-check-c"/></svg><span>Historia de la Psicología — Guía Rápida</span></span><s data-usd="9">US$ 9</s></li>
-          <li class="bon"><span class="l"><svg><use href="#i-check-c"/></svg><span>10 Experimentos que Marcaron la Psicología</span></span><s data-usd="10">US$ 10</s></li>
-          <li class="bon"><span class="l"><svg><use href="#i-check-c"/></svg><span>Guía de Lecturas para Estudiantes</span></span><s data-usd="9">US$ 9</s></li>
         </ul>
         <div class="anchor">
-          <div class="total">Valor total: <s data-usd="79">US$ 79</s></div>
+          <div class="total">Valor normal: <s data-usd="29">US$ 29</s></div>
           <div class="today">Hoy accedes a todo por solo</div>
           <div class="price" data-usd="14.90" data-grande><small>US$</small>14,90</div>
           <div class="once">Pago único · Sin mensualidades · Acceso para siempre</div>
-          <span class="save">Ahorras <span data-usd="64.10">US$ 64,10</span> (81% OFF)</span>
+          <span class="save">Ahorras <span data-usd="14.10">US$ 14,10</span> (49% OFF)</span>
         </div>
         <a href="https://pay.hotmart.com/E108015035W?checkoutMode=10" class="btn pulse" data-buy>Quiero acceder ahora <svg><use href="#i-arrow"/></svg></a>
         <p class="conv">El precio se convierte automáticamente a la moneda de tu país al pagar.</p>
@@ -725,7 +647,7 @@
       <h2>Preguntas y respuestas</h2>
     </div>
     <div class="faq">
-      <details open><summary>¿Qué recibo exactamente?<span class="pm">+</span></summary><div class="ans">Acceso digital a la Biblioteca de Psicología Completa con 20 módulos y 577 páginas organizadas por temas, más los 5 libros digitales de bonos.</div></details>
+      <details open><summary>¿Qué recibo exactamente?<span class="pm">+</span></summary><div class="ans">Acceso digital a la Biblioteca de Psicología Completa con 20 módulos y 577 páginas organizadas por temas.</div></details>
       <details><summary>¿El producto es físico?<span class="pm">+</span></summary><div class="ans">No. Es un material 100% digital. No se envía nada por correo postal — pero puedes imprimir las páginas que quieras.</div></details>
       <details><summary>¿Cómo recibiré el material?<span class="pm">+</span></summary><div class="ans">Inmediatamente después de confirmar el pago recibes en tu e-mail los datos de acceso a la biblioteca. Revisa también la carpeta de spam o promociones.</div></details>
       <details><summary>¿Puedo estudiar desde el celular?<span class="pm">+</span></summary><div class="ans">Sí. Puedes acceder desde celular, tablet o computadora, cuando y donde quieras.</div></details>
@@ -743,7 +665,7 @@
   <div class="wrap narrow">
     <div class="psi rv">Ψ</div>
     <h2 class="rv">Ten hoy una biblioteca de Psicología organizada para <em>consultar siempre</em> que la necesites</h2>
-    <p class="lead rv" style="margin:0 auto">20 módulos · 577 páginas · 5 bonos · acceso inmediato por solo <span data-usd="14.90">US$ 14,90</span></p>
+    <p class="lead rv" style="margin:0 auto">20 módulos · 577 páginas · acceso inmediato por solo <span data-usd="14.90">US$ 14,90</span></p>
     <div class="cta-block rv" style="margin-top:30px">
       <a href="#oferta" class="btn pulse">Quiero acceder a la biblioteca <svg><use href="#i-arrow"/></svg></a>
       <div class="btn-note"><span><svg><use href="#i-lock"/></svg> Pago seguro</span><span><svg><use href="#i-shield"/></svg> 15 días de garantía</span></div>
@@ -767,23 +689,29 @@
 
 <script>
   /* ---------- páginas de amostra ---------- */
-  const M = {1:"Fundamentos y autores",2:"Neuropsicología",7:"Psicología social",8:"Psicopatología",9:"Evaluación y Psicometría",10:"Recursos psicoeducativos",11:"Investigación y metodología",12:"Enfoques psicoterapéuticos",13:"Clínica y salud",14:"Psicología educativa",15:"Organizacional y del trabajo",16:"Forense y jurídica",17:"Neuropsicología clínica",18:"Ética y deontología",19:"Comunitaria y transcultural",20:"Evolucionista y comparada"};
-  const pages = [
-    ["m01-p08","Sigmund Freud"],["m02-p07","La neurona"],["m12-p06","Psicoterapia psicodinámica"],["m08-p14","Trastorno de pánico"],["m13-p14","Estrés y organismo"],
-    ["m01-p26","Freud vs. Jung"],["m14-p09","Atención y carga cognitiva"],["m08-p28","TDAH"],["m15-p08","Motivación en el trabajo"],["m01-p27","Piaget vs. Vygotsky"],
-    ["m16-p08","Psicología del testimonio"],["m02-p16","Plasticidad cerebral"],["m17-p09","Memoria y amnesia"],["m07-p08","Persuasión"],["m18-p07","Consentimiento informado"],
-    ["m08-p20","Trastornos depresivos"],["m19-p08","Sentido de comunidad"],["m20-p10","Cooperación y altruismo"],["m12-p11","Terapia ACT"],["m01-p25","Línea del tiempo de la Psicología"],
-    ["m15-p18","Burnout"],["m09-p11","Modelo ABC de conducta"],["m10-p28","Ciclo del hábito"],["m11-p13","Correlación no implica causalidad"],["m07-p21","Empatía"],
-    ["m01-p18","Abraham Maslow"],["m02-p12","Dopamina"],["m08-p31","Trastornos de personalidad"],["m02-p17","Organización general del cerebro"],["m01-p09","Carl Gustav Jung"],
-    ["m08-p13","Ansiedad generalizada"],["m01-p12","B. F. Skinner"],["m13-p19","Sueño y funcionamiento psicológico"],["m14-p19","Dislexia"],["m20-p16","Cognición social"]
+  const M = {1:"Fundamentos y autores",2:"Neuropsicología",3:"Cognición, memoria y aprendizaje",4:"Desarrollo humano",5:"Personalidad",6:"Emoción y motivación",7:"Psicología social",8:"Psicopatología",9:"Evaluación y Psicometría",10:"Recursos psicoeducativos",11:"Investigación y metodología",12:"Enfoques psicoterapéuticos",13:"Clínica y salud",14:"Psicología educativa",15:"Organizacional y del trabajo",16:"Forense y jurídica",17:"Neuropsicología clínica",18:"Ética y deontología",19:"Comunitaria y transcultural",20:"Evolucionista y comparada"};
+  // 4 carrosséis de amostra, 10 páginas cada, por tema
+  const grupos = [
+    ["🏛️ Grandes autores y teorías", [["m01-p08","Sigmund Freud"],["m01-p09","Carl Gustav Jung"],["m01-p12","B. F. Skinner"],["m01-p18","Abraham Maslow"],["m01-p26","Freud vs. Jung"],["m01-p27","Piaget vs. Vygotsky"],["m01-p25","Línea del tiempo de la Psicología"],["m05-p09","Big Five"],["m12-p06","Psicoterapia psicodinámica"],["m12-p11","Terapia ACT"]]],
+    ["🧠 Cerebro y mente", [["m02-p07","La neurona"],["m02-p12","Dopamina"],["m02-p16","Plasticidad cerebral"],["m02-p17","Organización general del cerebro"],["m03-p37","Sesgos cognitivos"],["m14-p09","Atención y carga cognitiva"],["m17-p09","Memoria y amnesia"],["m13-p19","Sueño y funcionamiento psicológico"],["m14-p19","Dislexia"],["m20-p16","Cognición social"]]],
+    ["💛 Emociones y salud mental", [["m06-p04","¿Qué son las emociones?"],["m06-p14","Organizar el vocabulario emocional"],["m04-p22","Teoría del apego"],["m08-p13","Ansiedad generalizada"],["m08-p14","Trastorno de pánico"],["m08-p20","Trastornos depresivos"],["m08-p28","TDAH"],["m08-p31","Trastornos de personalidad"],["m13-p14","Estrés y organismo"],["m15-p18","Burnout"]]],
+    ["🤝 Psicología aplicada a la vida", [["m07-p08","Persuasión"],["m07-p21","Empatía"],["m10-p28","Ciclo del hábito"],["m09-p11","Modelo ABC de conducta"],["m15-p08","Motivación en el trabajo"],["m16-p08","Psicología del testimonio"],["m11-p13","Correlación no implica causalidad"],["m18-p07","Consentimiento informado"],["m19-p08","Sentido de comunidad"],["m20-p10","Cooperación y altruismo"]]],
   ];
   const card = ([f,t]) => {
     const src = `assets/amostras/${f}.webp`, n = +f.slice(1,3), cat = `Módulo ${String(n).padStart(2,'0')} · ${M[n]}`;
     return `<figure class="page" data-full="${src}"><img src="${src}" alt="${M[n]}: ${t}" loading="lazy" width="1086" height="1448"><figcaption><small>${cat}</small><span>${t}</span></figcaption></figure>`;
   };
-  // carrossel 1: posições pares · carrossel 2: ímpares (mistura os módulos nas duas fileiras)
-  document.getElementById('trackA').innerHTML = pages.filter((_,i)=>i%2===0).map(card).join('');
-  document.getElementById('trackB').innerHTML = pages.filter((_,i)=>i%2===1).map(card).join('');
+  const seta = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg>`;
+  document.getElementById('amostras').innerHTML = grupos.map(([tit, ps], i) => `
+    <h3 class="car-tit rv">${tit}</h3>
+    <div class="carousel rv">
+      <div class="track" id="track${i}">${ps.map(card).join('')}</div>
+      <div class="car-nav">
+        <button class="car-btn" data-track="track${i}" data-dir="-1" aria-label="Páginas anteriores">${seta('M15 6l-6 6 6 6')}</button>
+        <span class="car-count">10 páginas · desliza para ver más</span>
+        <button class="car-btn" data-track="track${i}" data-dir="1" aria-label="Próximas páginas">${seta('M9 6l6 6-6 6')}</button>
+      </div>
+    </div>`).join('');
   document.querySelectorAll('.car-btn[data-track]').forEach(b => b.onclick = () => {
     const t = document.getElementById(b.dataset.track);
     t.scrollBy({left: b.dataset.dir * (t.querySelector('.page').offsetWidth + 16), behavior:'smooth'});
