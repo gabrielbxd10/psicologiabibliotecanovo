@@ -2,7 +2,7 @@
  * - O pixel da UTMify (6ac5b7d973e2bd007d1d6544) é quem carrega o Meta Pixel da conta (973045345819425) e envia
  *   PageView / InitiateCheckout (navegador + servidor, com deduplicação). Por isso esta página NÃO inicializa o
  *   Meta Pixel por conta própria: duas inicializações do mesmo ID geram "Duplicate Pixel ID" e quebram a contagem.
- * - O IC é detectado pela própria UTMify no clique de um link da Hotmart; o botão de compra só atualiza o link com
+ * - O IC é detectado pela própria UTMify no clique de um link de checkout (GGCheckout, caminho /checkout/); o botão de compra só atualiza o link com
  *   as UTMs/xcod/sck e deixa a navegação acontecer normalmente.
  * - Guarda as UTMs/IDs de clique do anúncio por 7 dias, para atribuir a venda mesmo se a pessoa voltar depois.
  * - Eventos de engajamento (rolagem, tempo, seções, cliques) vão pelo fbq que a UTMify carregou.
@@ -31,7 +31,7 @@
 	}
 
 	window.BibliotecaTracking = {
-		// URL do checkout com UTMs + xcod/sck (formato da Hotmart/UTMify: partes unidas por "hQwK21wXxR")
+		// URL do checkout com UTMs + xcod/sck (formato UTMify: partes unidas por "hQwK21wXxR")
 		checkoutUrl: function (base) {
 			var destino = new URL(base);
 			var p = new URLSearchParams(guardados);

@@ -651,7 +651,7 @@
           <div class="once">Pago único · Sin mensualidades · Acceso para siempre</div>
           <span class="save">Ahorras US$ 64,10 (81% OFF)</span>
         </div>
-        <a href="https://pay.hotmart.com/E108015035W" class="btn pulse" data-buy>Quiero acceder ahora <svg><use href="#i-arrow"/></svg></a>
+        <a href="https://ggcheckout.app/checkout/v5/3aOQIHwIx29DD98H1OHi2J" class="btn pulse" data-buy>Quiero acceder ahora <svg><use href="#i-arrow"/></svg></a>
         <p class="conv">El precio se convierte automáticamente a la moneda de tu país al pagar.</p>
         <!-- mini rodapé de compra segura -->
         <div class="secure">
@@ -807,9 +807,9 @@
   const io = new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} }),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
-  /* ---------- botão de compra: link da Hotmart com UTMs/xcod/sck (tracking.js) ----------
-     O link navega normalmente (sem preventDefault): o pixel da UTMify vê o clique num link da Hotmart e registra o
-     InitiateCheckout sozinho. Atualizamos o href já no início do toque/clique, antes de qualquer listener ler o link. */
+  /* ---------- botão de compra: link do checkout (GGCheckout) com UTMs/xcod/sck (tracking.js) ----------
+     O link navega normalmente (sem preventDefault): o pixel da UTMify vê o clique num link de checkout (caminho
+     /checkout/) e registra o InitiateCheckout sozinho. Atualizamos o href já no início do toque/clique, antes de qualquer listener ler o link. */
   document.querySelectorAll('[data-buy]').forEach(a => {
     const base = a.getAttribute('href');
     const atualizar = () => {

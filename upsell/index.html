@@ -220,6 +220,7 @@ body.modal{overflow:hidden}
 }
 @media (max-width:520px){.bgrid{grid-template-columns:repeat(2,1fr);gap:10px}.bcard .tx{padding:10px 11px 12px}.bcard .no{font-size:10px}.bcard h3{font-size:14.5px;margin:4px 0}.bcard p{font-size:12.5px;line-height:1.4}.bcard .val{font-size:12px;margin-top:8px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.no-gracias{display:block;margin:14px auto 0;max-width:440px;text-align:center;font:600 14px/1.4 var(--body);color:inherit;opacity:.65;text-decoration:underline}
 </style>
 </head>
 <body>
@@ -283,12 +284,14 @@ body.modal{overflow:hidden}
 <h2>Añade todo a tu pedido</h2>
 <img class="mock" src="/upsell/assets/mockup.webp" width="1024" height="1024" loading="lazy" decoding="async" alt="Biblioteca Práctica de Psicología">
 <ul class="stack"><li class="sep">5 módulos de fichas visuales · 100 fichas</li><li><span class="ck">✓</span><span><strong>20</strong> Mecanismos de Defensa Clásicos</span></li><li><span class="ck">✓</span><span><strong>20</strong> Evitación y Protección Emocional</span></li><li><span class="ck">✓</span><span><strong>20</strong> Patrones de Vínculo y Relaciones</span></li><li><span class="ck">✓</span><span><strong>20</strong> Patrones de Pensamiento y Autoimagen</span></li><li><span class="ck">✓</span><span><strong>20</strong> Autosabotaje y Resistencia al Cambio</span></li><li class="sep">4 colecciones prácticas · 250 recursos</li><li><span class="ck">✓</span><span><strong>50</strong> Estructuras de Sesión</span></li><li><span class="ck">✓</span><span><strong>50</strong> Casos Prácticos para Análisis</span></li><li><span class="ck">✓</span><span><strong>100</strong> Ejercicios y Herramientas</span></li><li><span class="ck">✓</span><span><strong>50</strong> Metáforas Terapéuticas</span></li><li class="sep">3 libros complementarios · 100 recursos</li><li><span class="ck">✓</span><span><strong>50</strong> Preguntas para Explorar Emociones y Patrones</span></li><li><span class="ck">✓</span><span><strong>20</strong> Diferencias Psicológicas que Suelen Confundirse</span></li><li><span class="ck">✓</span><span><strong>30</strong> Atlas Visual de Emociones y Necesidades</span></li><li class="sep">+ 6 bonos exclusivos de hoy</li><li><span class="ck">✓</span><span>Plantillas de Análisis de Caso</span><span class="b">BONO</span></li><li><span class="ck">✓</span><span>Glosario de Psicología</span><span class="b">BONO</span></li><li><span class="ck">✓</span><span>Mapa de Autores y Teorías</span><span class="b">BONO</span></li><li><span class="ck">✓</span><span>Guía Educativa de Tests Psicológicos</span><span class="b">BONO</span></li><li><span class="ck">✓</span><span>60 Dinámicas para Clases y Seminarios</span><span class="b">BONO</span></li><li><span class="ck">✓</span><span>Diario de Autoconocimiento en 30 Días</span><span class="b">BONO</span></li></ul>
-<div class="price"><div class="old">Precio especial para clientes</div><div class="now">−73%</div><div class="save">Tu precio final aparece abajo, en tu moneda</div><div class="terms">Pago único · Acceso inmediato · Sin mensualidades</div></div>
+<div class="price"><div class="old">Precio especial para clientes</div><div class="now">−73%</div><div class="save">Tu precio final aparece en el checkout, en tu moneda</div><div class="terms">Pago único · Acceso inmediato · Sin mensualidades</div></div>
 <div class="offer-timer">Tu precio especial termina en <span class="clock" data-clock aria-label="Tiempo restante"><span class="m">20</span><i>:</i><span class="s">00</span></span></div>
 <div class="widget">
+<a class="btn" data-buy href="https://ggcheckout.app/checkout/v5/RytlppcEKYRCxm0oOTPjxz">Sí, quiero la Biblioteca Práctica</a>
+<a class="no-gracias" data-keep-utm href="/upsell2">No, gracias. Continuar sin esta oferta</a>
 </div>
-<p class="oneclick">Se añade a tu pedido en segundos. Si sales de esta página, la oferta y los bonos desaparecen.</p>
-</div></div></section><section class="guarantee" id="garantia"><div class="wrap"><div class="g-box"><div class="seal"><span><b>7</b>DÍAS</span></div><div><h3>Riesgo cero: garantía de 7 días</h3><p>Entra y explora los más de 900 recursos. Si sientes que no te sirven, pides el reembolso en Hotmart dentro de 7 días. Sin preguntas, y sin perder la biblioteca que ya compraste.</p></div></div></div></section>
+<p class="oneclick">Finalizas en segundos en un checkout seguro. Si sales de esta página, la oferta y los bonos desaparecen.</p>
+</div></div></section><section class="guarantee" id="garantia"><div class="wrap"><div class="g-box"><div class="seal"><span><b>7</b>DÍAS</span></div><div><h3>Riesgo cero: garantía de 7 días</h3><p>Entra y explora los más de 900 recursos. Si sientes que no te sirven, pides el reembolso dentro de 7 días. Sin preguntas, y sin perder la biblioteca que ya compraste.</p></div></div></div></section>
 <section class="faq" id="preguntas"><div class="wrap narrow">
 <div class="head"><h2>Preguntas frecuentes</h2></div>
 <details><summary>¿Es lo mismo que la biblioteca que acabo de comprar?</summary><p>No. Tu Biblioteca de Psicología explica las teorías y los conceptos. La Biblioteca Práctica es una colección distinta, con más de 900 recursos para aplicarlos: casos, fichas de patrones, ejercicios, metáforas, preguntas y estructuras de sesión, más 6 bonos nuevos.</p></details>
@@ -345,6 +348,11 @@ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es
 var marks={25:0,50:0,75:0,90:0};
 window.addEventListener('scroll',function(){var h=document.documentElement,p=(h.scrollTop+innerHeight)/h.scrollHeight*100;for(var k in marks){if(!marks[k]&&p>=k){marks[k]=1;track('Scroll'+k,{pagina:window.PAGE})}}},{passive:true});
 })();
+</script>
+<script>
+/* Leva as UTMs da URL desta página para o botão de checkout (GGCheckout) e para o "No, gracias". */
+(function(){var q=new URLSearchParams(location.search);if(![...q.keys()].length)return;
+document.querySelectorAll('[data-buy],[data-keep-utm]').forEach(function(a){var u=new URL(a.getAttribute('href'),location.href);q.forEach(function(v,k){if(!u.searchParams.has(k))u.searchParams.set(k,v)});a.href=u.toString()});})();
 </script>
 </body>
 </html>

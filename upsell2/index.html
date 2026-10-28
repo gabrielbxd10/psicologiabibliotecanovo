@@ -303,11 +303,12 @@ body.modal{overflow:hidden}
 <h2>Psicología Aplicada a la Vida</h2>
 <img class="mock" src="/upsell2/assets/mockup.webp" width="1254" height="1254" loading="lazy" decoding="async" alt="Psicología Aplicada a la Vida">
 <ul class="stack"><li><span class="ck">✓</span><span><strong>12 guías completas</strong> de psicología aplicada (más de 200 páginas)</span></li><li><span class="ck">✓</span><span><strong>3 bonos:</strong> Color, Atracción y Retos de 21 Días</span><span class="b">BONO</span></li><li><span class="ck">✓</span><span>Acceso inmediato en el email de tu compra</span></li><li><span class="ck">✓</span><span>Para leer en el celular o imprimir</span></li></ul>
-<div class="price"><div class="old">Precio especial para clientes</div><div class="now">−80%</div><div class="save">Tu precio final aparece abajo, en tu moneda</div><div class="terms">Pago único · Acceso inmediato · Sin mensualidades</div></div>
+<div class="price"><div class="old">Precio especial para clientes</div><div class="now">−80%</div><div class="save">Tu precio final aparece en el checkout, en tu moneda</div><div class="terms">Pago único · Acceso inmediato · Sin mensualidades</div></div>
 <div class="offer-timer">Este precio termina en <span class="clock" data-clock aria-label="Tiempo restante"><span class="m">20</span><i>:</i><span class="s">00</span></span></div>
 <div class="widget">
+<a class="btn" data-buy href="https://ggcheckout.app/checkout/v5/yYG8yD5uG7hwfvnNNhn0CM">Sí, quiero las 12 guías</a>
 </div>
-<p class="oneclick">Se añade a tu pedido en segundos · Garantía de 7 días en Hotmart. Si sales de esta página, la oferta desaparece.</p>
+<p class="oneclick">Finalizas en segundos en un checkout seguro · Garantía de 7 días. Si sales de esta página, la oferta desaparece.</p>
 </div></div></section>
 
 </main>
@@ -354,6 +355,11 @@ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es
 var marks={25:0,50:0,75:0,90:0};
 window.addEventListener('scroll',function(){var h=document.documentElement,p=(h.scrollTop+innerHeight)/h.scrollHeight*100;for(var k in marks){if(!marks[k]&&p>=k){marks[k]=1;track('Scroll'+k,{pagina:window.PAGE})}}},{passive:true});
 })();
+</script>
+<script>
+/* Leva as UTMs da URL desta página para o botão de checkout (GGCheckout). */
+(function(){var q=new URLSearchParams(location.search);if(![...q.keys()].length)return;
+document.querySelectorAll('[data-buy],[data-keep-utm]').forEach(function(a){var u=new URL(a.getAttribute('href'),location.href);q.forEach(function(v,k){if(!u.searchParams.has(k))u.searchParams.set(k,v)});a.href=u.toString()});})();
 </script>
 </body>
 </html>
