@@ -26,12 +26,7 @@
 			else el.textContent = v.texto;
 		});
 		var nota = document.querySelector('.conv');
-		var front = document.querySelector('.price[data-usd]');
-		if (nota && front) {
-			nota.textContent = 'Valor aproximado en ' + geo.moeda + ', según el dólar de hoy (US$ ' +
-				parseFloat(front.getAttribute('data-usd')).toFixed(2).replace('.', ',') +
-				'). El monto final se confirma en el checkout.';
-		}
+		if (nota) nota.textContent = 'Precio aproximado según el dólar de hoy; puede variar ligeramente.';
 	};
 
 	var buscar = function () {
