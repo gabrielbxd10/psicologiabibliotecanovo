@@ -287,11 +287,19 @@ body.modal{overflow:hidden}
 <div class="price"><div class="old">Precio especial para clientes</div><div class="now">−73%</div><div class="save">Tu precio final aparece en el checkout, en tu moneda</div><div class="terms">Pago único · Acceso inmediato · Sin mensualidades</div></div>
 <div class="offer-timer">Tu precio especial termina en <span class="clock" data-clock aria-label="Tiempo restante"><span class="m">20</span><i>:</i><span class="s">00</span></span></div>
 <div class="widget">
-<a class="btn" data-buy href="https://ggcheckout.app/checkout/v5/RytlppcEKYRCxm0oOTPjxz">Sí, quiero la Biblioteca Práctica</a>
-<a class="no-gracias" data-keep-utm href="/upsell2">No, gracias. Continuar sin esta oferta</a>
+<!-- HOTMART - Sales Funnel Widget -->
+<!--- sales funnel container --->
+<div id="hotmart-sales-funnel"></div>
+
+<!--- script load and setup --->
+<script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+<script>
+checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+</script>
+<!-- HOTMART - Sales Funnel Widget -->
 </div>
-<p class="oneclick">Finalizas en segundos en un checkout seguro. Si sales de esta página, la oferta y los bonos desaparecen.</p>
-</div></div></section><section class="guarantee" id="garantia"><div class="wrap"><div class="g-box"><div class="seal"><span><b>7</b>DÍAS</span></div><div><h3>Riesgo cero: garantía de 7 días</h3><p>Entra y explora los más de 900 recursos. Si sientes que no te sirven, pides el reembolso dentro de 7 días. Sin preguntas, y sin perder la biblioteca que ya compraste.</p></div></div></div></section>
+<p class="oneclick">Se añade a tu pedido en segundos. Si sales de esta página, la oferta y los bonos desaparecen.</p>
+</div></div></section><section class="guarantee" id="garantia"><div class="wrap"><div class="g-box"><div class="seal"><span><b>7</b>DÍAS</span></div><div><h3>Riesgo cero: garantía de 7 días</h3><p>Entra y explora los más de 900 recursos. Si sientes que no te sirven, pides el reembolso en Hotmart dentro de 7 días. Sin preguntas, y sin perder la biblioteca que ya compraste.</p></div></div></div></section>
 <section class="faq" id="preguntas"><div class="wrap narrow">
 <div class="head"><h2>Preguntas frecuentes</h2></div>
 <details><summary>¿Es lo mismo que la biblioteca que acabo de comprar?</summary><p>No. Tu Biblioteca de Psicología explica las teorías y los conceptos. La Biblioteca Práctica es una colección distinta, con más de 900 recursos para aplicarlos: casos, fichas de patrones, ejercicios, metáforas, preguntas y estructuras de sesión, más 6 bonos nuevos.</p></details>

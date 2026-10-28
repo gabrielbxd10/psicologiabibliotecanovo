@@ -306,9 +306,18 @@ body.modal{overflow:hidden}
 <div class="price"><div class="old">Precio especial para clientes</div><div class="now">−80%</div><div class="save">Tu precio final aparece en el checkout, en tu moneda</div><div class="terms">Pago único · Acceso inmediato · Sin mensualidades</div></div>
 <div class="offer-timer">Este precio termina en <span class="clock" data-clock aria-label="Tiempo restante"><span class="m">20</span><i>:</i><span class="s">00</span></span></div>
 <div class="widget">
-<a class="btn" data-buy href="https://ggcheckout.app/checkout/v5/yYG8yD5uG7hwfvnNNhn0CM">Sí, quiero las 12 guías</a>
+<!-- HOTMART - Sales Funnel Widget -->
+<!--- sales funnel container --->
+<div id="hotmart-sales-funnel"></div>
+
+<!--- script load and setup --->
+<script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+<script>
+checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+</script>
+<!-- HOTMART - Sales Funnel Widget -->
 </div>
-<p class="oneclick">Finalizas en segundos en un checkout seguro · Garantía de 7 días. Si sales de esta página, la oferta desaparece.</p>
+<p class="oneclick">Se añade a tu pedido en segundos · Garantía de 7 días. Si sales de esta página, la oferta desaparece.</p>
 </div></div></section>
 
 </main>
