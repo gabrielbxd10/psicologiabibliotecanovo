@@ -1,5 +1,5 @@
 /* Rastreamento da página de vendas.
- * - O pixel da UTMify (6ac5b7d973e2bd007d1d6544) é quem carrega o Meta Pixel da conta (973045345819425) e envia
+ * - O pixel da UTMify (6ae2944caa1fbcb0df387387) é quem carrega o Meta Pixel da conta (946879171838483) e envia
  *   PageView / InitiateCheckout (navegador + servidor, com deduplicação). Por isso esta página NÃO inicializa o
  *   Meta Pixel por conta própria: duas inicializações do mesmo ID geram "Duplicate Pixel ID" e quebram a contagem.
  * - O IC é detectado pela própria UTMify no clique de um link de checkout (GGCheckout, caminho /checkout/); o botão de compra só atualiza o link com
@@ -9,7 +9,7 @@
  * Para desligar num teste local: window.__NO_TRACK = true antes deste script, ou abrir pelo arquivo (file://). */
 (function () {
 	'use strict';
-	var PIXEL_UTMIFY = '6ac5b7d973e2bd007d1d6544';
+	var PIXEL_UTMIFY = '6ae2944caa1fbcb0df387387';
 	var SEM_RASTREIO = !!window.__NO_TRACK || location.protocol === 'file:';
 
 	var PARAMS = ['utm_source', 'utm_campaign', 'utm_medium', 'utm_content', 'utm_term', 'utm_id', 'src', 'sck', 'xcod', 'fbclid', 'gclid', 'gbraid', 'wbraid', 'ttclid', 'tbclid', 'click_id', 'CampaignID', 'adSETID', 'CreativeID', 'pixel_id', 'cid'];
@@ -62,9 +62,14 @@
 	};
 
 	// ---------- UTMify: UTMs nos links + pixel (que traz o Meta Pixel da conta) ----------
-	addScript('https://cdn.utmify.com.br/scripts/utms/latest.js', [['data-utmify-prevent-subids', '']]);
-	window.pixelId = PIXEL_UTMIFY;
-	addScript('https://cdn.utmify.com.br/scripts/pixel/pixel.js');
+	// Carregados logo depois que a página termina de carregar (não disputam banda com o conteúdo do topo).
+	// O PageView continua sendo enviado; só sai alguns instantes depois.
+	var carregarRastreio = function () {
+		addScript('https://cdn.utmify.com.br/scripts/utms/latest.js', [['data-utmify-prevent-subids', '']]);
+		window.pixelId = PIXEL_UTMIFY;
+		addScript('https://cdn.utmify.com.br/scripts/pixel/pixel.js');
+	};
+	if (document.readyState === 'complete') carregarRastreio(); else addEventListener('load', carregarRastreio);
 
 	// ---------- eventos de engajamento (custom), cada um no máximo 1x quando "unico" ----------
 	// Só usam o fbq quando a UTMify já o carregou; antes disso o evento é ignorado (nunca inicializamos o pixel aqui).
@@ -119,7 +124,7 @@
 		}, true);
 
 		// deslizar carrosséis
-		document.querySelectorAll('#trackA,#trackB,#track2').forEach(function (el) {
+		document.querySelectorAll('#amostras .track,#track2').forEach(function (el) {
 			var ja = false;
 			el.addEventListener('scroll', function () {
 				if (ja) return; ja = true;

@@ -5,10 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Biblioteca de Psicología Completa | 20 módulos · 577 páginas</title>
 <meta name="description" content="20 módulos y 577 páginas visuales con todo lo esencial de Psicología, organizado para estudiar, repasar y consultar en minutos. Acceso inmediato.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/minivsl-capa.webp" fetchpriority="high">
 <style>
+  /* Fontes servidas pelo próprio site (sem esperar o Google). Enquanto carregam, o texto aparece numa fonte do sistema
+     ajustada para ocupar o mesmo espaço ("Fallback"), então a página não pula quando a fonte final chega. */
+  @font-face{font-family:"Fraunces";font-style:normal;font-weight:500 700;font-display:swap;src:url(assets/fontes/fraunces.woff2) format("woff2")}
+  @font-face{font-family:"Fraunces";font-style:italic;font-weight:500 600;font-display:swap;src:url(assets/fontes/fraunces-italic.woff2) format("woff2")}
+  @font-face{font-family:"Inter";font-style:normal;font-weight:400 800;font-display:swap;src:url(assets/fontes/inter.woff2) format("woff2")}
+  @font-face{font-family:"Fraunces Fallback";src:local("Georgia"),local("Times New Roman"),local("Noto Serif");size-adjust:99.8%;ascent-override:98%;descent-override:25.5%;line-gap-override:0%}
+  @font-face{font-family:"Inter Fallback";src:local("Arial"),local("Roboto"),local("Helvetica");size-adjust:107.1%;ascent-override:90.4%;descent-override:22.5%;line-gap-override:0%}
   /* ================= TOKENS (troque aqui para adaptar a qualquer nicho) ================= */
   :root{
     --bg:#FFFFFF;
@@ -30,8 +35,8 @@
     --radius:18px;
     --shadow:0 1px 2px rgba(28,42,36,.05),0 10px 30px -12px rgba(28,42,36,.18);
     --shadow-lg:0 30px 60px -25px rgba(20,53,40,.35);
-    --serif:"Fraunces",Georgia,serif;
-    --sans:"Inter",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    --serif:"Fraunces","Fraunces Fallback",Georgia,serif;
+    --sans:"Inter","Inter Fallback",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -296,7 +301,7 @@
   .car-tit{font-size:20px;margin:40px 0 14px;text-align:left}
   #amostras .car-tit:first-child{margin-top:8px}
 </style>
-<script src="tracking.js"></script>
+<script src="tracking.js" defer></script>
 <script>
 /* Back redirect: SÓ quando a pessoa aperta "voltar" para sair da página, ela vai para /oferta (pacote por US$ 7,90).
  * Marca a entrada original do histórico e empilha uma cópia da página; ao voltar para a original, troca por /oferta
@@ -355,7 +360,7 @@
     <!-- Espaço do mockup / VSL -->
     <!-- Mini VSL (3:4): começa muda, em loop e com legenda; ao tocar, volta ao início com som -->
     <div class="media minivsl">
-      <video id="minivsl" src="assets/minivsl.mp4" poster="assets/minivsl-capa.webp" width="720" height="1280" autoplay muted loop playsinline preload="metadata" aria-label="Mini video: lo que recibes en la Biblioteca de Psicología Completa"></video>
+      <video id="minivsl" src="assets/minivsl.mp4" poster="assets/minivsl-capa.webp" width="720" height="1280" muted loop playsinline preload="none" aria-label="Mini video: lo que recibes en la Biblioteca de Psicología Completa"></video>
       <button type="button" class="som" id="minivsl-som">🔊 Toca para escuchar</button>
     </div>
 
@@ -566,9 +571,9 @@
     </div>
     <div class="carousel rv">
       <div class="track" id="track2">
-        <figure class="testi" data-full="assets/depoimentos/depoimento-1.webp"><img src="assets/depoimentos/depoimento-1.webp" alt="Testimonio de estudiante sobre la Biblioteca de Psicología 1" loading="lazy"></figure>
-        <figure class="testi" data-full="assets/depoimentos/depoimento-2.webp"><img src="assets/depoimentos/depoimento-2.webp" alt="Testimonio de estudiante sobre la Biblioteca de Psicología 2" loading="lazy"></figure>
-        <figure class="testi" data-full="assets/depoimentos/depoimento-3.webp"><img src="assets/depoimentos/depoimento-3.webp" alt="Testimonio de estudiante sobre la Biblioteca de Psicología 3" loading="lazy"></figure>
+        <figure class="testi" data-full="assets/depoimentos/depoimento-1.webp"><img src="assets/depoimentos/depoimento-1.webp" width="600" height="1066" alt="Testimonio de estudiante sobre la Biblioteca de Psicología 1" loading="lazy"></figure>
+        <figure class="testi" data-full="assets/depoimentos/depoimento-2.webp"><img src="assets/depoimentos/depoimento-2.webp" width="600" height="1066" alt="Testimonio de estudiante sobre la Biblioteca de Psicología 2" loading="lazy"></figure>
+        <figure class="testi" data-full="assets/depoimentos/depoimento-3.webp"><img src="assets/depoimentos/depoimento-3.webp" width="600" height="1066" alt="Testimonio de estudiante sobre la Biblioteca de Psicología 3" loading="lazy"></figure>
       </div>
       <div class="car-nav">
         <button class="car-btn" id="prev2" aria-label="Testimonios anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
@@ -587,7 +592,7 @@
       <div class="offer-in">
         <h2>Biblioteca de Psicología Completa</h2>
         <p class="tagline">Todo lo que recibes al acceder hoy:</p>
-        <img class="mock" src="assets/biblioteca-20-modulos.webp" alt="Los 20 módulos de la Biblioteca de Psicología Completa" loading="lazy">
+        <img class="mock" src="assets/biblioteca-20-modulos.webp" width="1000" height="1000" alt="Los 20 módulos de la Biblioteca de Psicología Completa" loading="lazy">
         <ul class="offer-list">
           <li class="grp">📚 La biblioteca</li>
           <li><span class="l"><svg><use href="#i-check-c"/></svg><span>20 módulos completos · 577 páginas visuales</span></span><s data-usd="29">US$ 29</s></li>
@@ -779,6 +784,9 @@
   // Mini VSL: toca muda em loop; o primeiro toque volta ao início com som (e mostra os controles)
   const vsl = document.getElementById('minivsl'), som = document.getElementById('minivsl-som');
   if (vsl && som) {
+    // o vídeo (8 MB) só começa a baixar depois que a página terminou de carregar, para não atrasar o resto
+    const iniciar = () => { if (!vsl.paused || !vsl.muted) return; vsl.preload = 'auto'; vsl.play().catch(() => {}); };
+    if (document.readyState === 'complete') iniciar(); else addEventListener('load', iniciar);
     const ativarSom = () => {
       if (!vsl.muted) return;
       vsl.muted = false; vsl.loop = false; vsl.controls = true; vsl.currentTime = 0;
