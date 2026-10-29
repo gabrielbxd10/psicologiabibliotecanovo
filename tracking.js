@@ -64,6 +64,11 @@
 	// ---------- UTMify: UTMs nos links + pixel (que traz o Meta Pixel da conta) ----------
 	// Carregados logo depois que a página termina de carregar (não disputam banda com o conteúdo do topo).
 	// O PageView continua sendo enviado; só sai alguns instantes depois.
+	// Quem visitou antes ficou com o "lead" da UTMify preso ao pixel antigo (que agora responde erro): descarta para recriar no novo.
+	try {
+		var lead = JSON.parse(localStorage.getItem('lead') || 'null');
+		if (lead && lead.pixelId && lead.pixelId !== PIXEL_UTMIFY) localStorage.removeItem('lead');
+	} catch (e) {}
 	var carregarRastreio = function () {
 		addScript('https://cdn.utmify.com.br/scripts/utms/latest.js', [['data-utmify-prevent-subids', '']]);
 		window.pixelId = PIXEL_UTMIFY;
