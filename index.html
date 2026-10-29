@@ -334,30 +334,6 @@
   }
 </style>
 <script src="tracking.js" defer></script>
-<script>
-/* Back redirect: SÓ quando a pessoa aperta "voltar" para sair da página, ela vai para /oferta (pacote por US$ 7,90).
- * Marca a entrada original do histórico e empilha uma cópia da página; ao voltar para a original, troca por /oferta
- * (com as UTMs). Links internos (#oferta etc.) e o botão de compra não disparam nada. Aparece uma vez por sessão. */
-(function () {
-  try { if (sessionStorage.getItem('biblioteca_br_visto')) return; } catch (e) {}
-  var DESTINO = '/oferta/' + location.search;
-  var empilhar = function () {
-    if (history.state && history.state.br === 'pagina') return;
-    history.replaceState({br: 'origem'}, '', location.href);
-    history.pushState({br: 'pagina'}, '', location.href);
-  };
-  empilhar();
-  // o Chrome ignora no "voltar" entradas criadas sem interação: se ainda estiver na origem, empilha no primeiro toque/clique/tecla
-  ['pointerdown', 'touchend', 'keydown'].forEach(function (ev) {
-    addEventListener(ev, function () { if (!history.state || history.state.br !== 'pagina') empilhar(); }, {once: true, passive: true});
-  });
-  addEventListener('popstate', function (e) {
-    if (!e.state || e.state.br !== 'origem') return; // voltar entre âncoras da própria página: ignora
-    try { sessionStorage.setItem('biblioteca_br_visto', '1'); } catch (err) {}
-    location.replace(DESTINO);
-  });
-})();
-</script>
 </head>
 <body>
 
