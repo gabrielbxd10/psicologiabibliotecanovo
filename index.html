@@ -300,6 +300,38 @@
   }
   .car-tit{font-size:20px;margin:40px 0 14px;text-align:left}
   #amostras .car-tit:first-child{margin-top:8px}
+  /* planos (Básico / Completo) */
+  .planos{max-width:940px;margin:0 auto;background:var(--paper);border-radius:28px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(20,53,40,.35);border:2px solid var(--gold)}
+  .planos-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:22px;padding:30px 28px 8px;align-items:stretch}
+  .plano{position:relative;border:1.5px solid var(--line);border-radius:22px;padding:26px 22px 22px;display:flex;flex-direction:column;background:#fff}
+  .plano.completo{border:2.5px solid var(--cta);box-shadow:0 20px 50px -25px rgba(26,133,73,.55);background:linear-gradient(180deg,#F3FAF5,#fff 40%)}
+  .plano h3{font-size:28px;text-align:center;margin-bottom:2px}
+  .pdesc{text-align:center;color:var(--ink-soft);font-size:15px;margin-bottom:16px}
+  .ptag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--cta);color:#fff;font-size:12.5px;font-weight:800;letter-spacing:.06em;padding:6px 14px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 18px -8px rgba(26,133,73,.7)}
+  .bcovers{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:0 0 14px}
+  .bcovers img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+  .plist{list-style:none;margin-bottom:16px}
+  .plist li{display:flex;gap:9px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--line);font-size:15px;line-height:1.4}
+  .plist li svg{flex:none;width:19px;height:19px;color:var(--cta-deep);margin-top:1px}
+  .plist li.bon span::after{content:"BONO";margin-left:7px;font-size:10px;font-weight:800;letter-spacing:.08em;color:#fff;background:var(--accent);padding:2px 6px;border-radius:4px;vertical-align:2px}
+  .plist li.no{color:var(--muted)}
+  .plist li .x{flex:none;width:19px;text-align:center;color:var(--danger);font-weight:800}
+  .pfoot{margin-top:auto;text-align:center}
+  .pde{font-size:14px;color:var(--ink-soft)}
+  .pde s{color:var(--danger);font-weight:700}
+  .pprice{font-family:var(--serif);font-weight:700;font-size:clamp(50px,7vw,64px);line-height:1;color:var(--brand-deep);margin:6px 0 4px}
+  .pprice small{font-size:.38em;vertical-align:.95em;margin-right:4px}
+  .completo .pprice{color:var(--cta-deep)}
+  .pfoot .once{font-size:13px;color:var(--ink-soft)}
+  .pfoot .save{display:inline-block;margin-top:8px;background:#FFF3D6;color:#7A5A12;font-weight:700;font-size:13px;padding:5px 12px;border-radius:999px}
+  .plano .btn{width:100%;margin-top:16px;font-size:17px;padding:19px 16px}
+  .btn.btn-sec{background:#fff;color:var(--brand-deep);border:2px solid var(--brand);box-shadow:none}
+  .planos-pie{padding:6px 28px 26px}
+  @media (max-width:760px){
+    .planos-grid{grid-template-columns:1fr;padding:26px 16px 6px;gap:26px}
+    .plano.completo{order:-1}
+    .planos-pie{padding:4px 16px 22px}
+  }
 </style>
 <script src="tracking.js" defer></script>
 <script>
@@ -587,28 +619,56 @@
 <!-- ============ 10. OFERTA ============ -->
 <section class="offer-sec" id="oferta">
   <div class="wrap">
-    <div class="offer rv">
-      <div class="offer-top">🔥 Oferta especial válida solo hoy</div>
-      <div class="offer-in">
-        <h2>Biblioteca de Psicología Completa</h2>
-        <p class="tagline">Todo lo que recibes al acceder hoy:</p>
-        <img class="mock" src="assets/biblioteca-20-modulos.webp" width="1000" height="1000" alt="Los 20 módulos de la Biblioteca de Psicología Completa" loading="lazy">
-        <ul class="offer-list">
-          <li class="grp">📚 La biblioteca</li>
-          <li><span class="l"><svg><use href="#i-check-c"/></svg><span>20 módulos completos · 577 páginas visuales</span></span><s data-usd="29">US$ 29</s></li>
-          <li><span class="l"><svg><use href="#i-check-c"/></svg><span>De los fundamentos y la neuropsicología a la psicoterapia, la clínica, la educación, el trabajo, lo forense, la ética y mucho más</span></span><span></span></li>
-          <li><span class="l"><svg><use href="#i-check-c"/></svg><span>Acceso digital inmediato · para leer o imprimir</span></span><span></span></li>
-        </ul>
-        <div class="anchor">
-          <div class="total">Valor normal: <s data-usd="29">US$ 29</s></div>
-          <div class="today">Hoy accedes a todo por solo</div>
-          <div class="price" data-usd="14.90" data-grande><small>US$</small>14,90</div>
-          <div class="once">Pago único · Sin mensualidades · Acceso para siempre</div>
-          <span class="save">Ahorras <span data-usd="14.10">US$ 14,10</span> (49% OFF)</span>
-        </div>
-        <a href="https://pay.hotmart.com/E108015035W?checkoutMode=10" class="btn pulse" data-buy>Quiero acceder ahora <svg><use href="#i-arrow"/></svg></a>
+    <!-- Dois planos: Básico (só a biblioteca) e Completo (biblioteca + 5 bônus). Links de checkout em data-buy. -->
+    <div class="planos rv">
+      <div class="offer-top">🔥 Oferta especial válida solo hoy · Elige tu plan</div>
+      <div class="planos-grid">
+        <article class="plano basico">
+          <h3>Básico</h3>
+          <p class="pdesc">La biblioteca completa</p>
+          <ul class="plist">
+            <li><svg><use href="#i-check-c"/></svg><span><b>20 módulos</b> · 577 páginas visuales</span></li>
+            <li><svg><use href="#i-check-c"/></svg><span>De los fundamentos a la clínica, la educación, el trabajo, lo forense y mucho más</span></li>
+            <li><svg><use href="#i-check-c"/></svg><span>Acceso inmediato · celular, PC o impreso</span></li>
+            <li class="no"><span class="x">✕</span><span>Sin los 5 libros de bonos</span></li>
+          </ul>
+          <div class="pfoot">
+            <div class="pde">Valor normal <s>US$ 29</s></div>
+            <div class="pprice"><small>US$</small>4,90</div>
+            <div class="once">Pago único · Sin mensualidades</div>
+            <a href="https://pay.hotmart.com/E108015035W?off=eemoun2m" class="btn btn-sec" data-buy>Quiero el Básico</a>
+          </div>
+        </article>
+        <article class="plano completo">
+          <span class="ptag">⭐ El más elegido</span>
+          <h3>Completo</h3>
+          <p class="pdesc">Biblioteca + 5 libros de bonos</p>
+          <div class="bcovers">
+            <img src="assets/bonus/diccionario.webp" width="300" height="300" alt="Bono: Diccionario Esencial de Psicología" loading="lazy">
+            <img src="assets/bonus/autores.webp" width="300" height="300" alt="Bono: 15 Grandes Autores de la Psicología" loading="lazy">
+            <img src="assets/bonus/historia.webp" width="300" height="300" alt="Bono: Historia de la Psicología" loading="lazy">
+            <img src="assets/bonus/experimentos.webp" width="300" height="300" alt="Bono: 10 Experimentos que Marcaron la Psicología" loading="lazy">
+            <img src="assets/bonus/lecturas.webp" width="300" height="300" alt="Bono: Guía de Lecturas para Estudiantes" loading="lazy">
+          </div>
+          <ul class="plist">
+            <li><svg><use href="#i-check-c"/></svg><span><b>Todo el plan Básico</b> (20 módulos · 577 páginas)</span></li>
+            <li class="bon"><svg><use href="#i-check-c"/></svg><span>Diccionario Esencial de Psicología</span></li>
+            <li class="bon"><svg><use href="#i-check-c"/></svg><span>15 Grandes Autores de la Psicología</span></li>
+            <li class="bon"><svg><use href="#i-check-c"/></svg><span>Historia de la Psicología — Guía Rápida</span></li>
+            <li class="bon"><svg><use href="#i-check-c"/></svg><span>10 Experimentos que Marcaron la Psicología</span></li>
+            <li class="bon"><svg><use href="#i-check-c"/></svg><span>Guía de Lecturas para Estudiantes</span></li>
+          </ul>
+          <div class="pfoot">
+            <div class="pde">Valor normal <s>US$ 79</s></div>
+            <div class="pprice"><small>US$</small>9,90</div>
+            <div class="once">Pago único · Sin mensualidades</div>
+            <span class="save">Ahorras US$ 69,10 (87% OFF)</span>
+            <a href="https://pay.hotmart.com/E108015035W?checkoutMode=10" class="btn pulse" data-buy>Quiero el Completo <svg><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
+      </div>
+      <div class="planos-pie">
         <p class="conv">El precio se convierte automáticamente a la moneda de tu país al pagar.</p>
-        <!-- mini rodapé de compra segura -->
         <div class="secure">
           <div><svg><use href="#i-lock"/></svg>Compra 100% segura</div>
           <div><svg><use href="#i-bolt"/></svg>Acceso inmediato por e-mail</div>
@@ -652,7 +712,7 @@
       <h2>Preguntas y respuestas</h2>
     </div>
     <div class="faq">
-      <details open><summary>¿Qué recibo exactamente?<span class="pm">+</span></summary><div class="ans">Acceso digital a la Biblioteca de Psicología Completa con 20 módulos y 577 páginas organizadas por temas.</div></details>
+      <details open><summary>¿Qué recibo exactamente?<span class="pm">+</span></summary><div class="ans">Acceso digital a la Biblioteca de Psicología Completa con 20 módulos y 577 páginas organizadas por temas. En el plan <b>Completo</b> recibes además 5 libros digitales de bonos: Diccionario Esencial, 15 Grandes Autores, Historia de la Psicología, 10 Experimentos y Guía de Lecturas.</div></details>
       <details><summary>¿El producto es físico?<span class="pm">+</span></summary><div class="ans">No. Es un material 100% digital. No se envía nada por correo postal — pero puedes imprimir las páginas que quieras.</div></details>
       <details><summary>¿Cómo recibiré el material?<span class="pm">+</span></summary><div class="ans">Inmediatamente después de confirmar el pago recibes en tu e-mail los datos de acceso a la biblioteca. Revisa también la carpeta de spam o promociones.</div></details>
       <details><summary>¿Puedo estudiar desde el celular?<span class="pm">+</span></summary><div class="ans">Sí. Puedes acceder desde celular, tablet o computadora, cuando y donde quieras.</div></details>
@@ -670,7 +730,7 @@
   <div class="wrap narrow">
     <div class="psi rv">Ψ</div>
     <h2 class="rv">Ten hoy una biblioteca de Psicología organizada para <em>consultar siempre</em> que la necesites</h2>
-    <p class="lead rv" style="margin:0 auto">20 módulos · 577 páginas · acceso inmediato por solo <span data-usd="14.90">US$ 14,90</span></p>
+    <p class="lead rv" style="margin:0 auto">20 módulos · 577 páginas · acceso inmediato desde solo <span data-usd="4.90">US$ 4,90</span></p>
     <div class="cta-block rv" style="margin-top:30px">
       <a href="#oferta" class="btn pulse">Quiero acceder a la biblioteca <svg><use href="#i-arrow"/></svg></a>
       <div class="btn-note"><span><svg><use href="#i-lock"/></svg> Pago seguro</span><span><svg><use href="#i-shield"/></svg> 15 días de garantía</span></div>
