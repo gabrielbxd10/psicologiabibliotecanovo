@@ -192,6 +192,83 @@
   .price-anchor s{color:var(--muted);font-size:14px}
   .free{background:var(--cta);color:#fff;font-weight:800;font-size:12.5px;letter-spacing:.08em;padding:4px 10px;border-radius:6px}
 
+  /* ================= 8. BÔNUS ================= */
+  .bonuses{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .bonus{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;position:relative}
+  .bonus .lbl{position:absolute;top:12px;left:12px;background:var(--accent);color:#fff;font-size:11px;font-weight:800;letter-spacing:.1em;padding:4px 9px;border-radius:6px;z-index:1}
+  .bonus .cover img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+  .bonus .body{padding:16px 16px 18px;display:flex;flex-direction:column;flex:1}
+  .bonus h3{font-size:16px;line-height:1.3;color:var(--ink);margin-bottom:6px}
+  .bonus p{font-size:13.5px;color:var(--ink-soft);line-height:1.45;flex:1}
+  .bonus-total{margin:34px auto 0;max-width:640px;display:flex;align-items:center;justify-content:center;gap:12px 18px;flex-wrap:wrap;background:var(--paper);border:2px dashed var(--gold);border-radius:16px;padding:18px 22px;text-align:center;font-size:16px}
+  .bonus-total s{color:var(--muted);font-size:18px}
+  .bonus-total b{font-family:var(--serif);font-size:24px;color:var(--cta-deep)}
+  /* ================= 9. DEPOIMENTOS ================= */
+  .testi{flex:0 0 min(320px,78vw);scroll-snap-align:start;cursor:zoom-in}
+  .testi img{border-radius:18px;box-shadow:var(--shadow);width:100%;aspect-ratio:600/1066;object-fit:cover;object-position:top}
+  .stars{color:var(--gold);letter-spacing:2px;font-size:15px}
+  .rating{display:inline-flex;align-items:center;gap:10px;margin-top:16px;background:var(--paper);border:1px solid var(--line);padding:8px 16px;border-radius:999px;font-size:14px;color:var(--ink-soft)}
+  /* ================= 10. OFERTA ================= */
+  .offer-sec{background:linear-gradient(180deg,#FFFFFF 0%,#F1F6F3 50%,#FFFFFF 100%)}
+  .offer{max-width:640px;margin:0 auto;background:var(--paper);border-radius:28px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(20,53,40,.35);border:2px solid var(--gold)}
+  .offer-top{background:linear-gradient(90deg,var(--accent-deep),var(--accent));color:#fff;text-align:center;padding:12px;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+  .offer-in{padding:34px 34px 30px}
+  .offer h2{text-align:center;font-size:clamp(26px,3.4vw,34px);margin-bottom:6px}
+  .offer .tagline{text-align:center;color:var(--ink-soft);font-size:15.5px;margin-bottom:22px}
+  .offer img.mock{border-radius:16px;margin:0 auto 22px;border:1px solid var(--line)}
+  .offer-list{list-style:none;display:grid;gap:0}
+  .offer-list li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+  .offer-list li .l{display:flex;gap:10px;align-items:flex-start}
+  .offer-list li .l svg{flex:none;width:20px;height:20px;color:var(--cta-deep);margin-top:2px}
+  .offer-list li s{color:var(--muted);font-size:14px;white-space:nowrap}
+  .offer-list .grp{padding:18px 0 6px;border:0;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep)}
+  .offer-list .bon .l span::after{content:"GRATIS";margin-left:8px;font-size:10.5px;font-weight:800;letter-spacing:.08em;color:#fff;background:var(--cta);padding:2px 6px;border-radius:4px;vertical-align:2px}
+  .anchor{margin-top:22px;text-align:center;padding:22px;border-radius:18px;background:var(--bg-alt)}
+  .anchor .total{font-size:15px;color:var(--ink-soft)}
+  .anchor .total s{color:var(--danger);font-weight:700;font-size:18px}
+  .anchor .today{margin-top:8px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+  .anchor .price{font-family:var(--serif);font-weight:700;font-size:clamp(54px,9vw,74px);line-height:1;color:var(--brand-deep);margin:6px 0}
+  .anchor .price small{font-size:.38em;vertical-align:.95em;margin-right:4px}
+  .anchor .once{font-size:14px;color:var(--ink-soft)}
+  .anchor .save{display:inline-block;margin-top:10px;background:#FFF3D6;color:#7A5A12;font-weight:700;font-size:13px;padding:5px 12px;border-radius:999px}
+  .offer .btn{width:100%;margin-top:22px;font-size:18px;padding:22px}
+  .conv{text-align:center;font-size:12.5px;color:var(--muted);margin-top:10px}
+  .secure{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center}
+  .secure div{font-size:12px;color:var(--ink-soft);line-height:1.35}
+  .secure svg{width:24px;height:24px;color:var(--brand);margin:0 auto 6px}
+  /* ================= 11. GARANTIA ================= */
+  .guarantee{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:44px;box-shadow:var(--shadow)}
+  .seal{width:200px;height:200px;position:relative}
+  .seal svg{width:100%;height:100%}
+  .guarantee h2{font-size:clamp(26px,3.4vw,36px)}
+  .guarantee p{color:var(--ink-soft);margin-top:10px}
+  .guarantee .risk{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-weight:700;color:var(--brand);background:var(--brand-soft);padding:8px 14px;border-radius:10px;font-size:14.5px}
+  /* ================= 12. FAQ ================= */
+  .faq{display:grid;gap:12px}
+  .faq details{background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:box-shadow .2s}
+  .faq details[open]{box-shadow:var(--shadow)}
+  .faq summary{list-style:none;cursor:pointer;padding:20px 22px;font-weight:600;font-size:16.5px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .pm{flex:none;width:28px;height:28px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;transition:transform .25s}
+  .faq details[open] .pm{transform:rotate(45deg);background:var(--brand);color:#fff}
+  .faq .ans{padding:0 22px 20px;color:var(--ink-soft);font-size:15.5px}
+  /* ================= FINAL + 13. DIREITOS ================= */
+  .final{text-align:center;padding:80px 0}
+  .final .psi{width:64px;height:64px;margin:0 auto 18px;border-radius:18px;background:var(--brand-deep);color:var(--gold);display:grid;place-items:center;font-family:var(--serif);font-size:34px}
+  footer{background:var(--bg-alt);border-top:1px solid var(--line);color:var(--muted);font-size:13.5px;padding:36px 0 40px;text-align:center}
+  footer .links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:12px 0}
+  footer a{text-decoration:none;color:var(--ink-soft)}
+  footer a:hover{color:var(--brand)}
+  footer .legal{max-width:720px;margin:14px auto 0;font-size:12px;line-height:1.55;opacity:.8}
+  /* ================= LIGHTBOX ================= */
+  .lb{position:fixed;inset:0;z-index:100;background:rgba(10,20,15,.88);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+  .lb.open{display:flex}
+  .lb img{max-height:92vh;max-width:min(92vw,720px);border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .lb button{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;border:0;background:#fff;color:var(--ink);font-size:24px;cursor:pointer}
+  /* ================= ANIMAÇÃO DE ENTRADA ================= */
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.btn.pulse,.urgency .dot{animation:none}html{scroll-behavior:auto}}
   /* ================= 9. DEPOIMENTOS ================= */
   .testi{flex:0 0 min(320px,78vw);scroll-snap-align:start;cursor:zoom-in}
   .testi img{border-radius:18px;box-shadow:var(--shadow);width:100%;aspect-ratio:600/1066;object-fit:cover;object-position:top}
@@ -326,6 +403,21 @@
     .plano.completo{order:-1}
     .planos-pie{padding:4px 16px 22px}
   }
+  .for-card.solo{max-width:900px;margin:0 auto}
+  .for-card.solo ul{grid-template-columns:1fr 1fr;gap:14px 26px}
+  @media (max-width:760px){.for-card.solo ul{grid-template-columns:1fr}}
+  @media (max-width:980px){.bonuses{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:760px){.bonuses{grid-template-columns:1fr 1fr}}
+  /* carrosséis grandes com rolagem automática */
+  #amostras{background:linear-gradient(180deg,var(--brand-soft),#fff);border:1px solid var(--line);border-radius:28px;padding:26px 0 18px;box-shadow:var(--shadow);margin-top:6px}
+  #amostras .car-tit{font-size:clamp(22px,3vw,28px);text-align:center;margin:26px 0 12px}
+  #amostras .car-tit:first-child{margin-top:4px}
+  #amostras .carousel{margin:0}
+  .carousel.auto .track{scroll-snap-type:none;padding:10px 24px 24px}
+  .carousel.auto .page{flex-basis:min(540px,86vw);box-shadow:0 18px 40px -18px rgba(20,53,40,.45)}
+  .carousel.auto .page:hover{transform:none}
+  .carousel.auto .car-count{min-width:0}
+  @media (max-width:760px){#amostras{margin:6px -10px 0;border-radius:22px}.carousel.auto .track{padding:8px 14px 20px}}
 </style>
 <script src="tracking.js" defer></script>
 </head>
@@ -422,7 +514,7 @@
     <div class="sec-head center rv">
       <span class="eyebrow">Lo que vas a recibir</span>
       <h2>Mira por dentro <em>antes</em> de acceder</h2>
-      <p class="lead">20 páginas reales en 4 temas. Desliza y toca para ampliar.</p>
+      <p class="lead">30 páginas reales de los 20 módulos. Toca cualquier página para ampliarla.</p>
     </div>
 
     <div id="amostras"></div>
@@ -487,49 +579,66 @@
       <span class="eyebrow">Para quién es</span>
       <h2>Esta biblioteca fue hecha <em>para ti</em> si…</h2>
     </div>
-    <div class="for-grid">
-      <div class="for-card yes rv">
+    <div class="for-card yes solo rv">
         <h3>✅ Es para ti si…</h3>
         <ul>
-          <li><svg><use href="#i-check-c"/></svg><span>Estudias Psicología y quieres un material complementario claro para repasar.</span></li>
-          <li><svg><use href="#i-check-c"/></svg><span>Estás comenzando la carrera y quieres entender los conceptos de forma organizada.</span></li>
-          <li><svg><use href="#i-check-c"/></svg><span>Te apasiona la Psicología y quieres aprenderla con orden.</span></li>
-          <li><svg><use href="#i-check-c"/></svg><span>Prefieres materiales visuales, resumidos y organizados por temas.</span></li>
+          <li><svg><use href="#i-check-c"/></svg><span><b>Estudias Psicología</b> y quieres un material claro para repasar.</span></li>
+          <li><svg><use href="#i-check-c"/></svg><span><b>Estás comenzando la carrera</b> y quieres entender los conceptos con orden.</span></li>
+          <li><svg><use href="#i-check-c"/></svg><span><b>Te preparas para exámenes</b>, prácticas o concursos y necesitas repasar rápido.</span></li>
+          <li><svg><use href="#i-check-c"/></svg><span><b>Ya te graduaste</b> y quieres una biblioteca de consulta rápida.</span></li>
+          <li><svg><use href="#i-check-c"/></svg><span><b>Trabajas con personas</b> (educación, salud, RR. HH., coaching) y quieres entenderlas mejor.</span></li>
+          <li><svg><use href="#i-check-c"/></svg><span><b>Quieres entenderte mejor</b>: tus emociones, tus hábitos y tus relaciones.</span></li>
+          <li><svg><use href="#i-check-c"/></svg><span><b>Eres madre o padre</b> y quieres comprender cómo se desarrollan tus hijos.</span></li>
+          <li><svg><use href="#i-check-c"/></svg><span><b>Te apasiona la Psicología</b> y quieres aprenderla sin perderte en información confusa.</span></li>
+          <li><svg><use href="#i-check-c"/></svg><span><b>Prefieres aprender con imágenes</b>, esquemas y temas bien organizados.</span></li>
         </ul>
-      </div>
-      <div class="for-card no rv">
-        <h3>❌ No es para ti si…</h3>
-        <ul>
-          <li><svg><use href="#i-x-c"/></svg><span>Buscas un título o certificación profesional.</span></li>
-          <li><svg><use href="#i-x-c"/></svg><span>Quieres reemplazar la universidad o los libros académicos.</span></li>
-          <li><svg><use href="#i-x-c"/></svg><span>Esperas una herramienta para hacer diagnósticos clínicos.</span></li>
-        </ul>
-      </div>
     </div>
     <p class="disclaimer">Material educativo. No sustituye libros académicos, formación universitaria, evaluación clínica ni supervisión profesional.</p>
   </div>
 </section>
 
-<!-- ============ 9. DEPOIMENTOS ============ -->
-<section class="alt" id="testimonios">
+<!-- ============ 8. BÔNUS ============ -->
+<section id="bonos">
   <div class="wrap">
     <div class="sec-head center rv">
-      <span class="eyebrow">Testimonios</span>
-      <h2>Lo que dicen quienes <em>ya la tienen</em></h2>
-      <div class="rating"><span class="stars">★★★★★</span> Mensajes reales enviados por estudiantes</div>
+      <span class="eyebrow">Bonos del plan Completo</span>
+      <h2>En el plan Completo te llevas <em>5 libros digitales</em> de regalo</h2>
+      <p class="lead">Materiales extra para ampliar lo que aprendes, incluidos en el plan Completo.</p>
     </div>
-    <div class="carousel rv">
-      <div class="track" id="track2">
-        <figure class="testi" data-full="assets/depoimentos/depoimento-1.webp"><img src="assets/depoimentos/depoimento-1.webp" width="600" height="1066" alt="Testimonio de estudiante sobre la Biblioteca de Psicología 1" loading="lazy"></figure>
-        <figure class="testi" data-full="assets/depoimentos/depoimento-2.webp"><img src="assets/depoimentos/depoimento-2.webp" width="600" height="1066" alt="Testimonio de estudiante sobre la Biblioteca de Psicología 2" loading="lazy"></figure>
-        <figure class="testi" data-full="assets/depoimentos/depoimento-3.webp"><img src="assets/depoimentos/depoimento-3.webp" width="600" height="1066" alt="Testimonio de estudiante sobre la Biblioteca de Psicología 3" loading="lazy"></figure>
-      </div>
-      <div class="car-nav">
-        <button class="car-btn" id="prev2" aria-label="Testimonios anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
-        <span class="car-count">Desliza para ver más</span>
-        <button class="car-btn" id="next2" aria-label="Próximos testimonios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
-      </div>
+    <div class="bonuses">
+      <article class="bonus rv">
+        <span class="lbl">BONO 01</span>
+        <div class="cover"><img src="assets/bonus/diccionario.webp" alt="Portada: Diccionario Esencial de Psicología" loading="lazy"></div>
+        <div class="body"><h3>Diccionario Esencial de Psicología</h3><p>Los términos clave de la carrera, explicados en lenguaje simple.</p>
+          <div class="price-anchor"><s>US$ 12</s><span class="free">EN EL COMPLETO</span></div></div>
+      </article>
+      <article class="bonus rv">
+        <span class="lbl">BONO 02</span>
+        <div class="cover"><img src="assets/bonus/autores.webp" alt="Portada: 15 Grandes Autores de la Psicología" loading="lazy"></div>
+        <div class="body"><h3>15 Grandes Autores de la Psicología</h3><p>Quiénes fueron y qué aportó cada uno, de Freud a Bandura.</p>
+          <div class="price-anchor"><s>US$ 10</s><span class="free">EN EL COMPLETO</span></div></div>
+      </article>
+      <article class="bonus rv">
+        <span class="lbl">BONO 03</span>
+        <div class="cover"><img src="assets/bonus/historia.webp" alt="Portada: Historia de la Psicología — Guía Rápida" loading="lazy"></div>
+        <div class="body"><h3>Historia de la Psicología — Guía Rápida</h3><p>La línea del tiempo de las grandes escuelas y corrientes.</p>
+          <div class="price-anchor"><s>US$ 9</s><span class="free">EN EL COMPLETO</span></div></div>
+      </article>
+      <article class="bonus rv">
+        <span class="lbl">BONO 04</span>
+        <div class="cover"><img src="assets/bonus/experimentos.webp" alt="Portada: 10 Experimentos que Marcaron la Psicología" loading="lazy"></div>
+        <div class="body"><h3>10 Experimentos que Marcaron la Psicología</h3><p>Los estudios clásicos que todo estudiante debe conocer.</p>
+          <div class="price-anchor"><s>US$ 10</s><span class="free">EN EL COMPLETO</span></div></div>
+      </article>
+      <article class="bonus rv">
+        <span class="lbl">BONO 05</span>
+        <div class="cover"><img src="assets/bonus/lecturas.webp" alt="Portada: Guía de Lecturas para Estudiantes de Psicología" loading="lazy"></div>
+        <div class="body"><h3>Guía de Lecturas para Estudiantes</h3><p>Qué leer, en qué orden y por qué, para avanzar en la carrera.</p>
+          <div class="price-anchor"><s>US$ 9</s><span class="free">EN EL COMPLETO</span></div></div>
+      </article>
     </div>
+    <div class="bonus-total rv">Valor de los bonos: <s>US$ 50</s> <span>→ en el plan Completo</span> <b>INCLUIDOS</b></div>
+    <p class="disclaimer">Libros en formato digital. Las imágenes son representaciones ilustrativas; no se envían libros físicos.</p>
   </div>
 </section>
 
@@ -670,35 +779,61 @@
   /* ---------- páginas de amostra ---------- */
   const M = {1:"Fundamentos y autores",2:"Neuropsicología",3:"Cognición, memoria y aprendizaje",4:"Desarrollo humano",5:"Personalidad",6:"Emoción y motivación",7:"Psicología social",8:"Psicopatología",9:"Evaluación y Psicometría",10:"Recursos psicoeducativos",11:"Investigación y metodología",12:"Enfoques psicoterapéuticos",13:"Clínica y salud",14:"Psicología educativa",15:"Organizacional y del trabajo",16:"Forense y jurídica",17:"Neuropsicología clínica",18:"Ética y deontología",19:"Comunitaria y transcultural",20:"Evolucionista y comparada"};
   // 4 carrosséis de amostra, 10 páginas cada, por tema
+  // 2 carrosséis grandes (15 páginas cada) que rolam sozinhos devagar
   const grupos = [
-    ["🏛️ Grandes autores y teorías", [["m01-p08","Sigmund Freud"],["m01-p09","Carl Gustav Jung"],["m01-p26","Freud vs. Jung"],["m01-p27","Piaget vs. Vygotsky"],["m05-p09","Big Five"]]],
-    ["🧠 Cerebro y mente", [["m02-p07","La neurona"],["m02-p12","Dopamina"],["m02-p16","Plasticidad cerebral"],["m03-p37","Sesgos cognitivos"],["m17-p09","Memoria y amnesia"]]],
-    ["💛 Emociones y salud mental", [["m06-p04","¿Qué son las emociones?"],["m04-p22","Teoría del apego"],["m08-p13","Ansiedad generalizada"],["m08-p14","Trastorno de pánico"],["m15-p18","Burnout"]]],
-    ["🤝 Psicología aplicada a la vida", [["m07-p08","Persuasión"],["m07-p21","Empatía"],["m10-p28","Ciclo del hábito"],["m15-p08","Motivación en el trabajo"],["m20-p10","Cooperación y altruismo"]]],
+    ["🧠 Autores, cerebro y mente", [["m01-p08","Sigmund Freud"],["m02-p07","La neurona"],["m01-p26","Freud vs. Jung"],["m03-p37","Sesgos cognitivos"],["m01-p09","Carl Gustav Jung"],["m02-p12","Dopamina"],["m01-p27","Piaget vs. Vygotsky"],["m02-p16","Plasticidad cerebral"],["m01-p12","B. F. Skinner"],["m17-p09","Memoria y amnesia"],["m01-p18","Abraham Maslow"],["m02-p17","Organización general del cerebro"],["m05-p09","Big Five"],["m14-p09","Atención y carga cognitiva"],["m01-p25","Línea del tiempo de la Psicología"]]],
+    ["💛 Emociones, salud mental y vida diaria", [["m06-p04","¿Qué son las emociones?"],["m08-p13","Ansiedad generalizada"],["m07-p21","Empatía"],["m04-p22","Teoría del apego"],["m08-p14","Trastorno de pánico"],["m10-p28","Ciclo del hábito"],["m08-p20","Trastornos depresivos"],["m07-p08","Persuasión"],["m15-p18","Burnout"],["m08-p28","TDAH"],["m13-p19","Sueño y funcionamiento psicológico"],["m12-p11","Terapia ACT"],["m15-p08","Motivación en el trabajo"],["m20-p10","Cooperación y altruismo"],["m11-p13","Correlación no implica causalidad"]]],
   ];
   const card = ([f,t]) => {
     const src = `assets/amostras/${f}.webp`, n = +f.slice(1,3), cat = `Módulo ${String(n).padStart(2,'0')} · ${M[n]}`;
     return `<figure class="page" data-full="${src}"><img src="${src}" alt="${M[n]}: ${t}" loading="lazy" width="1086" height="1448"><figcaption><small>${cat}</small><span>${t}</span></figcaption></figure>`;
   };
   const seta = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg>`;
+  // cada carrossel tem as páginas duas vezes seguidas: quando a primeira volta termina, volta ao início sem salto visível
   document.getElementById('amostras').innerHTML = grupos.map(([tit, ps], i) => `
     <h3 class="car-tit rv">${tit}</h3>
-    <div class="carousel rv">
-      <div class="track" id="track${i}">${ps.map(card).join('')}</div>
+    <div class="carousel auto rv">
+      <div class="track" id="track${i}">${ps.map(card).join('')}${ps.map(card).join('').replaceAll('<figure class="page"', '<figure class="page" aria-hidden="true"')}</div>
       <div class="car-nav">
         <button class="car-btn" data-track="track${i}" data-dir="-1" aria-label="Páginas anteriores">${seta('M15 6l-6 6 6 6')}</button>
-        <span class="car-count">5 páginas · desliza para ver más</span>
+        <span class="car-count">Mantén presionado para pausar · toca para ampliar</span>
         <button class="car-btn" data-track="track${i}" data-dir="1" aria-label="Próximas páginas">${seta('M9 6l6 6-6 6')}</button>
       </div>
     </div>`).join('');
+
+  // rolagem automática lenta; para enquanto a pessoa segura, passa o mouse, rola ou vê uma página ampliada
+  const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.carousel.auto .track').forEach(t => {
+    let pos = 0, pausa = 0, visivel = false, segurando = false, ultimo = 0;
+    const metade = () => t.scrollWidth / 2;
+    const parar = (ms) => { pausa = Math.max(pausa, performance.now() + ms); };
+    t.addEventListener('pointerdown', () => { segurando = true; });
+    addEventListener('pointerup', () => { if (segurando) { segurando = false; parar(2500); } });
+    t.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') segurando = true; });
+    t.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { segurando = false; parar(800); } });
+    t.addEventListener('wheel', () => parar(3000), {passive: true});
+    t.addEventListener('touchmove', () => parar(3000), {passive: true});
+    t.parentElement.querySelectorAll('.car-btn').forEach(b => b.addEventListener('click', () => parar(4000)));
+    new IntersectionObserver(es => { visivel = es[0].isIntersecting; }).observe(t);
+    const passo = (agora) => {
+      const dt = Math.min(64, agora - (ultimo || agora)); ultimo = agora;
+      const lbAberto = document.getElementById('lb').classList.contains('open');
+      if (!quieto && visivel && !segurando && !lbAberto && agora > pausa) {
+        if (Math.abs(t.scrollLeft - pos) > 2) pos = t.scrollLeft; // a pessoa rolou: continua de onde ela parou
+        pos += dt * 0.035; // ~35 px por segundo
+        if (pos >= metade()) pos -= metade();
+        t.scrollLeft = pos;
+      } else pos = t.scrollLeft;
+      requestAnimationFrame(passo);
+    };
+    requestAnimationFrame(passo);
+  });
+
   document.querySelectorAll('.car-btn[data-track]').forEach(b => b.onclick = () => {
     const t = document.getElementById(b.dataset.track);
     t.scrollBy({left: b.dataset.dir * (t.querySelector('.page').offsetWidth + 16), behavior:'smooth'});
   });
 
-  const track2 = document.getElementById('track2'), step2 = () => track2.querySelector('.testi').offsetWidth + 16;
-  document.getElementById('prev2').onclick = () => track2.scrollBy({left:-step2(),behavior:'smooth'});
-  document.getElementById('next2').onclick = () => track2.scrollBy({left: step2(),behavior:'smooth'});
 
   /* ---------- módulos ---------- */
   const mods = [
