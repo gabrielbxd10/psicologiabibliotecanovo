@@ -418,6 +418,9 @@
   .carousel.auto .page:hover{transform:none}
   .carousel.auto .car-count{min-width:0}
   @media (max-width:760px){#amostras{margin:6px -10px 0;border-radius:22px}.carousel.auto .track{padding:8px 14px 20px}}
+  .carousel.auto .track{cursor:grab;user-select:none;-webkit-user-select:none;overscroll-behavior-x:contain;touch-action:pan-x pan-y}
+  .carousel.auto .track.arrastando{cursor:grabbing}
+  .carousel.auto .page,.carousel.auto .page img{-webkit-user-drag:none;user-select:none}
 </style>
 <script src="tracking.js" defer></script>
 </head>
@@ -786,7 +789,7 @@
   ];
   const card = ([f,t]) => {
     const src = `assets/amostras/${f}.webp`, n = +f.slice(1,3), cat = `Módulo ${String(n).padStart(2,'0')} · ${M[n]}`;
-    return `<figure class="page" data-full="${src}"><img src="${src}" alt="${M[n]}: ${t}" loading="lazy" width="1086" height="1448"><figcaption><small>${cat}</small><span>${t}</span></figcaption></figure>`;
+    return `<figure class="page" data-full="${src}"><img src="${src}" alt="${M[n]}: ${t}" loading="lazy" draggable="false" width="1086" height="1448"><figcaption><small>${cat}</small><span>${t}</span></figcaption></figure>`;
   };
   const seta = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg>`;
   // cada carrossel tem as páginas duas vezes seguidas: quando a primeira volta termina, volta ao início sem salto visível
@@ -801,27 +804,51 @@
       </div>
     </div>`).join('');
 
-  // rolagem automática lenta; para enquanto a pessoa segura, passa o mouse, rola ou vê uma página ampliada
+  // rolagem automática lenta. Dá para arrastar com o dedo (rolagem nativa) ou com o mouse (clicar e arrastar);
+  // enquanto a pessoa segura, arrasta, passa o mouse ou vê uma página ampliada, o carrossel fica parado.
   const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.querySelectorAll('.carousel.auto .track').forEach(t => {
     let pos = 0, pausa = 0, visivel = false, segurando = false, ultimo = 0;
+    let arrastando = false, x0 = 0, s0 = 0, moveu = false;
     const metade = () => t.scrollWidth / 2;
     const parar = (ms) => { pausa = Math.max(pausa, performance.now() + ms); };
-    t.addEventListener('pointerdown', () => { segurando = true; });
-    addEventListener('pointerup', () => { if (segurando) { segurando = false; parar(2500); } });
+    const soltar = () => {
+      if (segurando) { segurando = false; parar(2500); }
+      if (arrastando) { arrastando = false; t.classList.remove('arrastando'); }
+    };
+    t.addEventListener('pointerdown', (e) => {
+      segurando = true;
+      if (e.pointerType === 'mouse' && e.button === 0) {
+        arrastando = true; moveu = false; x0 = e.clientX; s0 = t.scrollLeft;
+        t.classList.add('arrastando');
+      }
+    });
+    t.addEventListener('pointermove', (e) => {
+      if (!arrastando) return;
+      const dx = e.clientX - x0;
+      if (!moveu && Math.abs(dx) > 5) { moveu = true; t.setPointerCapture(e.pointerId); } // só captura o mouse quando vira arraste (um clique simples continua abrindo a página)
+      t.scrollLeft = s0 - dx;
+    });
+    t.addEventListener('pointerup', soltar);
+    t.addEventListener('pointercancel', soltar); // no celular o navegador "cancela" o toque quando começa a rolar
+    addEventListener('pointerup', soltar);
+    // depois de arrastar com o mouse, o clique não abre a página ampliada
+    t.addEventListener('click', (e) => { if (moveu) { e.preventDefault(); e.stopPropagation(); moveu = false; } }, true);
     t.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') segurando = true; });
-    t.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { segurando = false; parar(800); } });
+    t.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse' && !arrastando) { segurando = false; parar(800); } });
     t.addEventListener('wheel', () => parar(3000), {passive: true});
     t.addEventListener('touchmove', () => parar(3000), {passive: true});
+    // rolagem feita pela pessoa (inclusive o embalo depois de soltar o dedo): espera antes de voltar a rodar
+    t.addEventListener('scroll', () => { if (Math.abs(t.scrollLeft - pos) > 2) parar(2500); }, {passive: true});
     t.parentElement.querySelectorAll('.car-btn').forEach(b => b.addEventListener('click', () => parar(4000)));
     new IntersectionObserver(es => { visivel = es[0].isIntersecting; }).observe(t);
     const passo = (agora) => {
-      const dt = Math.min(64, agora - (ultimo || agora)); ultimo = agora;
+      const dt = Math.min(250, agora - (ultimo || agora)); ultimo = agora; // velocidade por tempo, mesmo se o navegador entregar poucos quadros
       const lbAberto = document.getElementById('lb').classList.contains('open');
       if (!quieto && visivel && !segurando && !lbAberto && agora > pausa) {
         if (Math.abs(t.scrollLeft - pos) > 2) pos = t.scrollLeft; // a pessoa rolou: continua de onde ela parou
+        if (pos >= metade()) pos -= metade(); // (a posição fica guardada com fração; o navegador arredonda o scrollLeft)
         pos += dt * 0.035; // ~35 px por segundo
-        if (pos >= metade()) pos -= metade();
         t.scrollLeft = pos;
       } else pos = t.scrollLeft;
       requestAnimationFrame(passo);
