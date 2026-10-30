@@ -52,6 +52,24 @@
 		}
 	};
 
+	// InitiateCheckout: o pixel da UTMify (6ae2944c…) está com a detecção automática desligada e uma única regra de texto
+	// "comprar,buy,levar,quiero,si" — ela é comparada como frase inteira (não separa nas vírgulas), então nenhum botão casava
+	// e o IC nunca disparava. Cada botão de compra recebe essa frase invisível (fora da tela e escondida do leitor de tela),
+	// e a própria UTMify reconhece o clique e envia o IC (navegador + servidor). Se a regra for corrigida no painel, continua valendo.
+	var REGRA_IC = 'comprar,buy,levar,quiero,si';
+	var marcarBotoesDeCompra = function () {
+		document.querySelectorAll('a[data-buy]').forEach(function (a) {
+			if (a.querySelector('.utm-ic')) return;
+			var s = document.createElement('span');
+			s.className = 'utm-ic';
+			s.setAttribute('aria-hidden', 'true');
+			s.style.cssText = 'position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0';
+			s.textContent = REGRA_IC;
+			a.appendChild(s);
+		});
+	};
+	if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', marcarBotoesDeCompra); else marcarBotoesDeCompra();
+
 	if (SEM_RASTREIO) return;
 
 	var addScript = function (src, attrs) {
