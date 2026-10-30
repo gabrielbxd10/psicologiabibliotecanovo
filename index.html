@@ -430,7 +430,7 @@
     <div class="sec-head center rv">
       <span class="eyebrow">Lo que vas a recibir</span>
       <h2>Mira por dentro <em>antes</em> de acceder</h2>
-      <p class="lead">40 páginas reales en 4 temas. Desliza y toca para ampliar.</p>
+      <p class="lead">20 páginas reales en 4 temas. Desliza y toca para ampliar.</p>
     </div>
 
     <div id="amostras"></div>
@@ -679,10 +679,10 @@
   const M = {1:"Fundamentos y autores",2:"Neuropsicología",3:"Cognición, memoria y aprendizaje",4:"Desarrollo humano",5:"Personalidad",6:"Emoción y motivación",7:"Psicología social",8:"Psicopatología",9:"Evaluación y Psicometría",10:"Recursos psicoeducativos",11:"Investigación y metodología",12:"Enfoques psicoterapéuticos",13:"Clínica y salud",14:"Psicología educativa",15:"Organizacional y del trabajo",16:"Forense y jurídica",17:"Neuropsicología clínica",18:"Ética y deontología",19:"Comunitaria y transcultural",20:"Evolucionista y comparada"};
   // 4 carrosséis de amostra, 10 páginas cada, por tema
   const grupos = [
-    ["🏛️ Grandes autores y teorías", [["m01-p08","Sigmund Freud"],["m01-p09","Carl Gustav Jung"],["m01-p12","B. F. Skinner"],["m01-p18","Abraham Maslow"],["m01-p26","Freud vs. Jung"],["m01-p27","Piaget vs. Vygotsky"],["m01-p25","Línea del tiempo de la Psicología"],["m05-p09","Big Five"],["m12-p06","Psicoterapia psicodinámica"],["m12-p11","Terapia ACT"]]],
-    ["🧠 Cerebro y mente", [["m02-p07","La neurona"],["m02-p12","Dopamina"],["m02-p16","Plasticidad cerebral"],["m02-p17","Organización general del cerebro"],["m03-p37","Sesgos cognitivos"],["m14-p09","Atención y carga cognitiva"],["m17-p09","Memoria y amnesia"],["m13-p19","Sueño y funcionamiento psicológico"],["m14-p19","Dislexia"],["m20-p16","Cognición social"]]],
-    ["💛 Emociones y salud mental", [["m06-p04","¿Qué son las emociones?"],["m06-p14","Organizar el vocabulario emocional"],["m04-p22","Teoría del apego"],["m08-p13","Ansiedad generalizada"],["m08-p14","Trastorno de pánico"],["m08-p20","Trastornos depresivos"],["m08-p28","TDAH"],["m08-p31","Trastornos de personalidad"],["m13-p14","Estrés y organismo"],["m15-p18","Burnout"]]],
-    ["🤝 Psicología aplicada a la vida", [["m07-p08","Persuasión"],["m07-p21","Empatía"],["m10-p28","Ciclo del hábito"],["m09-p11","Modelo ABC de conducta"],["m15-p08","Motivación en el trabajo"],["m16-p08","Psicología del testimonio"],["m11-p13","Correlación no implica causalidad"],["m18-p07","Consentimiento informado"],["m19-p08","Sentido de comunidad"],["m20-p10","Cooperación y altruismo"]]],
+    ["🏛️ Grandes autores y teorías", [["m01-p08","Sigmund Freud"],["m01-p09","Carl Gustav Jung"],["m01-p26","Freud vs. Jung"],["m01-p27","Piaget vs. Vygotsky"],["m05-p09","Big Five"]]],
+    ["🧠 Cerebro y mente", [["m02-p07","La neurona"],["m02-p12","Dopamina"],["m02-p16","Plasticidad cerebral"],["m03-p37","Sesgos cognitivos"],["m17-p09","Memoria y amnesia"]]],
+    ["💛 Emociones y salud mental", [["m06-p04","¿Qué son las emociones?"],["m04-p22","Teoría del apego"],["m08-p13","Ansiedad generalizada"],["m08-p14","Trastorno de pánico"],["m15-p18","Burnout"]]],
+    ["🤝 Psicología aplicada a la vida", [["m07-p08","Persuasión"],["m07-p21","Empatía"],["m10-p28","Ciclo del hábito"],["m15-p08","Motivación en el trabajo"],["m20-p10","Cooperación y altruismo"]]],
   ];
   const card = ([f,t]) => {
     const src = `assets/amostras/${f}.webp`, n = +f.slice(1,3), cat = `Módulo ${String(n).padStart(2,'0')} · ${M[n]}`;
@@ -695,7 +695,7 @@
       <div class="track" id="track${i}">${ps.map(card).join('')}</div>
       <div class="car-nav">
         <button class="car-btn" data-track="track${i}" data-dir="-1" aria-label="Páginas anteriores">${seta('M15 6l-6 6 6 6')}</button>
-        <span class="car-count">10 páginas · desliza para ver más</span>
+        <span class="car-count">5 páginas · desliza para ver más</span>
         <button class="car-btn" data-track="track${i}" data-dir="1" aria-label="Próximas páginas">${seta('M9 6l6 6-6 6')}</button>
       </div>
     </div>`).join('');
