@@ -421,8 +421,34 @@
   .carousel.auto .track{cursor:grab;user-select:none;-webkit-user-select:none;overscroll-behavior-x:contain;touch-action:pan-x pan-y}
   .carousel.auto .track.arrastando{cursor:grabbing}
   .carousel.auto .page,.carousel.auto .page img{-webkit-user-drag:none;user-select:none}
+  .planos-grid.uno{grid-template-columns:1fr;max-width:560px;margin:0 auto}
+  .planos:has(.uno){max-width:640px}
 </style>
 <script src="tracking.js" defer></script>
+<script>
+/* Back redirect: SÓ quando a pessoa aperta "voltar" para sair da página, ela vai para /oferta (plano Básico por US$ 7,90).
+ * Marca a entrada original do histórico e empilha uma cópia da página; ao voltar para a original, troca por /oferta
+ * (com as UTMs). Links internos (#oferta etc.) e o botão de compra não disparam nada. Aparece uma vez por sessão. */
+(function () {
+  try { if (sessionStorage.getItem('biblioteca_br_visto')) return; } catch (e) {}
+  var DESTINO = '/oferta/' + location.search;
+  var empilhar = function () {
+    if (history.state && history.state.br === 'pagina') return;
+    history.replaceState({br: 'origem'}, '', location.href);
+    history.pushState({br: 'pagina'}, '', location.href);
+  };
+  empilhar();
+  // o Chrome ignora no "voltar" entradas criadas sem interação: se ainda estiver na origem, empilha no primeiro toque/clique/tecla
+  ['pointerdown', 'touchend', 'keydown'].forEach(function (ev) {
+    addEventListener(ev, function () { if (!history.state || history.state.br !== 'pagina') empilhar(); }, {once: true, passive: true});
+  });
+  addEventListener('popstate', function (e) {
+    if (!e.state || e.state.br !== 'origem') return; // voltar entre âncoras da própria página: ignora
+    try { sessionStorage.setItem('biblioteca_br_visto', '1'); } catch (err) {}
+    location.replace(DESTINO);
+  });
+})();
+</script>
 </head>
 <body>
 
@@ -604,43 +630,43 @@
 <section id="bonos">
   <div class="wrap">
     <div class="sec-head center rv">
-      <span class="eyebrow">Bonos del plan Completo</span>
-      <h2>En el plan Completo te llevas <em>5 libros digitales</em> de regalo</h2>
-      <p class="lead">Materiales extra para ampliar lo que aprendes, incluidos en el plan Completo.</p>
+      <span class="eyebrow">Bonos exclusivos</span>
+      <h2>Comprando hoy, te llevas <em>5 libros digitales</em> de regalo</h2>
+      <p class="lead">Materiales extra para ampliar lo que aprendes, sin costo adicional.</p>
     </div>
     <div class="bonuses">
       <article class="bonus rv">
         <span class="lbl">BONO 01</span>
         <div class="cover"><img src="assets/bonus/diccionario.webp" alt="Portada: Diccionario Esencial de Psicología" loading="lazy"></div>
         <div class="body"><h3>Diccionario Esencial de Psicología</h3><p>Los términos clave de la carrera, explicados en lenguaje simple.</p>
-          <div class="price-anchor"><s>US$ 12</s><span class="free">EN EL COMPLETO</span></div></div>
+          <div class="price-anchor"><s>US$ 12</s><span class="free">GRATIS</span></div></div>
       </article>
       <article class="bonus rv">
         <span class="lbl">BONO 02</span>
         <div class="cover"><img src="assets/bonus/autores.webp" alt="Portada: 15 Grandes Autores de la Psicología" loading="lazy"></div>
         <div class="body"><h3>15 Grandes Autores de la Psicología</h3><p>Quiénes fueron y qué aportó cada uno, de Freud a Bandura.</p>
-          <div class="price-anchor"><s>US$ 10</s><span class="free">EN EL COMPLETO</span></div></div>
+          <div class="price-anchor"><s>US$ 10</s><span class="free">GRATIS</span></div></div>
       </article>
       <article class="bonus rv">
         <span class="lbl">BONO 03</span>
         <div class="cover"><img src="assets/bonus/historia.webp" alt="Portada: Historia de la Psicología — Guía Rápida" loading="lazy"></div>
         <div class="body"><h3>Historia de la Psicología — Guía Rápida</h3><p>La línea del tiempo de las grandes escuelas y corrientes.</p>
-          <div class="price-anchor"><s>US$ 9</s><span class="free">EN EL COMPLETO</span></div></div>
+          <div class="price-anchor"><s>US$ 9</s><span class="free">GRATIS</span></div></div>
       </article>
       <article class="bonus rv">
         <span class="lbl">BONO 04</span>
         <div class="cover"><img src="assets/bonus/experimentos.webp" alt="Portada: 10 Experimentos que Marcaron la Psicología" loading="lazy"></div>
         <div class="body"><h3>10 Experimentos que Marcaron la Psicología</h3><p>Los estudios clásicos que todo estudiante debe conocer.</p>
-          <div class="price-anchor"><s>US$ 10</s><span class="free">EN EL COMPLETO</span></div></div>
+          <div class="price-anchor"><s>US$ 10</s><span class="free">GRATIS</span></div></div>
       </article>
       <article class="bonus rv">
         <span class="lbl">BONO 05</span>
         <div class="cover"><img src="assets/bonus/lecturas.webp" alt="Portada: Guía de Lecturas para Estudiantes de Psicología" loading="lazy"></div>
         <div class="body"><h3>Guía de Lecturas para Estudiantes</h3><p>Qué leer, en qué orden y por qué, para avanzar en la carrera.</p>
-          <div class="price-anchor"><s>US$ 9</s><span class="free">EN EL COMPLETO</span></div></div>
+          <div class="price-anchor"><s>US$ 9</s><span class="free">GRATIS</span></div></div>
       </article>
     </div>
-    <div class="bonus-total rv">Valor de los bonos: <s>US$ 50</s> <span>→ en el plan Completo</span> <b>INCLUIDOS</b></div>
+    <div class="bonus-total rv">Valor de los bonos: <s>US$ 50</s> <span>→ hoy</span> <b>GRATIS</b></div>
     <p class="disclaimer">Libros en formato digital. Las imágenes son representaciones ilustrativas; no se envían libros físicos.</p>
   </div>
 </section>
@@ -648,30 +674,14 @@
 <!-- ============ 10. OFERTA ============ -->
 <section class="offer-sec" id="oferta">
   <div class="wrap">
-    <!-- Dois planos: Básico (só a biblioteca) e Completo (biblioteca + 5 bônus). Links de checkout em data-buy. -->
+    <!-- Card da oferta: só o plano Completo (biblioteca + 5 bônus). O Básico aparece apenas no back redirect (/oferta). -->
     <div class="planos rv">
-      <div class="offer-top">🔥 Oferta especial válida solo hoy · Elige tu plan</div>
-      <div class="planos-grid">
-        <article class="plano basico">
-          <h3>Básico</h3>
-          <p class="pdesc">La biblioteca completa</p>
-          <ul class="plist">
-            <li><svg><use href="#i-check-c"/></svg><span><b>20 módulos</b> · 577 páginas visuales</span></li>
-            <li><svg><use href="#i-check-c"/></svg><span>De los fundamentos a la clínica, la educación, el trabajo, lo forense y mucho más</span></li>
-            <li><svg><use href="#i-check-c"/></svg><span>Acceso inmediato · celular, PC o impreso</span></li>
-            <li class="no"><span class="x">✕</span><span>Sin los 5 libros de bonos</span></li>
-          </ul>
-          <div class="pfoot">
-            <div class="pde">Valor normal <s>US$ 29</s></div>
-            <div class="pprice"><small>US$</small>4,90</div>
-            <div class="once">Pago único · Sin mensualidades</div>
-            <a href="https://pay.hotmart.com/E108015035W?off=eemoun2m" class="btn btn-sec" data-buy>Quiero el Básico</a>
-          </div>
-        </article>
+      <div class="offer-top">🔥 Oferta especial válida solo hoy</div>
+      <div class="planos-grid uno">
         <article class="plano completo">
-          <span class="ptag">⭐ El más elegido</span>
-          <h3>Completo</h3>
-          <p class="pdesc">Biblioteca + 5 libros de bonos</p>
+          <span class="ptag">🎁 Incluye 5 bonos</span>
+          <h3>Biblioteca de Psicología Completa</h3>
+          <p class="pdesc">20 módulos · 577 páginas + 5 libros de bonos</p>
           <div class="bcovers">
             <img src="assets/bonus/diccionario.webp" width="300" height="300" alt="Bono: Diccionario Esencial de Psicología" loading="lazy">
             <img src="assets/bonus/autores.webp" width="300" height="300" alt="Bono: 15 Grandes Autores de la Psicología" loading="lazy">
@@ -680,7 +690,8 @@
             <img src="assets/bonus/lecturas.webp" width="300" height="300" alt="Bono: Guía de Lecturas para Estudiantes" loading="lazy">
           </div>
           <ul class="plist">
-            <li><svg><use href="#i-check-c"/></svg><span><b>Todo el plan Básico</b> (20 módulos · 577 páginas)</span></li>
+            <li><svg><use href="#i-check-c"/></svg><span><b>20 módulos · 577 páginas visuales</b> · de los fundamentos a la clínica, la educación y mucho más</span></li>
+            <li><svg><use href="#i-check-c"/></svg><span>Acceso inmediato · celular, PC o impreso</span></li>
             <li class="bon"><svg><use href="#i-check-c"/></svg><span>Diccionario Esencial de Psicología</span></li>
             <li class="bon"><svg><use href="#i-check-c"/></svg><span>15 Grandes Autores de la Psicología</span></li>
             <li class="bon"><svg><use href="#i-check-c"/></svg><span>Historia de la Psicología — Guía Rápida</span></li>
@@ -689,10 +700,10 @@
           </ul>
           <div class="pfoot">
             <div class="pde">Valor normal <s>US$ 79</s></div>
-            <div class="pprice"><small>US$</small>9,90</div>
+            <div class="pprice"><small>US$</small>14,90</div>
             <div class="once">Pago único · Sin mensualidades</div>
-            <span class="save">Ahorras US$ 69,10 (87% OFF)</span>
-            <a href="https://pay.hotmart.com/E108015035W?checkoutMode=10" class="btn pulse" data-buy>Quiero el Completo <svg><use href="#i-arrow"/></svg></a>
+            <span class="save">Ahorras US$ 64,10 (81% OFF)</span>
+            <a href="https://pay.hotmart.com/E108015035W?checkoutMode=10" class="btn pulse" data-buy>Quiero acceder ahora <svg><use href="#i-arrow"/></svg></a>
           </div>
         </article>
       </div>
@@ -741,7 +752,7 @@
       <h2>Preguntas y respuestas</h2>
     </div>
     <div class="faq">
-      <details open><summary>¿Qué recibo exactamente?<span class="pm">+</span></summary><div class="ans">Acceso digital a la Biblioteca de Psicología Completa con 20 módulos y 577 páginas organizadas por temas. En el plan <b>Completo</b> recibes además 5 libros digitales de bonos: Diccionario Esencial, 15 Grandes Autores, Historia de la Psicología, 10 Experimentos y Guía de Lecturas.</div></details>
+      <details open><summary>¿Qué recibo exactamente?<span class="pm">+</span></summary><div class="ans">Acceso digital a la Biblioteca de Psicología Completa con 20 módulos y 577 páginas organizadas por temas. Además, recibes 5 libros digitales de bonos: Diccionario Esencial, 15 Grandes Autores, Historia de la Psicología, 10 Experimentos y Guía de Lecturas.</div></details>
       <details><summary>¿El producto es físico?<span class="pm">+</span></summary><div class="ans">No. Es un material 100% digital. No se envía nada por correo postal — pero puedes imprimir las páginas que quieras.</div></details>
       <details><summary>¿Cómo recibiré el material?<span class="pm">+</span></summary><div class="ans">Inmediatamente después de confirmar el pago recibes en tu e-mail los datos de acceso a la biblioteca. Revisa también la carpeta de spam o promociones.</div></details>
       <details><summary>¿Necesito ser estudiante de Psicología?<span class="pm">+</span></summary><div class="ans">No. El material está escrito en lenguaje claro y sirve tanto para estudiantes como para cualquier persona interesada en aprender Psicología de forma organizada.</div></details>
@@ -756,7 +767,7 @@
   <div class="wrap narrow">
     <div class="psi rv">Ψ</div>
     <h2 class="rv">Ten hoy una biblioteca de Psicología organizada para <em>consultar siempre</em> que la necesites</h2>
-    <p class="lead rv" style="margin:0 auto">20 módulos · 577 páginas · acceso inmediato desde solo <span data-usd="4.90">US$ 4,90</span></p>
+    <p class="lead rv" style="margin:0 auto">20 módulos · 577 páginas · acceso inmediato por solo <span data-usd="14.90">US$ 14,90</span></p>
     <div class="cta-block rv" style="margin-top:30px">
       <a href="#oferta" class="btn pulse">Quiero acceder a la biblioteca <svg><use href="#i-arrow"/></svg></a>
       <div class="btn-note"><span><svg><use href="#i-lock"/></svg> Pago seguro</span><span><svg><use href="#i-shield"/></svg> 15 días de garantía</span></div>
@@ -907,6 +918,19 @@
   /* ---------- botão de compra: link do checkout (GGCheckout) com UTMs/xcod/sck (tracking.js) ----------
      O link navega normalmente (sem preventDefault): o pixel da UTMify vê o clique num link de checkout (caminho
      /checkout/) e registra o InitiateCheckout sozinho. Atualizamos o href já no início do toque/clique, antes de qualquer listener ler o link. */
+  // Botões que levam a outra parte da própria página (#amostra, #oferta…): rolam sem criar entrada no histórico,
+  // para o "voltar" do celular não confundir esses saltos com sair do site (e não disparar o back redirect).
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    const id = a.getAttribute('href');
+    if (id.length < 2) return;
+    a.addEventListener('click', e => {
+      const alvo = document.querySelector(id);
+      if (!alvo) return;
+      e.preventDefault();
+      alvo.scrollIntoView({behavior: 'smooth', block: 'start'});
+    });
+  });
+
   document.querySelectorAll('[data-buy]').forEach(a => {
     const base = a.getAttribute('href');
     const atualizar = () => {
