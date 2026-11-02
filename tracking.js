@@ -1,7 +1,7 @@
 /* Rastreamento da página de vendas.
- * - Meta Pixel 973045345819425 instalado direto aqui (PageView + InitiateCheckout no clique de compra), porque o pixel
- *   da UTMify ligado a ele (6ac5b7d9…) foi apagado e responde PIXEL_NOT_FOUND. Se um pixel novo da UTMify for ligado a
- *   este Meta, tire o fbq daqui antes de instalar: duas inicializações do mesmo ID quebram a contagem.
+ * - Pixel da UTMify 6ae2944caa1fbcb0df387387: conta cliques/ICs no painel e carrega o Meta ligado a ele (946879171838483).
+ * - Meta Pixel 973045345819425: inicializado aqui, porque não está ligado à UTMify. Recebe só o próprio PageView (trackSingle);
+ *   o InitiateCheckout vem da UTMify, que dispara o fbq para todos os pixels carregados.
  * - O botão de compra atualiza o link com as UTMs/xcod/sck e deixa a navegação acontecer normalmente.
  * - Guarda as UTMs/IDs de clique do anúncio por 7 dias, para atribuir a venda mesmo se a pessoa voltar depois.
  * - Eventos de engajamento (rolagem, tempo, seções, cliques) vão pelo fbq que a UTMify carregou.
@@ -9,6 +9,7 @@
 (function () {
 	'use strict';
 	var META_PIXEL = '973045345819425';
+	var PIXEL_UTMIFY = '6ae2944caa1fbcb0df387387';
 	var SEM_RASTREIO = !!window.__NO_TRACK || location.protocol === 'file:';
 
 	var PARAMS = ['utm_source', 'utm_campaign', 'utm_medium', 'utm_content', 'utm_term', 'utm_id', 'src', 'sck', 'xcod', 'fbclid', 'gclid', 'gbraid', 'wbraid', 'ttclid', 'tbclid', 'click_id', 'CampaignID', 'adSETID', 'CreativeID', 'pixel_id', 'cid'];
@@ -51,24 +52,6 @@
 		}
 	};
 
-	// InitiateCheckout: o pixel da UTMify (6ae2944c…) está com a detecção automática desligada e uma única regra de texto
-	// "comprar,buy,levar,quiero,si" — ela é comparada como frase inteira (não separa nas vírgulas), então nenhum botão casava
-	// e o IC nunca disparava. Cada botão de compra recebe essa frase invisível (fora da tela e escondida do leitor de tela),
-	// e a própria UTMify reconhece o clique e envia o IC (navegador + servidor). Se a regra for corrigida no painel, continua valendo.
-	var REGRA_IC = 'comprar,buy,levar,quiero,si';
-	var marcarBotoesDeCompra = function () {
-		document.querySelectorAll('a[data-buy]').forEach(function (a) {
-			if (a.querySelector('.utm-ic')) return;
-			var s = document.createElement('span');
-			s.className = 'utm-ic';
-			s.setAttribute('aria-hidden', 'true');
-			s.style.cssText = 'position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0';
-			s.textContent = REGRA_IC;
-			a.appendChild(s);
-		});
-	};
-	if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', marcarBotoesDeCompra); else marcarBotoesDeCompra();
-
 	if (SEM_RASTREIO) return;
 
 	var addScript = function (src, attrs) {
@@ -86,19 +69,14 @@
 	if (!window._fbq) window._fbq = f;
 	f.push = f; f.loaded = true; f.version = '2.0'; f.queue = [];
 	window.fbq('init', META_PIXEL);
-	window.fbq('track', 'PageView');
+	window.fbq('trackSingle', META_PIXEL, 'PageView');
 	var carregarRastreio = function () {
 		addScript('https://cdn.utmify.com.br/scripts/utms/latest.js', [['data-utmify-prevent-subids', '']]);
 		addScript('https://connect.facebook.net/en_US/fbevents.js');
+		window.pixelId = PIXEL_UTMIFY;
+		addScript('https://cdn.utmify.com.br/scripts/pixel/pixel.js');
 	};
 	if (document.readyState === 'complete') carregarRastreio(); else addEventListener('load', carregarRastreio);
-
-	// InitiateCheckout no clique de compra (a oferta de saída vale US$ 7,90; o card, US$ 14,90)
-	document.addEventListener('click', function (e) {
-		var a = e.target.closest && e.target.closest('a[data-buy]');
-		if (!a) return;
-		window.fbq('track', 'InitiateCheckout', {value: /off=/.test(a.href) ? 7.9 : 14.9, currency: 'USD', content_name: 'Biblioteca de Psicología Completa'});
-	}, true);
 
 	// ---------- eventos de engajamento (custom), cada um no máximo 1x quando "unico" ----------
 	// Só usam o fbq quando a UTMify já o carregou; antes disso o evento é ignorado (nunca inicializamos o pixel aqui).
