@@ -1,15 +1,14 @@
 /* Rastreamento da página de vendas.
- * - O pixel da UTMify (6ac5b7d973e2bd007d1d6544) é quem carrega o Meta Pixel da conta (973045345819425) e envia
- *   PageView / InitiateCheckout (navegador + servidor, com deduplicação). Por isso esta página NÃO inicializa o
- *   Meta Pixel por conta própria: duas inicializações do mesmo ID geram "Duplicate Pixel ID" e quebram a contagem.
- * - O IC é detectado pela própria UTMify no clique de um link de checkout (GGCheckout, caminho /checkout/); o botão de compra só atualiza o link com
- *   as UTMs/xcod/sck e deixa a navegação acontecer normalmente.
+ * - Meta Pixel 973045345819425 instalado direto aqui (PageView + InitiateCheckout no clique de compra), porque o pixel
+ *   da UTMify ligado a ele (6ac5b7d9…) foi apagado e responde PIXEL_NOT_FOUND. Se um pixel novo da UTMify for ligado a
+ *   este Meta, tire o fbq daqui antes de instalar: duas inicializações do mesmo ID quebram a contagem.
+ * - O botão de compra atualiza o link com as UTMs/xcod/sck e deixa a navegação acontecer normalmente.
  * - Guarda as UTMs/IDs de clique do anúncio por 7 dias, para atribuir a venda mesmo se a pessoa voltar depois.
  * - Eventos de engajamento (rolagem, tempo, seções, cliques) vão pelo fbq que a UTMify carregou.
  * Para desligar num teste local: window.__NO_TRACK = true antes deste script, ou abrir pelo arquivo (file://). */
 (function () {
 	'use strict';
-	var PIXEL_UTMIFY = '6ac5b7d973e2bd007d1d6544';
+	var META_PIXEL = '973045345819425';
 	var SEM_RASTREIO = !!window.__NO_TRACK || location.protocol === 'file:';
 
 	var PARAMS = ['utm_source', 'utm_campaign', 'utm_medium', 'utm_content', 'utm_term', 'utm_id', 'src', 'sck', 'xcod', 'fbclid', 'gclid', 'gbraid', 'wbraid', 'ttclid', 'tbclid', 'click_id', 'CampaignID', 'adSETID', 'CreativeID', 'pixel_id', 'cid'];
@@ -82,17 +81,24 @@
 	// ---------- UTMify: UTMs nos links + pixel (que traz o Meta Pixel da conta) ----------
 	// Carregados logo depois que a página termina de carregar (não disputam banda com o conteúdo do topo).
 	// O PageView continua sendo enviado; só sai alguns instantes depois.
-	// Quem visitou antes ficou com o "lead" da UTMify preso ao pixel antigo (que agora responde erro): descarta para recriar no novo.
-	try {
-		var lead = JSON.parse(localStorage.getItem('lead') || 'null');
-		if (lead && lead.pixelId && lead.pixelId !== PIXEL_UTMIFY) localStorage.removeItem('lead');
-	} catch (e) {}
+	// Fila do fbq já no início (cliques rápidos não se perdem); os scripts só baixam depois do carregamento da página.
+	var f = window.fbq = function () { f.callMethod ? f.callMethod.apply(f, arguments) : f.queue.push(arguments); };
+	if (!window._fbq) window._fbq = f;
+	f.push = f; f.loaded = true; f.version = '2.0'; f.queue = [];
+	window.fbq('init', META_PIXEL);
+	window.fbq('track', 'PageView');
 	var carregarRastreio = function () {
 		addScript('https://cdn.utmify.com.br/scripts/utms/latest.js', [['data-utmify-prevent-subids', '']]);
-		window.pixelId = PIXEL_UTMIFY;
-		addScript('https://cdn.utmify.com.br/scripts/pixel/pixel.js');
+		addScript('https://connect.facebook.net/en_US/fbevents.js');
 	};
 	if (document.readyState === 'complete') carregarRastreio(); else addEventListener('load', carregarRastreio);
+
+	// InitiateCheckout no clique de compra (a oferta de saída vale US$ 7,90; o card, US$ 14,90)
+	document.addEventListener('click', function (e) {
+		var a = e.target.closest && e.target.closest('a[data-buy]');
+		if (!a) return;
+		window.fbq('track', 'InitiateCheckout', {value: /off=/.test(a.href) ? 7.9 : 14.9, currency: 'USD', content_name: 'Biblioteca de Psicología Completa'});
+	}, true);
 
 	// ---------- eventos de engajamento (custom), cada um no máximo 1x quando "unico" ----------
 	// Só usam o fbq quando a UTMify já o carregou; antes disso o evento é ignorado (nunca inicializamos o pixel aqui).
