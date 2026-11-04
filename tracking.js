@@ -81,19 +81,17 @@
 	// ---------- UTMify: UTMs nos links + pixel (que traz o Meta Pixel da conta) ----------
 	// Carregados logo depois que a página termina de carregar (não disputam banda com o conteúdo do topo).
 	// O PageView continua sendo enviado; só sai alguns instantes depois.
-	// Fila do fbq já no início (cliques rápidos não se perdem); os scripts só baixam depois do carregamento da página.
+	// Fila do fbq já no início (cliques rápidos não se perdem).
 	var f = window.fbq = function () { f.callMethod ? f.callMethod.apply(f, arguments) : f.queue.push(arguments); };
 	if (!window._fbq) window._fbq = f;
 	f.push = f; f.loaded = true; f.version = '2.0'; f.queue = [];
 	window.fbq('init', META_PIXEL);
 	window.fbq('trackSingle', META_PIXEL, 'PageView');
-	var carregarRastreio = function () {
-		addScript('https://cdn.utmify.com.br/scripts/utms/latest.js', [['data-utmify-prevent-subids', '']]);
-		addScript('https://connect.facebook.net/en_US/fbevents.js');
-		window.pixelId = PIXEL_UTMIFY;
-		addScript('https://cdn.utmify.com.br/scripts/pixel/pixel.js');
-	};
-	if (document.readyState === 'complete') carregarRastreio(); else addEventListener('load', carregarRastreio);
+	// Sem esperar o carregamento da página: quem sai cedo também conta como visita (os scripts são assíncronos e não travam a tela).
+	addScript('https://cdn.utmify.com.br/scripts/utms/latest.js', [['data-utmify-prevent-subids', '']]);
+	addScript('https://connect.facebook.net/en_US/fbevents.js');
+	window.pixelId = PIXEL_UTMIFY;
+	addScript('https://cdn.utmify.com.br/scripts/pixel/pixel.js');
 
 	// ---------- eventos de engajamento (custom), cada um no máximo 1x quando "unico" ----------
 	// Só usam o fbq quando a UTMify já o carregou; antes disso o evento é ignorado (nunca inicializamos o pixel aqui).
