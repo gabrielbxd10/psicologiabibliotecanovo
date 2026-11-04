@@ -1005,10 +1005,10 @@
 
 
 
-  // Mini VSL no YouTube: a capa aparece na hora; o player entra logo depois, mudo e em loop (o som se liga pelo próprio player)
+  // Mini VSL no YouTube: a capa aparece na hora; o player entra logo depois, mudo e sem repetir (o som se liga pelo próprio player)
   setTimeout(() => {
     const id = 'jWHFIHX2jcw', f = document.createElement('iframe');
-    f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&playsinline=1&rel=0`;
+    f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&playsinline=1&rel=0`;
     f.title = 'Mini video: lo que recibes en la Biblioteca de Psicología Completa';
     f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
     f.allowFullscreen = true;
