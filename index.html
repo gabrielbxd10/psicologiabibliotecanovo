@@ -519,10 +519,7 @@
     <h1><em>Biblioteca de Psicología Completa</em>: deja de sufrir sin entender tu ansiedad, tus emociones y tus relaciones — <span class="hl">descubre por fin por qué te pasa</span></h1>
 
     <!-- Espaço do mockup / VSL -->
-    <div class="media minivsl">
-      <video id="minivsl" src="assets/minivsl.mp4" poster="assets/minivsl-capa.webp" width="720" height="1280" muted loop playsinline preload="none" aria-label="Mini video: lo que recibes en la Biblioteca de Psicología Completa"></video>
-      <button type="button" class="som" id="minivsl-som">🔊 Toca para escuchar</button>
-    </div>
+    <div class="media minivsl" id="minivsl" style="background:#F6F1E7 url(assets/minivsl-capa.webp) center/cover"></div>
 
     <div class="stats">
       <span class="stat"><b>20</b> módulos</span>
@@ -1008,21 +1005,16 @@
 
 
 
-  // Mini VSL: toca muda em loop; o primeiro toque volta ao início com som (e mostra os controles)
-  const vsl = document.getElementById('minivsl'), som = document.getElementById('minivsl-som');
-  if (vsl && som) {
-    // o vídeo (8 MB) começa a baixar logo depois da capa aparecer
-    const iniciar = () => { if (!vsl.paused || !vsl.muted) return; vsl.preload = 'auto'; vsl.play().catch(() => {}); };
-    setTimeout(iniciar, 800); // não espera o evento load, que atrasa com os scripts de rastreio
-    const ativarSom = () => {
-      if (!vsl.muted) return;
-      vsl.muted = false; vsl.loop = false; vsl.controls = true; vsl.currentTime = 0;
-      vsl.play().catch(() => {});
-      som.hidden = true;
-    };
-    som.addEventListener('click', ativarSom);
-    vsl.addEventListener('click', ativarSom);
-  }
+  // Mini VSL no YouTube: a capa aparece na hora; o player entra logo depois, mudo e em loop (o som se liga pelo próprio player)
+  setTimeout(() => {
+    const id = 'jWHFIHX2jcw', f = document.createElement('iframe');
+    f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&playsinline=1&rel=0`;
+    f.title = 'Mini video: lo que recibes en la Biblioteca de Psicología Completa';
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    f.style.cssText = 'display:block;width:100%;height:100%;border:0';
+    document.getElementById('minivsl').appendChild(f);
+  }, 800);
 </script>
 </body>
 </html>
