@@ -88,7 +88,7 @@
 	window.fbq('init', META_PIXEL);
 	window.fbq('trackSingle', META_PIXEL, 'PageView');
 	// Sem esperar o carregamento da página: quem sai cedo também conta como visita (os scripts são assíncronos e não travam a tela).
-	addScript('https://cdn.utmify.com.br/scripts/utms/latest.js', [['data-utmify-prevent-subids', '']]);
+	addScript('https://cdn.utmify.com.br/scripts/utms/latest.js', [['data-utmify-prevent-subids', ''], ['data-utmify-ignore-iframe', '']]);
 	addScript('https://connect.facebook.net/en_US/fbevents.js');
 	window.pixelId = PIXEL_UTMIFY;
 	addScript('https://cdn.utmify.com.br/scripts/pixel/pixel.js');
