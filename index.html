@@ -457,9 +457,7 @@
   /* bônus no celular: grandes, um por vez */
   @media (max-width:760px){
     #amostras{margin:6px 0 0}
-    .bonuses{display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 -16px;padding:6px 16px 18px;scrollbar-width:none}
-    .bonuses::-webkit-scrollbar{display:none}
-    .bonus{flex:0 0 88%;scroll-snap-align:center}
+    .bonuses{grid-template-columns:1fr;gap:18px}
     .bonus h3{font-size:21px}
     .bonus p{font-size:16px}
   }
