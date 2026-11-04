@@ -442,6 +442,27 @@
   .plist li svg,.yes li svg,.btn-note svg{color:var(--brand)}
   .free{background:var(--accent)}
   .bonus-total b{color:var(--brand)}
+  /* fundo branco em todo o site */
+  body,.alt,.dark,.hero,.offer-sec,.final,section{background:#fff!important}
+  #amostras{background:#fff;border:0;box-shadow:none;padding:0}
+  /* amostras menores */
+  .carousel.auto .page{flex-basis:min(400px,72vw)}
+  /* módulos explicados */
+  .module{align-items:flex-start;padding:14px}
+  .module p{margin-top:3px;font-size:13.5px;line-height:1.4}
+  /* contagem centralizada */
+  .modules-head{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px}
+  .modules-head .eyebrow{justify-content:center}
+  .big-nums{justify-content:center}
+  /* bônus no celular: grandes, um por vez */
+  @media (max-width:760px){
+    #amostras{margin:6px 0 0}
+    .bonuses{display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 -16px;padding:6px 16px 18px;scrollbar-width:none}
+    .bonuses::-webkit-scrollbar{display:none}
+    .bonus{flex:0 0 88%;scroll-snap-align:center}
+    .bonus h3{font-size:21px}
+    .bonus p{font-size:16px}
+  }
 </style>
 <script src="tracking.js" defer></script>
 <script>
@@ -562,7 +583,7 @@
     <div class="sec-head center rv">
       <span class="eyebrow">Lo que vas a recibir</span>
       <h2>Mira por dentro <em>antes</em> de acceder</h2>
-      <p class="lead">Páginas reales de los 20 módulos. Toca cualquier página para ampliarla.</p>
+      
     </div>
 
     <div id="amostras"></div>
@@ -687,6 +708,29 @@
     </div>
     <div class="bonus-total rv">Valor de los bonos: <s>US$ 50</s> <span>→ hoy</span> <b>GRATIS</b></div>
     <p class="disclaimer">Libros en formato digital. Las imágenes son representaciones ilustrativas; no se envían libros físicos.</p>
+  </div>
+</section>
+
+<!-- ============ 9. DEPOIMENTOS ============ -->
+<section class="alt" id="testimonios">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <span class="eyebrow">Testimonios</span>
+      <h2>Lo que dicen quienes <em>ya la tienen</em></h2>
+      <div class="rating"><span class="stars">★★★★★</span> Mensajes reales enviados por estudiantes</div>
+    </div>
+    <div class="carousel rv">
+      <div class="track" id="track2">
+        <figure class="testi" data-full="assets/depoimentos/depoimento-1.webp"><img src="assets/depoimentos/depoimento-1.webp" width="600" height="1066" alt="Testimonio de estudiante sobre la Biblioteca de Psicología 1" loading="lazy"></figure>
+        <figure class="testi" data-full="assets/depoimentos/depoimento-2.webp"><img src="assets/depoimentos/depoimento-2.webp" width="600" height="1066" alt="Testimonio de estudiante sobre la Biblioteca de Psicología 2" loading="lazy"></figure>
+        <figure class="testi" data-full="assets/depoimentos/depoimento-3.webp"><img src="assets/depoimentos/depoimento-3.webp" width="600" height="1066" alt="Testimonio de estudiante sobre la Biblioteca de Psicología 3" loading="lazy"></figure>
+      </div>
+      <div class="car-nav">
+        <button class="car-btn" id="prev2" aria-label="Testimonios anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <span class="car-count">Desliza para ver más</span>
+        <button class="car-btn" id="next2" aria-label="Próximos testimonios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -819,17 +863,16 @@
   ];
   const card = ([f,t]) => {
     const src = `assets/amostras/${f}.webp`, n = +f.slice(1,3), cat = `Módulo ${String(n).padStart(2,'0')} · ${M[n]}`;
-    return `<figure class="page" data-full="${src}"><img src="${src}" alt="${M[n]}: ${t}" loading="lazy" draggable="false" width="1086" height="1448"><figcaption><small>${cat}</small><span>${t}</span></figcaption></figure>`;
+    return `<figure class="page" data-full="${src}"><img src="${src}" alt="${M[n]}: ${t}" loading="lazy" draggable="false" width="1086" height="1448"></figure>`;
   };
   const seta = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg>`;
   // cada carrossel tem as páginas duas vezes seguidas: quando a primeira volta termina, volta ao início sem salto visível
   document.getElementById('amostras').innerHTML = grupos.map(([tit, ps], i) => `
-    <h3 class="car-tit rv">${tit}</h3>
     <div class="carousel auto rv">
       <div class="track" id="track${i}">${ps.map(card).join('')}${ps.map(card).join('').replaceAll('<figure class="page"', '<figure class="page" aria-hidden="true"')}</div>
       <div class="car-nav">
         <button class="car-btn" data-track="track${i}" data-dir="-1" aria-label="Páginas anteriores">${seta('M15 6l-6 6 6 6')}</button>
-        <span class="car-count">Mantén presionado para pausar · toca para ampliar</span>
+        
         <button class="car-btn" data-track="track${i}" data-dir="1" aria-label="Próximas páginas">${seta('M9 6l6 6-6 6')}</button>
       </div>
     </div>`).join('');
@@ -892,6 +935,10 @@
   });
 
 
+  const track2 = document.getElementById('track2'), step2 = () => track2.querySelector('.testi').offsetWidth + 16;
+  document.getElementById('prev2').onclick = () => track2.scrollBy({left:-step2(),behavior:'smooth'});
+  document.getElementById('next2').onclick = () => track2.scrollBy({left: step2(),behavior:'smooth'});
+
   /* ---------- módulos ---------- */
   const mods = [
     ["Fundamentos, autores y corrientes de la Psicología","Wundt, Freud, Jung, Pávlov, Skinner, Piaget, Vygotsky, Maslow, Rogers","#B08A3E"],
@@ -916,7 +963,7 @@
     ["Psicología evolucionista y comparada","Darwin, Selección natural, Etología, Conducta animal, Cooperación y altruismo","#4E8A5E"]
   ];
   document.getElementById('modules').innerHTML = mods.map(([t,topics,c],i)=>
-    `<div class="module"><span class="n" style="--c:${c}">${String(i+1).padStart(2,'0')}</span><h4>${t}</h4></div>`
+    `<div class="module"><span class="n" style="--c:${c}">${String(i+1).padStart(2,'0')}</span><div><h4>${t}</h4><p>${topics}</p></div></div>`
   ).join('');
 
   document.getElementById('yr').textContent = new Date().getFullYear();
