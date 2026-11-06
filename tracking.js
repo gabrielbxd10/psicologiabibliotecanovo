@@ -1,6 +1,7 @@
 /* Rastreamento da página de vendas.
  * - Pixel da UTMify 6ae2944caa1fbcb0df387387: conta cliques/ICs no painel e carrega o Meta ligado a ele (946879171838483).
- * - Meta Pixel 973045345819425: inicializado aqui, porque não está ligado à UTMify. PageView e InitiateCheckout vêm da UTMify, que dispara o fbq para todos os pixels carregados.
+ * - Meta Pixel 973045345819425: inicializado aqui, porque não está ligado à UTMify. Recebe só o próprio PageView (trackSingle);
+ *   o InitiateCheckout vem da UTMify, que dispara o fbq para todos os pixels carregados.
  * - O botão de compra atualiza o link com as UTMs/xcod/sck e deixa a navegação acontecer normalmente.
  * - Guarda as UTMs/IDs de clique do anúncio por 7 dias, para atribuir a venda mesmo se a pessoa voltar depois.
  * - Eventos de engajamento (rolagem, tempo, seções, cliques) vão pelo fbq que a UTMify carregou.
@@ -85,7 +86,7 @@
 	if (!window._fbq) window._fbq = f;
 	f.push = f; f.loaded = true; f.version = '2.0'; f.queue = [];
 	window.fbq('init', META_PIXEL);
-	// PageView: o pixel da UTMify já dispara para todos os pixels iniciados (este incluído); enviar aqui duplicava.
+	window.fbq('trackSingle', META_PIXEL, 'PageView');
 	// Sem esperar o carregamento da página: quem sai cedo também conta como visita (os scripts são assíncronos e não travam a tela).
 	addScript('https://cdn.utmify.com.br/scripts/utms/latest.js', [['data-utmify-prevent-subids', ''], ['data-utmify-ignore-iframe', '']]);
 	addScript('https://connect.facebook.net/en_US/fbevents.js');
