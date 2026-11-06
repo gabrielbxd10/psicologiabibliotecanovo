@@ -132,6 +132,8 @@
 		// cliques
 		document.addEventListener('click', function (e) {
 			var alvo = e.target;
+			// InitiateCheckout também no pixel ligado à UTMify (pelo navegador ela só envia ao 973045345819425)
+			if (alvo.closest('a[data-buy]') && !enviados.IC946) { enviados.IC946 = 1; try { window.fbq('trackSingle', '946879171838483', 'InitiateCheckout', {currency: 'USD'}); } catch (x) {} }
 			var botao = alvo.closest('a.btn');
 			if (botao && (botao.getAttribute('href') || '').charAt(0) === '#') {
 				var sec = botao.closest('section,header');
