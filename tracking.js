@@ -86,7 +86,10 @@
 	if (!window._fbq) window._fbq = f;
 	f.push = f; f.loaded = true; f.version = '2.0'; f.queue = [];
 	window.fbq('init', META_PIXEL);
+	window.fbq('init', '946879171838483');
+	// PageView sempre nos 2 pixels: a UTMify só dispara o dela uma vez por sessão
 	window.fbq('trackSingle', META_PIXEL, 'PageView');
+	window.fbq('trackSingle', '946879171838483', 'PageView');
 	// Sem esperar o carregamento da página: quem sai cedo também conta como visita (os scripts são assíncronos e não travam a tela).
 	addScript('https://cdn.utmify.com.br/scripts/utms/latest.js', [['data-utmify-prevent-subids', ''], ['data-utmify-ignore-iframe', '']]);
 	addScript('https://connect.facebook.net/en_US/fbevents.js');
@@ -132,8 +135,8 @@
 		// cliques
 		document.addEventListener('click', function (e) {
 			var alvo = e.target;
-			// InitiateCheckout também no pixel ligado à UTMify (pelo navegador ela só envia ao 973045345819425)
-			if (alvo.closest('a[data-buy]') && !enviados.IC946) { enviados.IC946 = 1; try { window.fbq('trackSingle', '946879171838483', 'InitiateCheckout', {currency: 'USD'}); } catch (x) {} }
+			// InitiateCheckout sempre nos 2 pixels (a UTMify só envia o dela uma vez por sessão e a um pixel)
+			if (alvo.closest('a[data-buy]') && !enviados.IC) { enviados.IC = 1; try { window.fbq('trackSingle', META_PIXEL, 'InitiateCheckout', {currency: 'USD'}); window.fbq('trackSingle', '946879171838483', 'InitiateCheckout', {currency: 'USD'}); } catch (x) {} }
 			var botao = alvo.closest('a.btn');
 			if (botao && (botao.getAttribute('href') || '').charAt(0) === '#') {
 				var sec = botao.closest('section,header');
