@@ -1,10 +1,7 @@
-/* Rastreamento da página de vendas.
- * - Pixel da UTMify 6ae2944caa1fbcb0df387387: conta cliques/ICs no painel e carrega o Meta ligado a ele (946879171838483).
- * - Meta Pixel 973045345819425: inicializado aqui, porque não está ligado à UTMify. Recebe só o próprio PageView (trackSingle);
- *   o InitiateCheckout vem da UTMify, que dispara o fbq para todos os pixels carregados.
- * - O botão de compra atualiza o link com as UTMs/xcod/sck e deixa a navegação acontecer normalmente.
- * - Guarda as UTMs/IDs de clique do anúncio por 7 dias, para atribuir a venda mesmo se a pessoa voltar depois.
- * - Eventos de engajamento (rolagem, tempo, seções, cliques) vão pelo fbq que a UTMify carregou.
+/* Rastreamento da página de vendas (pixels no <head> do index.html):
+ * - Meta Pixel 973045345819425: PageView no head; aqui, InitiateCheckout no clique de compra e eventos de engajamento.
+ * - UTMify (pixel 6ae2944caa1fbcb0df387387 + UTMs): também no head.
+ * - O botão de compra leva UTMs/xcod/sck ao checkout; UTMs/IDs de clique ficam guardados 7 dias.
  * Para desligar num teste local: window.__NO_TRACK = true antes deste script, ou abrir pelo arquivo (file://). */
 (function () {
 	'use strict';
@@ -71,30 +68,7 @@
 
 	if (SEM_RASTREIO) return;
 
-	var addScript = function (src, attrs) {
-		var s = document.createElement('script');
-		s.src = src; s.async = true; s.defer = true;
-		(attrs || []).forEach(function (a) { s.setAttribute(a[0], a[1]); });
-		(document.head || document.documentElement).appendChild(s);
-	};
-
-	// ---------- UTMify: UTMs nos links + pixel (que traz o Meta Pixel da conta) ----------
-	// Carregados logo depois que a página termina de carregar (não disputam banda com o conteúdo do topo).
-	// O PageView continua sendo enviado; só sai alguns instantes depois.
-	// Fila do fbq já no início (cliques rápidos não se perdem).
-	var f = window.fbq = function () { f.callMethod ? f.callMethod.apply(f, arguments) : f.queue.push(arguments); };
-	if (!window._fbq) window._fbq = f;
-	f.push = f; f.loaded = true; f.version = '2.0'; f.queue = [];
-	window.fbq('init', META_PIXEL);
-	window.fbq('init', '946879171838483');
-	// PageView sempre nos 2 pixels: a UTMify só dispara o dela uma vez por sessão
-	window.fbq('trackSingle', META_PIXEL, 'PageView');
-	window.fbq('trackSingle', '946879171838483', 'PageView');
-	// Sem esperar o carregamento da página: quem sai cedo também conta como visita (os scripts são assíncronos e não travam a tela).
-	addScript('https://cdn.utmify.com.br/scripts/utms/latest.js', [['data-utmify-prevent-subids', ''], ['data-utmify-ignore-iframe', '']]);
-	addScript('https://connect.facebook.net/en_US/fbevents.js');
-	window.pixelId = PIXEL_UTMIFY;
-	addScript('https://cdn.utmify.com.br/scripts/pixel/pixel.js');
+	// Pixels (Meta 973045345819425 + UTMify) e script de UTMs ficam no <head> do index.html.
 
 	// ---------- eventos de engajamento (custom), cada um no máximo 1x quando "unico" ----------
 	// Só usam o fbq quando a UTMify já o carregou; antes disso o evento é ignorado (nunca inicializamos o pixel aqui).
@@ -135,8 +109,8 @@
 		// cliques
 		document.addEventListener('click', function (e) {
 			var alvo = e.target;
-			// InitiateCheckout sempre nos 2 pixels (a UTMify só envia o dela uma vez por sessão e a um pixel)
-			if (alvo.closest('a[data-buy]') && !enviados.IC) { enviados.IC = 1; try { window.fbq('trackSingle', META_PIXEL, 'InitiateCheckout', {currency: 'USD'}); window.fbq('trackSingle', '946879171838483', 'InitiateCheckout', {currency: 'USD'}); } catch (x) {} }
+			// InitiateCheckout a cada clique em comprar (a UTMify só envia o dela uma vez por sessão)
+			if (alvo.closest('a[data-buy]') && !enviados.IC) { enviados.IC = 1; try { window.fbq('trackSingle', META_PIXEL, 'InitiateCheckout', {currency: 'USD', value: 14.9}); } catch (x) {} }
 			var botao = alvo.closest('a.btn');
 			if (botao && (botao.getAttribute('href') || '').charAt(0) === '#') {
 				var sec = botao.closest('section,header');
